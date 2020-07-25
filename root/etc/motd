@@ -1,0 +1,11 @@
+
+Welcome to Rockstor built on openSUSE.
+To update your system from here do:
+
+        zypper refresh
+        zypper up --no-recommends
+
+Or use Rockstor's Web User Interface (Web-UI): recommended method.
+
+Type 'myip' then Enter key to get my address for your Browser.
+Enjoy ...
