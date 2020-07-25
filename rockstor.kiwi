@@ -263,10 +263,9 @@ which includes aarch64 relevant content -->
                 profiles="Leap15.1.x86_64">
         <source path="http://download.opensuse.org/repositories/shells/openSUSE_Leap_15.1/"/>
     </repository>
-    <!-- TODO: NOT YET AVAILABLE FOR LEAP15.2 so use 15.1 source for now -->
     <repository type="rpm-md" alias="shells" priority="105" imageinclude="true"
                 profiles="Leap15.2.x86_64">
-        <source path="http://download.opensuse.org/repositories/shells/openSUSE_Leap_15.1/"/>
+        <source path="http://download.opensuse.org/repositories/shells/openSUSE_Leap_15.2/"/>
     </repository>
     <!-- TODO: NOT YET AVAILABLE FOR LEAP15.2 aarch64 so use Factory_ARM source for now -->
     <repository type="rpm-md" alias="shells" priority="105" imageinclude="true"
