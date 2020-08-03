@@ -58,6 +58,20 @@ Please see the [overview](https://osinside.github.io/kiwi/overview.html) section
 
 Given our image target OS is exclusively openSUSE, a Leap 15.1 or 15.2 install is recommended as the host operating system.
 
+### rockstor-installer local copy
+
+In order to build the installer you need a local copy of the [rockstor-installer](https://github.com/rockstor/rockstor-installer) GitHub repository.
+This README.md file is part of that repository.
+To get this copy you simply need to 'git clone' that repository to your local openSUSE instance:
+
+```shell script
+zypper in git
+git clone https://github.com/rockstor/rockstor-installer.git
+cd rockstor-installer/
+```  
+
+The above commands installs the 'git' program, uses it to 'clone' (read copy locally) the GitHub repo, and sets your working directory to be inside the local copy.
+Now you just need the kiwi-ng program this config requires to make the final installer. 
 
 ### kiwi-ng install
 For a Leap 15.2 host OS from kiwi-ng's doc [Installation](https://osinside.github.io/kiwi/installation.html#installation) section we have:
