@@ -110,7 +110,7 @@ Any assistance with this endeavour would be much appreciated. See: kiwi-ng's new
 ### Leap15.2.x86_64 profile
 Executed, as the root user, in the directory containing this repositories rockstor.kiwi file.
 ```shell script
-kiwi-ng --profile=Leap15.1.x86_64 --type oem system build --description ./ --target-dir /home/kiwi-images/
+kiwi-ng --profile=Leap15.2.x86_64 --type oem system build --description ./ --target-dir /home/kiwi-images/
 ```
 
 ### Leap15.2.RaspberryPi4 profile
