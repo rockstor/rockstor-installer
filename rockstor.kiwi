@@ -280,21 +280,21 @@ which includes aarch64 relevant content -->
     <!-- We are required to de/re-brand packages that have no "...branding-upstream" equivalent-->
     <!-- This repo currently provides: systemd-presets-branding-rockstor -->
     <!-- https://build.opensuse.org/package/show/home:rockstor:branches:Base:System/systemd-presets-branding-rockstor -->
-    <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97"
+    <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true"
                 profiles="Leap15.1.x86_64">
         <source path="http://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Leap_15.1/"/>
     </repository>
-    <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97"
+    <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true"
                 profiles="Leap15.2.x86_64">
         <source path="http://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Leap_15.2/"/>
     </repository>
     <!-- TODO: NOT YET AVAILABLE FOR LEAP15.2 aarch64 so use Factory_ARM source for now -->
-    <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97"
+    <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true"
                 profiles="Leap15.2.RaspberryPi4">
         <source path="https://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Factory_ARM/"/>
     </repository>
     <!-- TODO: Only a factory option, no tumbleweed option so factory for now -->
-    <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97"
+    <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true"
                 profiles="Tumbleweed.x86_64">
         <source path="http://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Factory/"/>
     </repository>
