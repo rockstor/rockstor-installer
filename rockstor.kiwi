@@ -397,7 +397,7 @@ which includes aarch64 relevant content -->
         <package name="ypbind"/>
         <!--ROCKSTOR PACKAGE-->
         <!--Change to reflect the version specified, i.e. 4.0.0-0 -->
-        <package name="rockstor"/>
+        <package name="rockstor-4.0.0-0"/>
     </packages>
     <packages type="image" profiles="Leap15.2.RaspberryPi4">
         <package name="raspberrypi-firmware" arch="aarch64"/>
