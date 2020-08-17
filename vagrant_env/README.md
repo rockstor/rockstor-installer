@@ -31,7 +31,7 @@ On Windows without Bash installed, executed:
 
 ```
 vagrant up
-vagrant ssh -c cd "/home/vagrant; /vagrant/run_kiwi.sh"
+vagrant ssh -c "cd /home/vagrant; /vagrant/run_kiwi.sh"
 ```
 
 This will also build and provision the vagrant box. It will then run kiwi in the virtual machine to build the RockStor 
