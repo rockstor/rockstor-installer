@@ -35,6 +35,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
         config.vm.provision "shell", inline: <<-SHELL
             PROFILE=x86_64
+            #PROFILE=AArch64
             REPO_URL="https://github.com/rockstor/rockstor-installer.git"
             REPO_DIR="rockstor-installer/"
             if [ "$PROFILE" = "x86_64" ]; then

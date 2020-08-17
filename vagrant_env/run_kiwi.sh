@@ -5,6 +5,7 @@ set -u
 
 KIWI_BUILD_DIR="/home/vagrant/kiwi-images/"
 PROFILE="x86_64"
+#PROFILE="RaspberryPi4"
 REPO_DIR="rockstor-installer/"
 
 echo '============================================='

@@ -1,6 +1,7 @@
 Introduction
 ------------
-You can use this vagrant environment to build the installer image within a vagrant box of a confirmed working specification.
+You can use this vagrant environment to build the installer image within a vagrant box of a confirmed working 
+specification.
 
 Pre-requesits
 -------------
@@ -10,15 +11,31 @@ It is assumped that you have the follow software packages install on you host ma
 
 Both packages are available on Linux, Mac OSX and Windows.
 
+Configuring
+-----------
+To configure the environment to build the required platform/profile you need to edit both the following files to 
+comment/uncomment the 'PROFILE' variable to the desired value:
+
+- Vagrantfile
+- run_kiwi.sh
+
 Building the RockStor ISO installer
 -----------------------------------
-To execute the build script:
+On Mac OSX, Linux and Windows with Bash installed, execute the build script:
 
 ```shell script
 ./build.sh
 ```
 
-This will also build and provision the vagrant box. It will then run kiwi in the virtual machine to build the RockStor Installer ISO.
+On Windows without Bash installed, executed:
+
+```
+vagrant up
+vagrant ssh -c cd "/home/vagrant; /vagrant/run_kiwi.sh"
+```
+
+This will also build and provision the vagrant box. It will then run kiwi in the virtual machine to build the RockStor 
+Installer ISO.
 
 Managing the Virtual Machine
 ----------------------------
