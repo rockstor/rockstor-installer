@@ -1,0 +1,53 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Requires vagrant-host-shell and vagrant-vbguest
+required_plugins = %w(
+    vagrant-host-shell
+    vagrant-sshfs
+    )
+required_plugins.each do |plugin|
+  system "vagrant plugin install #{plugin}" unless Vagrant.has_plugin? plugin
+end
+
+MEM = 2048
+CPU = 2
+
+VAGRANTFILE_API_VERSION = '2'
+#
+#  Fully documented Vagrantfile available
+#  in the wiki:  https://github.com/josenk/vagrant-vmware-esxi/wiki
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+    config.vm.synced_folder "../", "/home/vagrant/rockstor-installer"
+    config.vm.network "private_network", type: "dhcp"
+    config.env.enable # Enable vagrant-env(.env)
+
+    config.vm.define "rockstor" do |v|
+        v.vm.hostname = "rockstor"
+        v.vm.box = 'bento/opensuse-leap-15'
+
+        # Provide specific variable
+        v.vm.provider :virtualbox do |vb|
+            vb.memory = MEM
+            vb.cpus = CPU
+        end
+
+        config.vm.provision "shell", inline: <<-SHELL
+            PROFILE=x86_64
+            REPO_URL="https://github.com/rockstor/rockstor-installer.git"
+            REPO_DIR="rockstor-installer/"
+            if [ "$PROFILE" = "x86_64" ]; then
+                sudo zypper addrepo http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2/ appliance-builder
+            else
+                sudo zypper addrepo http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2_ARM/ appliance-builder
+            fi
+            sudo zypper -n install git
+            sudo zypper -n install python3-kiwi || true
+            if [ ! -e ${REPO_DIR} ]; then
+                git clone ${REPO_URL} ${REPO_DIR}
+            fi
+            #/vagrant/run_kiwi.sh
+        SHELL
+    end
+end
