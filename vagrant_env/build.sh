@@ -3,7 +3,7 @@ set -e
 set -u
 #set -x
 
-VAGRANT_HOST="rockstor"
+VAGRANT_HOST="rockstor-installer"
 
 vagrant up ${VAGRANT_HOST}
 
