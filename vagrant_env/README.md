@@ -11,13 +11,38 @@ It is assumped that you have the follow software packages install on you host ma
 
 Both packages are available on Linux, Mac OSX and Windows.
 
-Configuring
------------
+Configuring Profiles
+--------------------
+NOTE: Currently, only the x86_64 profile is usable due to the availability of suitable vagrant boxes for 
+AArch64 in VirtualBox. 
+
+<s>
 To configure the environment to build the required platform/profile you need to edit both the following files to 
 comment/uncomment the 'PROFILE' variable to the desired value:
 
 - Vagrantfile
 - run_kiwi.sh
+</s>
+
+Vagrant Boxes for OpenSUSE Leap
+-------------------------------
+
+This vagrant file uses the vagrant box: [bento/opensuse-leap-15](https://app.vagrantup.com/bento/boxes/opensuse-leap-15) 
+
+```
+v.vm.box = bento/opensuse-leap-15 
+```
+
+Explanantion:
+
+*Bento*: is a providor of many base boxes for vagrant, based on official images with the virtualisation tools added.  
+
+*opensuse-leap-15*: is a 'tag' for 'Leap 15 latest' and will track the latest release of leap 15. Should you require 
+a fixed version of leap there are specific tags available. eg. 
+
+```
+v.vm.box = bento/opensuse-leap-15.2 
+```
 
 Building the RockStor ISO installer
 -----------------------------------
