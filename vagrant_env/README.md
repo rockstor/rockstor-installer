@@ -61,7 +61,9 @@ vagrant ssh -c "cd /home/vagrant; /vagrant/run_kiwi.sh"
 ```
 
 This will also build and provision the vagrant box. It will then run kiwi in the virtual machine to build the Rockstor 
-Installer ISO.
+Installer ISO. 
+
+The resultant ISO will be available in this directory. (eg. ./rockstor-installer/vagrant_env)
 
 Managing the Virtual Machine
 ----------------------------
