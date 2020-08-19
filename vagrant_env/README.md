@@ -59,7 +59,7 @@ vagrant up
 vagrant ssh -c "cd /home/vagrant; /vagrant/run_kiwi.sh"
 ```
 
-This will also build and provision the vagrant box. It will then run kiwi in the virtual machine to build the RockStor 
+This will also build and provision the vagrant box. It will then run kiwi in the virtual machine to build the Rockstor 
 Installer ISO.
 
 Managing the Virtual Machine
