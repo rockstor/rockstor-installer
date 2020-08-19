@@ -44,7 +44,7 @@ a fixed version of leap there are specific tags available. eg.
 v.vm.box = bento/opensuse-leap-15.2 
 ```
 
-Building the RockStor ISO installer
+Building the Rockstor ISO installer
 -----------------------------------
 On Mac OSX, Linux and Windows with Bash installed, execute the build script:
 
