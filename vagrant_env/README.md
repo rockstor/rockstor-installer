@@ -36,7 +36,7 @@ v.vm.box = bento/opensuse-leap-15
 
 Explanantion:
 
-*Bento*: is a providor of many base boxes for vagrant, based on official images with the virtualisation tools added.  
+*Bento*: is a provider of many base boxes for vagrant, based on official images with the virtualisation tools added.  
 
 *opensuse-leap-15*: is a 'tag' for 'Leap 15 latest' and will track the latest release of leap 15. Should you require 
 a fixed version of leap there are specific tags available. eg. 
