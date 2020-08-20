@@ -46,8 +46,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 sudo zypper --non-interactive addrepo --refresh http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2_ARM/ appliance-builder
             fi
             sudo zypper --non-interactive --gpg-auto-import-keys refresh
-            sudo zypper -n install git
-            sudo zypper -n install python3-kiwi || true
+            sudo zypper --non-interactive install git
+            sudo zypper --non-interactive install python3-kiwi || true
             if [ ! -e ${REPO_DIR} ]; then
                 git clone ${REPO_URL} ${REPO_DIR}
             fi

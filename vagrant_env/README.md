@@ -80,8 +80,20 @@ vagrant up
 vagrant reload
 ```
 
+- If you change the provisioner section of the Vagrantfile, you can rerun just that part as follows:
+
+```shell script
+vagrant provision
+```
+
 - Destroy the vagrant box VM:
 
 ```shell script
 vagrant destroy -f
+```
+
+- If you wish to ssh into the vagrant box VM to poke around, try this:
+
+```shell script
+vagrant ssh
 ```
