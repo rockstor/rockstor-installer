@@ -29,7 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         v.vm.hostname = "rockstor-installer"
         v.vm.box = 'bento/opensuse-leap-15'
 
-        # Provide specific variable
+        # Provider specific variable
         v.vm.provider :virtualbox do |vb|
             vb.memory = MEM
             vb.cpus = CPU
@@ -47,7 +47,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             fi
             sudo zypper --non-interactive --gpg-auto-import-keys refresh
             sudo zypper --non-interactive install git
-            sudo zypper --non-interactive install python3-kiwi || true
+            sudo zypper --non-interactive install python3-kiwi
             if [ ! -e ${REPO_DIR} ]; then
                 git clone ${REPO_URL} ${REPO_DIR}
             fi
