@@ -41,10 +41,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             REPO_URL="https://github.com/rockstor/rockstor-installer.git"
             REPO_DIR="rockstor-installer/"
             if [ "$PROFILE" = "x86_64" ]; then
-                sudo zypper addrepo http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2/ appliance-builder
+                sudo zypper --non-interactive addrepo --refresh http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2/ appliance-builder
             else
-                sudo zypper addrepo http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2_ARM/ appliance-builder
+                sudo zypper --non-interactive addrepo --refresh http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2_ARM/ appliance-builder
             fi
+            sudo zypper --non-interactive --gpg-auto-import-keys refresh
             sudo zypper -n install git
             sudo zypper -n install python3-kiwi || true
             if [ ! -e ${REPO_DIR} ]; then
