@@ -89,7 +89,7 @@ vagrant provision
 - Destroy the vagrant box VM:
 
 ```shell script
-vagrant destroy -f
+vagrant destroy
 ```
 
 - If you wish to ssh into the vagrant box VM to poke around, try this:
