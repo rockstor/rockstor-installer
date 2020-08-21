@@ -23,7 +23,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.synced_folder "./", "/vagrant"
     config.vm.synced_folder "../", "/home/vagrant/rockstor-installer"
     config.vm.network "private_network", type: "dhcp"
-    config.env.enable # Enable vagrant-env(.env)
 
     config.vm.define "rockstor-installer" do |v|
         v.vm.hostname = "rockstor-installer"
