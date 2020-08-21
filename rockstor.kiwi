@@ -193,6 +193,7 @@ which includes aarch64 relevant content -->
                 <volume name="usr/local"/>
                 <volume name="var" copy_on_write="false"/>
             </systemdisk>
+            <size unit="G">16</size>
             <oemconfig>
                 <oem-swap>true</oem-swap>
                 <oem-swapsize>2048</oem-swapsize>
@@ -331,21 +332,21 @@ which includes aarch64 relevant content -->
     <!-- We are required to de/re-brand packages that have no "...branding-upstream" equivalent-->
     <!-- This repo currently provides: systemd-presets-branding-rockstor -->
     <!-- https://build.opensuse.org/package/show/home:rockstor:branches:Base:System/systemd-presets-branding-rockstor -->
-    <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97"
+    <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true"
                 profiles="Leap15.1.x86_64">
         <source path="http://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Leap_15.1/"/>
     </repository>
-    <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97"
+    <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true"
                 profiles="Leap15.2.x86_64,Leap15.2.ARM64EFI">
         <source path="http://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Leap_15.2/"/>
     </repository>
     <!-- TODO: NOT YET AVAILABLE FOR LEAP15.2 aarch64 so use Factory_ARM source for now -->
-    <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97"
+    <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true"
                 profiles="Leap15.2.RaspberryPi4">
         <source path="https://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Factory_ARM/"/>
     </repository>
     <!-- TODO: Only a factory option, no tumbleweed option so factory for now -->
-    <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97"
+    <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true"
                 profiles="Tumbleweed.x86_64">
         <source path="http://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Factory/"/>
     </repository>
@@ -453,7 +454,7 @@ which includes aarch64 relevant content -->
         <package name="ypbind"/>
         <!--ROCKSTOR PACKAGE-->
         <!--Change to reflect the version specified, i.e. 4.0.0-0 -->
-        <package name="rockstor"/>
+        <package name="rockstor-4.0.0-0"/>
     </packages>
     <packages type="image" profiles="Leap15.2.RaspberryPi4">
         <package name="raspberrypi-firmware" arch="aarch64"/>
