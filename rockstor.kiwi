@@ -39,9 +39,9 @@ which includes aarch64 relevant content -->
         <profile name="Leap15.2.RaspberryPi4"
                  description="Rockstor built on openSUSE Leap 15.2 Raspberry_Pi"
                  arch="aarch64"/>
-        <!--        <profile name="Leap15.2.Ten64"-->
-        <!--                 description="Rockstor build on openSUSE Leap 15.2 Ten64"-->
-        <!--                 arch="aarch64"/>-->
+        <profile name="Leap15.2.ARM64EFI"
+                         description="Rockstor built on openSUSE Leap 15.2 ARM64 EFI/VM/Ten64"
+                         arch="aarch64"/>
     </profiles>
     <preferences profiles="Leap15.1.x86_64,Leap15.2.x86_64,Tumbleweed.x86_64">
         <!--Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release)-->
@@ -149,6 +149,58 @@ which includes aarch64 relevant content -->
             </oemconfig>
         </type>
     </preferences>
+    <preferences profiles="Leap15.2.ARM64EFI">
+        <!--Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release)-->
+        <version>4.0.0-0</version>
+        <packagemanager>zypper</packagemanager>
+        <locale>en_GB</locale>
+        <keytable>gb</keytable>
+        <timezone>Europe/London</timezone>
+        <rpm-excludedocs>true</rpm-excludedocs>
+        <rpm-check-signatures>false</rpm-check-signatures>
+        <!--bgrt, charge, fade-in-->
+        <bootsplash-theme>upstream</bootsplash-theme>  <!--boot theme-->
+        <!--bgrt,breeze,starfield-->
+        <bootloader-theme>upstream</bootloader-theme>  <!--gfxboot theme-->
+        <!-- https://osinside.github.io/kiwi/building/build_oem_disk.html#oem -->
+        <!--bootpartition= is redundant post kiwi issue #1351-->
+        <!--firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64-->
+        <!--Re AArch64: https://github.com/OSInside/kiwi/issues/1491-->
+        <!--devicepersistency="by-uuid" differs from our normal !. Needs testing-->
+        <type
+                image="oem"
+                initrd_system="dracut"
+                filesystem="btrfs"
+                fsmountoptions="noatime,compress=lzo"
+                bootloader="grub2"
+                firmware="efi"
+                kernelcmdline="ipv6.disable=1 plymouth.enable=0 rd.kiwi.oem.maxdisk=500G earlycon"
+                bootpartition="false"
+                devicepersistency="by-uuid"
+                btrfs_root_is_snapshot="true"
+                btrfs_quota_groups="false"
+                efipartsize="64"
+                format="qcow2"
+        >
+            <systemdisk>
+                <volume name="home"/>
+                <volume name="root"/>
+                <volume name="tmp"/>
+                <volume name="opt"/>
+                <volume name="srv"/>
+                <volume name="boot/grub2/arm64-efi"
+                        mountpoint="boot/grub2/arm64-efi"/>
+                <volume name="usr/local"/>
+                <volume name="var" copy_on_write="false"/>
+            </systemdisk>
+            <size unit="G">16</size>
+            <oemconfig>
+                <oem-swap>true</oem-swap>
+                <oem-swapsize>2048</oem-swapsize>
+                <oem-skip-verify>true</oem-skip-verify>
+            </oemconfig>
+        </type>
+    </preferences>
     <!-- ie /lib/modules/4.12.14-lp151.27-default/kernel/  -->
     <!-- Non-dracut Based Boot to specify what drivers not to strip-->
     <!--https://osinside.github.io/kiwi/working_with_kiwi/shell_scripts.html-->
@@ -169,7 +221,7 @@ which includes aarch64 relevant content -->
         <source path="obs://Virtualization:Appliances:Builder/openSUSE_Leap_15.2"/>
     </repository>
     <repository type="rpm-md" alias="kiwi" priority="1"
-                profiles="Leap15.2.RaspberryPi4">
+                profiles="Leap15.2.RaspberryPi4,Leap15.2.ARM64EFI">
         <source path="obs://Virtualization:Appliances:Builder/openSUSE_Leap_15.2_ARM"/>
     </repository>
     <repository type="rpm-md" alias="kiwi" priority="1"
@@ -187,7 +239,7 @@ which includes aarch64 relevant content -->
         <source path="obs://openSUSE:Leap:15.2/standard"/>
     </repository>
     <repository type="rpm-md" alias="Leap_15_2" imageinclude="true"
-                profiles="Leap15.2.RaspberryPi4">
+                profiles="Leap15.2.RaspberryPi4,Leap15.2.ARM64EFI">
         <source path="http://download.opensuse.org/ports/aarch64/distribution/leap/15.2/repo/oss/"/>
     </repository>
     <repository type="rpm-md" alias="Tumbleweed" imageinclude="true"
@@ -204,7 +256,7 @@ which includes aarch64 relevant content -->
         <source path="http://download.opensuse.org/update/leap/15.2/oss/"/>
     </repository>
     <repository type="rpm-md" alias="Leap_15_2_Updates" imageinclude="true"
-                profiles="Leap15.2.RaspberryPi4">
+                profiles="Leap15.2.RaspberryPi4,Leap15.2.ARM64EFI">
         <source path="http://download.opensuse.org/ports/update/leap/15.2/oss/"/>
     </repository>
     <repository type="rpm-md" alias="Tumbleweed_Updates" imageinclude="true"
@@ -248,7 +300,7 @@ which includes aarch64 relevant content -->
         <source path="http://updates.rockstor.com:8999/rockstor-testing/leap/15.2/"/>
     </repository>
     <repository type="rpm-md" alias="Rockstor-Testing"
-                profiles="Leap15.2.RaspberryPi4">
+                profiles="Leap15.2.RaspberryPi4,Leap15.2.ARM64EFI">
         <source path="http://updates.rockstor.com:8999/rockstor-testing/leap/15.2_aarch64/"/>
     </repository>
     <repository type="rpm-md" alias="Rockstor-Testing"
@@ -269,7 +321,7 @@ which includes aarch64 relevant content -->
     </repository>
     <!-- TODO: NOT YET AVAILABLE FOR LEAP15.2 aarch64 so use Factory_ARM source for now -->
     <repository type="rpm-md" alias="shells" priority="105" imageinclude="true"
-                profiles="Leap15.2.RaspberryPi4">
+                profiles="Leap15.2.RaspberryPi4,Leap15.2.ARM64EFI">
         <source path="https://download.opensuse.org/repositories/shells/openSUSE_Factory_ARM/"/>
     </repository>
     <repository type="rpm-md" alias="shells" priority="105" imageinclude="true"
@@ -285,7 +337,7 @@ which includes aarch64 relevant content -->
         <source path="http://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Leap_15.1/"/>
     </repository>
     <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true"
-                profiles="Leap15.2.x86_64">
+                profiles="Leap15.2.x86_64,Leap15.2.ARM64EFI">
         <source path="http://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Leap_15.2/"/>
     </repository>
     <!-- TODO: NOT YET AVAILABLE FOR LEAP15.2 aarch64 so use Factory_ARM source for now -->
@@ -297,6 +349,11 @@ which includes aarch64 relevant content -->
     <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true"
                 profiles="Tumbleweed.x86_64">
         <source path="http://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Factory/"/>
+    </repository>
+    <!-- For Traverse Ten64 drivers -->
+    <repository type="rpm-md" alias="mcbridematt" imageinclude="true"
+                profiles="Leap15.2.ARM64EFI">
+        <source path="obs://home:mcbridematt/openSUSE_Leap_15.2/" />
     </repository>
     <packages type="image">
         <package name="adaptec-firmware"/>  <!--Razor AIC94xx Series SAS-->
@@ -408,6 +465,15 @@ which includes aarch64 relevant content -->
         <package
                 name="kernel-firmware"/><!-- Fix choice between kernel-firmware and kernel-firmware-all -->
         <package name="u-boot-rpiarm64" arch="aarch64"/>
+    </packages>
+    <packages type="image" profiles="Leap15.2.ARM64EFI">
+        <!-- Support for Traverse Ten64 features -->
+        <package name="traverse-board-support" arch="aarch64"/>
+        <!-- without -default kiwi-ng might try to resolve another kernel variant -->
+        <package name="traverse-sensors-kmp-default" arch="aarch64"/>
+        <package name="traverse-sensors" arch="aarch64"/>
+        <package name="gpio-mpc8xxx-kmp-default" arch="aarch64"/>
+        <package name="gpio-mpc8xxx" arch="aarch64"/>
     </packages>
     <!--    <packages type="oem" profiles="x86_64,Ten64">-->
     <!--    </packages>-->
