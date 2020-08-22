@@ -12,6 +12,7 @@ It is assumped that you have the follow software packages install on you host ma
 Both packages are available on Linux, Mac OSX and Windows.
 
 It is also assumed that you have a local copy of this repository [rockstor-installer](https://github.com/rockstor/rockstor-installer) on your machine, see the top level README.md, and are currently within the 'vagrant_env' directory: where the Vagrantfile, build.sh, and run_kiwi.sh are.
+
 Configuring Profiles
 --------------------
 NOTE: Currently, only the x86_64 profile is usable due to the availability of suitable vagrant boxes for 
