@@ -12,7 +12,7 @@ which includes aarch64 relevant content -->
 <!-- OBS-Profiles: @BUILD_FLAVOR@ -->
 
 <!-- Change to "Rockstor-<baseos-machine>" e.g. "Rockstor-Leap15.2-RaspberryPi4" -->
-<image schemaversion="7.1" name="Rockstor-">
+<image schemaversion="7.1" name="Rockstor-NAS">
 
     <description type="system">
         <author>Philip Guyton</author>
