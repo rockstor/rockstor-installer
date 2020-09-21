@@ -44,4 +44,4 @@ node_modules/
 .vscode
 
 # Vagrant
-#.vagrant
+.vagrant
