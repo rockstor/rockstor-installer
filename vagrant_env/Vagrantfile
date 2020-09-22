@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# Requires vagrant-host-shell and vagrant-vbguest
+# Required plugins
 required_plugins = %w(
     vagrant-host-shell
     vagrant-sshfs
@@ -9,6 +9,7 @@ required_plugins = %w(
 required_plugins.each do |plugin|
   system "vagrant plugin install #{plugin}" unless Vagrant.has_plugin? plugin
 end
+# Excluded plugins
 system "vagrant plugin uninstall vagrant-vbguest"
 
 MEM = 2048
