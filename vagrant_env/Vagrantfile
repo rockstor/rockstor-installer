@@ -5,14 +5,15 @@
 required_plugins = %w(
     vagrant-host-shell
     vagrant-sshfs
-    vagrant-vbguest
     )
 required_plugins.each do |plugin|
   system "vagrant plugin install #{plugin}" unless Vagrant.has_plugin? plugin
 end
+system "vagrant plugin uninstall vagrant-vbguest"
 
 MEM = 2048
 CPU = 2
+PROFILE = ENV['PROFILE'] || 'x86_64'
 
 VAGRANTFILE_API_VERSION = '2'
 #
@@ -26,7 +27,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.define "rockstor-installer" do |v|
         v.vm.hostname = "rockstor-installer"
-        v.vm.box = 'bento/opensuse-leap-15'
+        if PROFILE == "x86_64" then
+            v.vm.box = 'opensuse/Leap-15.2.x86_64'
+        else
+            v.vm.box = 'opensuse/Leap-15.2.aarch64'
+        end
 
         # Provider specific variable
         v.vm.provider :virtualbox do |vb|
@@ -34,23 +39,27 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             vb.cpus = CPU
         end
 
+        if PROFILE == "x86_64" then
         config.vm.provision "shell", inline: <<-SHELL
-            PROFILE=x86_64
-            #PROFILE=AArch64
+                sudo zypper --non-interactive addrepo --refresh http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2/ appliance-builder
+                sudo zypper --non-interactive --gpg-auto-import-keys refresh
+            SHELL
+            else
+            config.vm.provision "shell", inline: <<-SHELL
+                sudo zypper --non-interactive addrepo --refresh http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2_ARM/ appliance-builder
+            sudo zypper --non-interactive --gpg-auto-import-keys refresh
+            SHELL
+        end
+
+        config.vm.provision "shell", inline: <<-SHELL
             REPO_URL="https://github.com/rockstor/rockstor-installer.git"
             REPO_DIR="rockstor-installer/"
-            if [ "$PROFILE" = "x86_64" ]; then
-                sudo zypper --non-interactive addrepo --refresh http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2/ appliance-builder
-            else
-                sudo zypper --non-interactive addrepo --refresh http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2_ARM/ appliance-builder
-            fi
-            sudo zypper --non-interactive --gpg-auto-import-keys refresh
-            sudo zypper --non-interactive install git
+            sudo zypper --non-interactive install git btrfsprogs gfxboot
             sudo zypper --non-interactive install python3-kiwi
             if [ ! -e ${REPO_DIR} ]; then
                 git clone ${REPO_URL} ${REPO_DIR}
             fi
-            #/vagrant/run_kiwi.sh
         SHELL
     end
 end
+
