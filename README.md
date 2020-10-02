@@ -95,7 +95,7 @@ Pi4 EEPROM/bootloader version "Jun 15 2020" or later will be required for USB bo
    
 ```shell script
 sudo zypper addrepo https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2_ARM/ appliance-builder
-sudo zypper install python3-kiwi btrfsprogs gfxboot
+sudo zypper install python3-kiwi btrfsprogs
 ```
 
 ### Edit rockstor.kiwi
