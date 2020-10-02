@@ -81,7 +81,7 @@ For a Leap 15.2 host OS from kiwi-ng's doc [Installation](https://osinside.githu
 Any x86_64 machine, although keep in mind that building the ISO installer is computationally expensive so Haswell or better is recommended.
 ```shell script
 sudo zypper addrepo http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2/ appliance-builder
-sudo zypper install python3-kiwi
+sudo zypper install python3-kiwi btrfsprogs gfxboot
 ```
 
 #### AArch64 host (e.g. a Pi4) for AArch64 profiles
@@ -95,7 +95,7 @@ Pi4 EEPROM/bootloader version "Jun 15 2020" or later will be required for USB bo
    
 ```shell script
 sudo zypper addrepo https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2_ARM/ appliance-builder
-sudo zypper install python3-kiwi
+sudo zypper install python3-kiwi btrfsprogs gfxboot
 ```
 
 ### Edit rockstor.kiwi
