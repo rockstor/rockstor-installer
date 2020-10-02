@@ -52,7 +52,7 @@ We are preserving this profile for when our in-process Python 2 to 3 move is com
 We are very exited to welcome contributions for the innovative [Traverse Ten64](https://www.crowdsupply.com/traverse-technologies/ten64) AArch64 platform.
 [Traverse technologies](https://traverse.com.au/) are an important contributor to the [rockstor-core](https://github.com/rockstor/rockstor-core) code base
 and have been instrumental in achieving our initial AArch64 aims.
-Although this profile includes Ten64 specific drivers (inactive on on Ten64 platforms), it is otherwise a modern generic Arm64 installer.
+Although this profile includes Ten64 specific drivers (inactive on non Ten64 platforms), it is otherwise a modern generic Arm64 installer.
 The resulting installer is intended to supports 64-bit ARM systems that implement the [Embedded Boot](https://github.com/ARM-software/ebbr) or [Server boot](https://github.com/ARM-software/sbsa-acs) standard. 
 
 ## HOWTO
