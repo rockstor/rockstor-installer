@@ -179,6 +179,15 @@ EOF
 fi
 
 #======================================
+# Apply grub config
+# Setup Grub Distributor option
+#--------------------------------------
+echo >> /etc/default/grub
+echo "# Set distributor for custom menu text" >> /etc/default/grub
+echo 'GRUB_DISTRIBUTOR="Rockstor NAS"' >> /etc/default/grub
+echo >> /etc/default/grub
+
+#======================================
 # Umount kernel filesystems
 #--------------------------------------
 baseCleanMount
