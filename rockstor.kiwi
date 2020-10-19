@@ -45,7 +45,7 @@ which includes aarch64 relevant content -->
     </profiles>
     <preferences profiles="Leap15.1.x86_64,Leap15.2.x86_64,Tumbleweed.x86_64">
         <!--Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release)-->
-        <version>4.0.0-0</version>
+        <version>4.0.4-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
         <keytable>gb</keytable>
@@ -100,7 +100,7 @@ which includes aarch64 relevant content -->
 
     <preferences profiles="Leap15.2.RaspberryPi4">
         <!--Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release)-->
-        <version>4.0.0-0</version>
+        <version>4.0.4-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
         <keytable>gb</keytable>
@@ -151,7 +151,7 @@ which includes aarch64 relevant content -->
     </preferences>
     <preferences profiles="Leap15.2.ARM64EFI">
         <!--Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release)-->
-        <version>4.0.0-0</version>
+        <version>4.0.4-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
         <keytable>gb</keytable>
@@ -453,8 +453,8 @@ which includes aarch64 relevant content -->
         <package name="systemtap-runtime"/>
         <package name="ypbind"/>
         <!--ROCKSTOR PACKAGE-->
-        <!--Change to reflect the version specified, i.e. 4.0.0-0 -->
-        <package name="rockstor-4.0.0-0"/>
+        <!--Change to reflect the version specified, i.e. 4.0.4-0 -->
+        <package name="rockstor-4.0.4-0"/>
     </packages>
     <packages type="image" profiles="Leap15.2.RaspberryPi4">
         <package name="raspberrypi-firmware" arch="aarch64"/>
