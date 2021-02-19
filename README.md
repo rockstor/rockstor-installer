@@ -10,14 +10,15 @@ Please test your modifications on all affected profiles prior to submission and 
 ## Profile Anatomy
 Profiles are named after their upstream distribution base, i.e. openSUSE Leap/Jump version, and then the intended target system; the two elements separated by a ".".
 
-The "target system" element is either generic, i.e. **x86_64** or **AArch64**, or target system specific, i.e. **RaspberryPi4** or **Ten64**.
+The "target system" element is either generic, i.e. **x86_64** or **AArch64**, or target system specific, i.e. **RaspberryPi4** or **ARM64EFI**.
+With the latter ARM64EFI spanning both generic (Arm64) and specific (64 bit EFI) unfortunately.
 
 ## Core Profiles
 Our current intention is to distribute pre-built installers, pending any trademark prerequisites, from the following profiles:
 
 - **Leap15.2.x86_64**
 - **Leap15.2.RaspberryPi4**
-- **Leap15.2.Ten64**
+- **Leap15.2.ARM64EFI**
 
 These will be linked to from our [Downloads](http://rockstor.com/download.html) page.
 
@@ -32,6 +33,7 @@ We can make no promises for the 'supported' status of any additional profiles bu
 - **Leap15.1.x86_64**
 - **Leap15.2.x86_64** (recommended) - proposed for our Rockstor 4 're-launch')
 - **Leap15.2.RaspberryPi4**
+- **Leap15.2.ARM64EFI**
 
 #### Raspberry Pi4 Notes:
 As we are attempting to stick as closely as possible to upstream, and have limited resources, this installer requires
@@ -44,12 +46,14 @@ Prior to Tumbleweed dropped some Python 2 libraries this profile was functional.
 We used this target to inform our developmental direction and as a more leading-edge installer option. 
 We are preserving this profile for when our in-process Python 2 to 3 move is complete.
 
-### Pending Profiles:
-- Leap15.2.Ten64
+### Special mention:
+- Leap15.2.ARM64EFI
 
-We are very exited to welcome contributions pending for the innovative [Traverse Ten64](https://www.crowdsupply.com/traverse-technologies/ten64) AArch64 platform.
-[Traverse technologies](https://traverse.com.au/) are a recent contributor to the [rockstor-core](https://github.com/rockstor/rockstor-core) code base
-and have been instrumental in achieving our AArch64 aims.
+We are very exited to welcome contributions for the innovative [Traverse Ten64](https://www.crowdsupply.com/traverse-technologies/ten64) AArch64 platform.
+[Traverse technologies](https://traverse.com.au/) are an important contributor to the [rockstor-core](https://github.com/rockstor/rockstor-core) code base
+and have been instrumental in achieving our initial AArch64 aims.
+Although this profile includes Ten64 specific drivers (inactive on non Ten64 platforms), it is otherwise a modern generic Arm64 installer.
+The resulting installer is intended to supports 64-bit ARM systems that implement the [Embedded Boot](https://github.com/ARM-software/ebbr) or [Server boot](https://github.com/ARM-software/sbsa-acs) standard. 
 
 ## HOWTO
 
@@ -81,7 +85,7 @@ For a Leap 15.2 host OS from kiwi-ng's doc [Installation](https://osinside.githu
 Any x86_64 machine, although keep in mind that building the ISO installer is computationally expensive so Haswell or better is recommended.
 ```shell script
 sudo zypper addrepo http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2/ appliance-builder
-sudo zypper install python3-kiwi
+sudo zypper install python3-kiwi btrfsprogs gfxboot
 ```
 
 #### AArch64 host (e.g. a Pi4) for AArch64 profiles
@@ -95,7 +99,7 @@ Pi4 EEPROM/bootloader version "Jun 15 2020" or later will be required for USB bo
    
 ```shell script
 sudo zypper addrepo https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2_ARM/ appliance-builder
-sudo zypper install python3-kiwi
+sudo zypper install python3-kiwi btrfsprogs
 ```
 
 ### Edit rockstor.kiwi

@@ -45,7 +45,7 @@ which includes aarch64 relevant content -->
     </profiles>
     <preferences profiles="Leap15.1.x86_64,Leap15.2.x86_64,Tumbleweed.x86_64">
         <!--Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release)-->
-        <version>4.0.0-0</version>
+        <version>4.0.4-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
         <keytable>gb</keytable>
@@ -69,7 +69,7 @@ which includes aarch64 relevant content -->
                 bootloader="grub2"
                 firmware="efi"
                 installiso="true"
-                kernelcmdline="ipv6.disable=1 plymouth.enable=0 rd.kiwi.oem.maxdisk=500G"
+                kernelcmdline="ipv6.disable=1 plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G"
                 bootpartition="false"
                 devicepersistency="by-label"
                 btrfs_root_is_snapshot="true"
@@ -100,7 +100,7 @@ which includes aarch64 relevant content -->
 
     <preferences profiles="Leap15.2.RaspberryPi4">
         <!--Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release)-->
-        <version>4.0.0-0</version>
+        <version>4.0.4-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
         <keytable>gb</keytable>
@@ -123,7 +123,7 @@ which includes aarch64 relevant content -->
                 fsmountoptions="noatime,compress=lzo"
                 bootloader="grub2"
                 firmware="efi"
-                kernelcmdline="ipv6.disable=1 plymouth.enable=0 rd.kiwi.oem.maxdisk=500G console=ttyS0,115200 console=tty"
+                kernelcmdline="ipv6.disable=1 plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G console=ttyS0,115200 console=tty"
                 bootpartition="false"
                 devicepersistency="by-uuid"
                 btrfs_root_is_snapshot="true"
@@ -151,7 +151,7 @@ which includes aarch64 relevant content -->
     </preferences>
     <preferences profiles="Leap15.2.ARM64EFI">
         <!--Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release)-->
-        <version>4.0.0-0</version>
+        <version>4.0.4-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
         <keytable>gb</keytable>
@@ -174,7 +174,7 @@ which includes aarch64 relevant content -->
                 fsmountoptions="noatime,compress=lzo"
                 bootloader="grub2"
                 firmware="efi"
-                kernelcmdline="ipv6.disable=1 plymouth.enable=0 rd.kiwi.oem.maxdisk=500G earlycon"
+                kernelcmdline="ipv6.disable=1 plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G earlycon"
                 bootpartition="false"
                 devicepersistency="by-uuid"
                 btrfs_root_is_snapshot="true"
@@ -263,28 +263,6 @@ which includes aarch64 relevant content -->
                 profiles="Tumbleweed.x86_64">
         <source path="http://download.opensuse.org/update/tumbleweed/"/>
     </repository>
-    <!-- https://build.opensuse.org/project/show/network:time -->
-    <!-- Primarily to fix chronyc 100% cpu via NM dispatcher.d/20-chrony  -->
-    <!-- Provides much newer versions of chrony and ntp -->
-    <!-- Required for Leap15.1 -->
-    <repository type="rpm-md" alias="Leap_15_1_NetTime" imageinclude="true"
-                priority="97" profiles="Leap15.1.x86_64">
-        <source path="http://download.opensuse.org/repositories/network:/time/openSUSE_Leap_15.1/"/>
-    </repository>
-    <!-- Required for Leap15.2 beta. Thanks to Flox for reporting/testing -->
-    <!-- TODO: Check requirement for this in Leap15.2 release, remove if possible -->
-    <repository type="rpm-md" alias="Leap_15_2_NetTime" imageinclude="true"
-                priority="97" profiles="Leap15.2.x86_64">
-        <source path="http://download.opensuse.org/repositories/network:/time/openSUSE_Leap_15.2/"/>
-    </repository>
-    <!-- Excluding for now from Leap15.2.RaspberryPi4 as causes dependency issues i.e. -->
-    <!-- nothing provides libm.so.6(GLIBC_2.29)(64bit) needed by chrony-3.5-92.3.aarch64 -->
-    <!-- nothing provides libevent_core-2.1.so.7()(64bit) needed by ntp-4.2.8p15-3.2.aarch64 -->
-    <!-- It may be the 100% cpu bug on chrony is now sorted or does not affect aarch64 -->
-    <!--    <repository type="rpm-md" alias="Leap_15_2_NetTime" imageinclude="true"-->
-    <!--                priority="97" profiles="Leap15.2.RaspberryPi4">-->
-    <!--        <source path="https://download.opensuse.org/repositories/network:/time/openSUSE_Factory_ARM/"/>-->
-    <!--    </repository>-->
     <!-- https://osinside.github.io/kiwi/working_with_kiwi/xml_description.html#adding-repositories -->
     <!-- Local-Repository on build host: for pre-installed rockstor package -->
     <!--    <repository type="rpm-dir" alias="Local-Repository">-->
@@ -453,8 +431,8 @@ which includes aarch64 relevant content -->
         <package name="systemtap-runtime"/>
         <package name="ypbind"/>
         <!--ROCKSTOR PACKAGE-->
-        <!--Change to reflect the version specified, i.e. 4.0.0-0 -->
-        <package name="rockstor-4.0.0-0"/>
+        <!--Change to reflect the version specified, i.e. 4.0.4-0 -->
+        <package name="rockstor-4.0.4-0"/>
     </packages>
     <packages type="image" profiles="Leap15.2.RaspberryPi4">
         <package name="raspberrypi-firmware" arch="aarch64"/>

@@ -29,22 +29,18 @@ comment/uncomment the 'PROFILE' variable to the desired value:
 Vagrant Boxes for OpenSUSE Leap
 -------------------------------
 
-This vagrant file uses the vagrant box: [bento/opensuse-leap-15](https://app.vagrantup.com/bento/boxes/opensuse-leap-15) 
+This vagrant file uses the vagrant boxes: 
+- [opensuse/leap-15.2.x86_64](https://app.vagrantup.com/opensuse/boxes/Leap-15.2.x86_64)
 
+or
+- [opensuse/leap-15.2.aarch64](https://app.vagrantup.com/opensuse/boxes/Leap-15.2.aarch64)
+
+eg.
 ```
-v.vm.box = bento/opensuse-leap-15 
+v.vm.box = 'opensuse/Leap-15.2.x86_64' 
 ```
 
-Explanantion:
-
-*Bento*: is a provider of many base boxes for vagrant, based on official images with the virtualisation tools added.  
-
-*opensuse-leap-15*: is a 'tag' for 'Leap 15 latest' and will track the latest release of leap 15. Should you require 
-a fixed version of leap there are specific tags available. eg. 
-
-```
-v.vm.box = bento/opensuse-leap-15.2 
-```
+These boxes for vagrant are based on official images with the virtualisation tools added.  
 
 Building the Rockstor ISO installer
 -----------------------------------
