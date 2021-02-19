@@ -8,6 +8,7 @@ Pre-requesits
 It is assumped that you have the follow software packages install on you host machine:
 - Vagrant (https://www.vagrantup.com/downloads)
 - VirtualBox (https://www.virtualbox.org/wiki/Downloads)
+- Oracle VM VirtualBox Extension Pack (https://www.virtualbox.org/wiki/Downloads)
 
 Both packages are available on Linux, Mac OSX and Windows.
 

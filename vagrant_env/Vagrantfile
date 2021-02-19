@@ -5,12 +5,11 @@
 required_plugins = %w(
     vagrant-host-shell
     vagrant-sshfs
+    vagrant-vbguest
     )
 required_plugins.each do |plugin|
   system "vagrant plugin install #{plugin}" unless Vagrant.has_plugin? plugin
 end
-# Excluded plugins
-system "vagrant plugin uninstall vagrant-vbguest"
 
 MEM = 2048
 CPU = 2
@@ -24,12 +23,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.synced_folder "./", "/vagrant"
     config.vm.synced_folder "../", "/home/vagrant/rockstor-installer"
-    config.vm.network "private_network", type: "dhcp"
+
+    # Disable update of guest additions when box is opensuse
+    # Comment out until we get back to opensuse
+    #if vagrant.has_plugin?("vagrant-vbguest")
+    #  config.vbguest.auto_update = false
+    #end
 
     config.vm.define "rockstor-installer" do |v|
         v.vm.hostname = "rockstor-installer"
         if PROFILE == "x86_64" then
-            v.vm.box = 'opensuse/Leap-15.2.x86_64'
+            # Switch back to bento until we figure out what broke in opensuse
+            #v.vm.box = 'opensuse/Leap-15.2.x86_64'
+            #v.vm.box_version = "15.2.31.325"
+            v.vm.box = 'bento/opensuse-leap-15'
         else
             v.vm.box = 'opensuse/Leap-15.2.aarch64'
         end
@@ -41,14 +48,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         end
 
         if PROFILE == "x86_64" then
-        config.vm.provision "shell", inline: <<-SHELL
+            config.vm.provision "shell", inline: <<-SHELL
                 sudo zypper --non-interactive addrepo --refresh http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2/ appliance-builder
                 sudo zypper --non-interactive --gpg-auto-import-keys refresh
             SHELL
-            else
+        else
             config.vm.provision "shell", inline: <<-SHELL
                 sudo zypper --non-interactive addrepo --refresh http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2_ARM/ appliance-builder
-            sudo zypper --non-interactive --gpg-auto-import-keys refresh
+                sudo zypper --non-interactive --gpg-auto-import-keys refresh
             SHELL
         end
 
@@ -60,6 +67,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             if [ ! -e ${REPO_DIR} ]; then
                 git clone ${REPO_URL} ${REPO_DIR}
             fi
+            # Fix for broken python lxml (see: https://www.suse.com/support/kb/doc/?id=000019818)
+            pip install --force-reinstall lxml
         SHELL
     end
 end
