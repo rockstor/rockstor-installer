@@ -65,11 +65,17 @@ The resultant ISO will be available in this directory. (eg. ./rockstor-installer
 
 Managing the Virtual Machine
 ----------------------------
-To manage the Vagrant box VM simple type the following from this directory...
+To manage the Vagrant box VM simple type the following from the directory where the respective vagrant file is located (in this case it would be the vagrant_env folder)
 
 - Bring up a vagrant box VM
+
 ```shell script
 vagrant up
+```
+- Stop the vagrant box VM
+
+```shell script
+vagrant halt
 ```
 
 - Reconfigure the vagrant box VM following a change to the Vagrantfile:
