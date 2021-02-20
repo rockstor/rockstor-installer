@@ -8,19 +8,19 @@ Pull requests most welcome; especially new target system profiles.
 Please test your modifications on all affected profiles prior to submission and provide details of how you tested the resulting installer.
 
 ## Profile Anatomy
-Profiles are named after their upstream distribution base, i.e. openSUSE Leap/Jump version, and then the intended target system; the two elements separated by a ".".
+Profiles are named after their upstream distribution base, i.e. openSUSE Leap version, and then the intended target system; the two elements separated by a ".".
 
 The "target system" element is either generic, i.e. **x86_64** or **AArch64**, or target system specific, i.e. **RaspberryPi4** or **ARM64EFI**.
-With the latter ARM64EFI spanning both generic (Arm64) and specific (64 bit EFI) unfortunately.
+With the latter ARM64EFI spanning both generic (Arm64) and specific (64 bit EFI).
 
 ## Core Profiles
-Our current intention is to distribute pre-built installers, pending any trademark prerequisites, from the following profiles:
+Our current intention is to distribute pre-built installers, pending any trademark prerequisites, made from the following profiles:
 
 - **Leap15.2.x86_64**
 - **Leap15.2.RaspberryPi4**
 - **Leap15.2.ARM64EFI**
 
-These will be linked to from our [Downloads](http://rockstor.com/download.html) page.
+These will be linked to from our [Downloads](http://rockstor.com/download.html) page upon reaching our first Rockstor 4 Stable release.
 
 ## Contributing a Profile
 If you would like to add a specific target system installer profile, please take a look at the [examples](https://github.com/OSInside/kiwi-descriptions) referenced in the second link above.
@@ -42,7 +42,7 @@ See later "AArch64 host ..." section for more details.
 However, regular microSD card boot should work out-of-the-box.
 
 ### Broken Profiles
-Prior to Tumbleweed dropped some Python 2 libraries this profile was functional.
+Prior to Tumbleweed dropping some Python 2 libraries this profile was functional.
 We used this target to inform our developmental direction and as a more leading-edge installer option. 
 We are preserving this profile for when our in-process Python 2 to 3 move is complete.
 
@@ -60,7 +60,7 @@ The resulting installer is intended to supports 64-bit ARM systems that implemen
 Please see the [overview](https://osinside.github.io/kiwi/overview.html) section of the kiwi-ng docs for the canonical
 [System Requirements](https://osinside.github.io/kiwi/overview.html#system-requirements): e.g. 15 GB free space, Python 3.5+ etc.
 
-Given our image target OS is exclusively openSUSE, a Leap 15.1 or 15.2 install is recommended as the host operating system.
+Given our image target OS is exclusively 'Built on openSUSE', a vanilla openSUSE Leap 15.2 install is recommended as the kiwi-ng host operating system.
 
 ### rockstor-installer local copy
 
@@ -78,7 +78,7 @@ The above commands installs the 'git' program, uses it to 'clone' (read copy loc
 Now you just need the kiwi-ng program this config requires to make the final installer. 
 
 ### kiwi-ng install
-For a Leap 15.2 host OS from kiwi-ng's doc [Installation](https://osinside.github.io/kiwi/installation.html#installation) section we have:
+For an openSUSE Leap 15.2 OS from kiwi-ng's doc [Installation](https://osinside.github.io/kiwi/installation.html#installation) section we have:
 
 
 #### x86_64 host for x86_64 profiles
@@ -124,7 +124,7 @@ kiwi-ng --profile=Leap15.2.RaspberryPi4 --type oem system build --description ./
 ```
 
 ## Resulting Rockstor installers
-With the above suggested kiwi-ng commands the resulting installers will be found in **/home/kiwi-images/** on the host systems.
+With the above suggested kiwi-ng commands the resulting installers will be found in **/home/kiwi-images/** on the kiwi-ng host systems.
 
 - For the x86_64 profiles the resulting installer is an ISO image intended for image transfer to an installer only device.
 Use the file ending in ".iso".
