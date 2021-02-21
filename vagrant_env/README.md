@@ -3,14 +3,14 @@ Introduction
 You can use this vagrant environment to build the installer image within a vagrant box of a confirmed working 
 specification.
 
-Pre-requesits
+Pre-requisites
 -------------
-It is assumped that you have the follow software packages install on you host machine:
+It is assumed that you have the following software packages installed on your host machine:
 - Vagrant (https://www.vagrantup.com/downloads)
 - VirtualBox (https://www.virtualbox.org/wiki/Downloads)
 - Oracle VM VirtualBox Extension Pack (https://www.virtualbox.org/wiki/Downloads)
 
-Both packages are available on Linux, Mac OSX and Windows.
+Both packages/extensions are available on Linux, Mac OSX and Windows.
 
 It is also assumed that you have a local copy of this repository [rockstor-installer](https://github.com/rockstor/rockstor-installer) on your machine, see the top level README.md, and are currently within the 'vagrant_env' directory: where the Vagrantfile, build.sh, and run_kiwi.sh are.
 
@@ -55,21 +55,27 @@ On Windows without Bash installed, executed:
 
 ```
 vagrant up
-vagrant ssh -c "cd /home/vagrant; /vagrant/run_kiwi.sh"
+vagrant ssh -c "cd /home/vagrant/rockstor-installer/vagrant_env; ./run_kiwi.sh"
 ```
 
-This will also build and provision the vagrant box. It will then run kiwi in the virtual machine to build the Rockstor 
-Installer ISO. 
+This will build and provision the vagrant box. It will then run kiwi in the virtual machine to build the Rockstor 
+Installer ISO.
 
 The resultant ISO will be available in this directory. (eg. ./rockstor-installer/vagrant_env)
 
 Managing the Virtual Machine
 ----------------------------
-To manage the Vagrant box VM simple type the following from this directory...
+To manage the Vagrant box VM simple type the following from the directory where the respective vagrant file is located (in this case it would be the vagrant_env folder)
 
 - Bring up a vagrant box VM
+
 ```shell script
 vagrant up
+```
+- Stop the vagrant box VM
+
+```shell script
+vagrant halt
 ```
 
 - Reconfigure the vagrant box VM following a change to the Vagrantfile:
@@ -83,7 +89,11 @@ vagrant reload
 ```shell script
 vagrant provision
 ```
+- or if the current vagrant box is still running:
 
+```shell script
+vagrant reload --provision
+```
 - Destroy the vagrant box VM:
 
 ```shell script

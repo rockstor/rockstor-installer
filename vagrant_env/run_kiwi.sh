@@ -7,7 +7,7 @@ PROFILE=${1:-x86_64}
 #PROFILE="RaspberryPi4"
 
 KIWI_BUILD_DIR="/home/vagrant/kiwi-images/"
-REPO_DIR="rockstor-installer/"
+REPO_DIR="/home/vagrant/rockstor-installer/"
 
 echo '============================================='
 echo 'Starting Build'
