@@ -297,11 +297,12 @@ which includes aarch64 relevant content -->
                 profiles="Leap15.2.x86_64">
         <source path="http://download.opensuse.org/repositories/shells/openSUSE_Leap_15.2/"/>
     </repository>
-    <!-- TODO: NOT YET AVAILABLE FOR LEAP15.2 aarch64 so use Factory_ARM source for now -->
-    <repository type="rpm-md" alias="shells" priority="105" imageinclude="true"
-                profiles="Leap15.2.RaspberryPi4,Leap15.2.ARM64EFI">
-        <source path="https://download.opensuse.org/repositories/shells/openSUSE_Factory_ARM/"/>
-    </repository>
+    <!-- TODO: NOT YET AVAILABLE FOR LEAP 15.2/15.3 ON aarch64 so using mcbridematt repo for now -->
+    <!-- Previously shells/openSUSE_Factory_ARM worked but glibc updates there now prevent this -->
+    <!--    <repository type="rpm-md" alias="shells" priority="105" imageinclude="true"-->
+    <!--                profiles="Leap15.2.RaspberryPi4,Leap15.2.ARM64EFI">-->
+    <!--        <source path="https://download.opensuse.org/repositories/shells/openSUSE_Factory_ARM/"/>-->
+    <!--    </repository>-->
     <repository type="rpm-md" alias="shells" priority="105" imageinclude="true"
                 profiles="Tumbleweed.x86_64">
         <source path="http://download.opensuse.org/repositories/shells/openSUSE_Tumbleweed/"/>
@@ -328,9 +329,10 @@ which includes aarch64 relevant content -->
                 profiles="Tumbleweed.x86_64">
         <source path="http://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Factory/"/>
     </repository>
-    <!-- For Traverse Ten64 drivers -->
+    <!-- For Traverse Ten64 drivers and aarch64 shellinabox (while no aarch64 shells repo exists) -->
+    <!-- https://build.opensuse.org/project/show/home:mcbridematt  -->
     <repository type="rpm-md" alias="mcbridematt" imageinclude="true"
-                profiles="Leap15.2.ARM64EFI">
+                profiles="Leap15.2.ARM64EFI,Leap15.2.RaspberryPi4,">
         <source path="obs://home:mcbridematt/openSUSE_Leap_15.2/" />
     </repository>
     <packages type="image">
