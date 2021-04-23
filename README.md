@@ -30,7 +30,6 @@ We can make no promises for the 'supported' status of any additional profiles bu
 ## Current Profiles
 
 ### Working Profiles:
-- **Leap15.1.x86_64**
 - **Leap15.2.x86_64** (recommended) - proposed for our Rockstor 4 're-launch')
 - **Leap15.2.RaspberryPi4**
 - **Leap15.2.ARM64EFI**
