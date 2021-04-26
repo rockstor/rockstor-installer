@@ -33,13 +33,22 @@ which includes aarch64 relevant content -->
         <profile name="Leap15.2.ARM64EFI"
                          description="Rockstor built on openSUSE Leap 15.2 ARM64 EFI/VM/Ten64"
                          arch="aarch64"/>
+        <profile name="Leap15.3.x86_64"
+                 description="Rockstor built on openSUSE Leap 15.3 x86_64"
+                 arch="x86_64"/>
+        <profile name="Leap15.3.RaspberryPi4"
+                 description="Rockstor built on openSUSE Leap 15.3 Raspberry_Pi"
+                 arch="aarch64"/>
+        <profile name="Leap15.3.ARM64EFI"
+                 description="Rockstor built on openSUSE Leap 15.3 ARM64 EFI/VM/Ten64"
+                 arch="aarch64"/>
         <!-- Tumbleweed.x86_64 profile currently broken due to now missing python2 dependencies -->
         <!-- maintaining for use testing Python 3 migration within testing channel -->
         <profile name="Tumbleweed.x86_64"
                  description="Rockstor built on openSUSE Tumbleweed x86_64"
                  arch="x86_64"/>
     </profiles>
-    <preferences profiles="Leap15.2.x86_64,Tumbleweed.x86_64">
+    <preferences profiles="Leap15.2.x86_64,Leap15.3.x86_64,Tumbleweed.x86_64">
         <!--Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release)-->
         <version>4.0.4-0</version>
         <packagemanager>zypper</packagemanager>
@@ -94,7 +103,7 @@ which includes aarch64 relevant content -->
         </type>
     </preferences>
 
-    <preferences profiles="Leap15.2.RaspberryPi4">
+    <preferences profiles="Leap15.2.RaspberryPi4,Leap15.3.RaspberryPi4">
         <!--Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release)-->
         <version>4.0.4-0</version>
         <packagemanager>zypper</packagemanager>
@@ -145,7 +154,7 @@ which includes aarch64 relevant content -->
             </oemconfig>
         </type>
     </preferences>
-    <preferences profiles="Leap15.2.ARM64EFI">
+    <preferences profiles="Leap15.2.ARM64EFI,Leap15.3.ARM64EFI">
         <!--Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release)-->
         <version>4.0.4-0</version>
         <packagemanager>zypper</packagemanager>
@@ -208,9 +217,15 @@ which includes aarch64 relevant content -->
               name="root" groups="root"/>
     </users>
     <!-- For zypper priority 1 is highest, priority 0 returns to default of 99 -->
+    <!-- https://build.opensuse.org/project/show/Virtualization:Appliances:Builder -->
     <repository type="rpm-md" alias="kiwi" priority="1"
                 profiles="Leap15.2.x86_64">
         <source path="obs://Virtualization:Appliances:Builder/openSUSE_Leap_15.2"/>
+    </repository>
+    <!-- Leap 15.3 repo now dual architecture -->
+    <repository type="rpm-md" alias="kiwi" priority="1"
+                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
+        <source path="obs://Virtualization:Appliances:Builder/openSUSE_Leap_15.3"/>
     </repository>
     <repository type="rpm-md" alias="kiwi" priority="1"
                 profiles="Leap15.2.RaspberryPi4,Leap15.2.ARM64EFI">
@@ -228,7 +243,12 @@ which includes aarch64 relevant content -->
     </repository>
     <repository type="rpm-md" alias="Leap_15_2" imageinclude="true"
                 profiles="Leap15.2.RaspberryPi4,Leap15.2.ARM64EFI">
-        <source path="http://download.opensuse.org/ports/aarch64/distribution/leap/15.2/repo/oss/"/>
+        <source path="https://download.opensuse.org/ports/aarch64/distribution/leap/15.2/repo/oss/"/>
+    </repository>
+    <!-- Leap 15.3 repo now multi architecture -->
+    <repository type="rpm-md" alias="Leap_15_3" imageinclude="true"
+                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
+        <source path="obs://openSUSE:Leap:15.3/standard"/>
     </repository>
     <repository type="rpm-md" alias="Tumbleweed" imageinclude="true"
                 profiles="Tumbleweed.x86_64">
@@ -237,15 +257,20 @@ which includes aarch64 relevant content -->
     <!-- Alias repo-update Name="Main Update Repository" or "openSUSE-Tumbleweed-Update" in JeOS-->
     <repository type="rpm-md" alias="Leap_15_2_Updates" imageinclude="true"
                 profiles="Leap15.2.x86_64">
-        <source path="http://download.opensuse.org/update/leap/15.2/oss/"/>
+        <source path="https://download.opensuse.org/update/leap/15.2/oss/"/>
     </repository>
     <repository type="rpm-md" alias="Leap_15_2_Updates" imageinclude="true"
                 profiles="Leap15.2.RaspberryPi4,Leap15.2.ARM64EFI">
-        <source path="http://download.opensuse.org/ports/update/leap/15.2/oss/"/>
+        <source path="https://download.opensuse.org/ports/update/leap/15.2/oss/"/>
+    </repository>
+    <!-- Leap 15.3 repo now multi architecture -->
+    <repository type="rpm-md" alias="Leap_15_3_Updates" imageinclude="true"
+                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
+        <source path="https://download.opensuse.org/update/leap/15.3/oss/"/>
     </repository>
     <repository type="rpm-md" alias="Tumbleweed_Updates" imageinclude="true"
                 profiles="Tumbleweed.x86_64">
-        <source path="http://download.opensuse.org/update/tumbleweed/"/>
+        <source path="https://download.opensuse.org/update/tumbleweed/"/>
     </repository>
     <!-- https://osinside.github.io/kiwi/working_with_kiwi/xml_description.html#adding-repositories -->
     <!-- Local-Repository on build host: for pre-installed rockstor package -->
@@ -262,6 +287,14 @@ which includes aarch64 relevant content -->
         <source path="http://updates.rockstor.com:8999/rockstor-testing/leap/15.2_aarch64/"/>
     </repository>
     <repository type="rpm-md" alias="Rockstor-Testing"
+                profiles="Leap15.3.x86_64">
+        <source path="http://updates.rockstor.com:8999/rockstor-testing/leap/15.3/"/>
+    </repository>
+    <repository type="rpm-md" alias="Rockstor-Testing"
+                profiles="Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
+        <source path="http://updates.rockstor.com:8999/rockstor-testing/leap/15.3_aarch64/"/>
+    </repository>
+    <repository type="rpm-md" alias="Rockstor-Testing"
                 profiles="Tumbleweed.x86_64">
         <source path="http://updates.rockstor.com:8999/rockstor-testing/tumbleweed/"/>
     </repository>
@@ -271,41 +304,57 @@ which includes aarch64 relevant content -->
     <!-- those in default repositories. Shellinabox is not currently offered as part of the base system -->
     <repository type="rpm-md" alias="shells" priority="105" imageinclude="true"
                 profiles="Leap15.2.x86_64">
-        <source path="http://download.opensuse.org/repositories/shells/openSUSE_Leap_15.2/"/>
+        <source path="https://download.opensuse.org/repositories/shells/openSUSE_Leap_15.2/"/>
     </repository>
-    <!-- TODO: NOT YET AVAILABLE FOR LEAP 15.2/15.3 ON aarch64 so using mcbridematt repo for now -->
+    <!-- TODO: NOT YET AVAILABLE FOR LEAP 15.2 ON aarch64 so using mcbridematt repo for now -->
     <!-- Previously shells/openSUSE_Factory_ARM worked but glibc updates there now prevent this -->
     <!--    <repository type="rpm-md" alias="shells" priority="105" imageinclude="true"-->
     <!--                profiles="Leap15.2.RaspberryPi4,Leap15.2.ARM64EFI">-->
     <!--        <source path="https://download.opensuse.org/repositories/shells/openSUSE_Factory_ARM/"/>-->
     <!--    </repository>-->
+    <!-- Rockstor home repo on OBS for Leap 15.3 + now hosts dual arch shellinabox -->
+    <!-- Maintain lower priority to upstream in case shellinabox is added there -->
+    <!-- https://build.opensuse.org/project/show/home:rockstor -->
+    <repository type="rpm-md" alias="home_rockstor" priority="105" imageinclude="true"
+                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
+        <source path="https://download.opensuse.org/repositories/home:/rockstor/openSUSE_Leap_15.3/"/>
+    </repository>
     <repository type="rpm-md" alias="shells" priority="105" imageinclude="true"
                 profiles="Tumbleweed.x86_64">
-        <source path="http://download.opensuse.org/repositories/shells/openSUSE_Tumbleweed/"/>
+        <source path="https://download.opensuse.org/repositories/shells/openSUSE_Tumbleweed/"/>
     </repository>
     <!-- As per https://en.opensuse.org/Archive:Making_an_openSUSE_based_distribution -->
     <!-- We are required to de/re-brand packages that have no "...branding-upstream" equivalent-->
     <!-- This repo currently provides: systemd-presets-branding-rockstor -->
     <!-- https://build.opensuse.org/package/show/home:rockstor:branches:Base:System/systemd-presets-branding-rockstor -->
     <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true"
-                profiles="Leap15.2.x86_64,Leap15.2.ARM64EFI">
-        <source path="http://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Leap_15.2/"/>
+                profiles="Leap15.2.x86_64">
+        <source path="https://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Leap_15.2/"/>
     </repository>
-    <!-- TODO: NOT YET AVAILABLE FOR LEAP15.2 aarch64 so use Factory_ARM source for now -->
     <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true"
-                profiles="Leap15.2.RaspberryPi4">
-        <source path="https://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Factory_ARM/"/>
+                profiles="Leap15.2.RaspberryPi4,Leap15.2.ARM64EFI">
+        <source path="https://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Leap_15.2_ARM/"/>
+    </repository>
+    <!-- Leap 15.3 repo now multi architecture -->
+    <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true"
+                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
+        <source path="https://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Leap_15.3/"/>
     </repository>
     <!-- TODO: Only a factory option, no tumbleweed option so factory for now -->
     <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true"
                 profiles="Tumbleweed.x86_64">
-        <source path="http://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Factory/"/>
+        <source path="https://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Factory/"/>
     </repository>
     <!-- For Traverse Ten64 drivers and aarch64 shellinabox (while no aarch64 shells repo exists) -->
     <!-- https://build.opensuse.org/project/show/home:mcbridematt  -->
     <repository type="rpm-md" alias="mcbridematt" imageinclude="true"
                 profiles="Leap15.2.ARM64EFI,Leap15.2.RaspberryPi4,">
         <source path="obs://home:mcbridematt/openSUSE_Leap_15.2/" />
+    </repository>
+    <!-- As of Leap 15.3 home_rockstor hosts multi-arch shellinabox -->
+    <repository type="rpm-md" alias="mcbridematt" imageinclude="true"
+                profiles="Leap15.3.ARM64EFI">
+        <source path="obs://home:mcbridematt/openSUSE_Leap_15.3/" />
     </repository>
     <packages type="image">
         <package name="adaptec-firmware"/>  <!--Razor AIC94xx Series SAS-->
