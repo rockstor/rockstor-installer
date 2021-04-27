@@ -34,6 +34,11 @@ We can make no promises for the 'supported' status of any additional profiles bu
 - **Leap15.2.RaspberryPi4**
 - **Leap15.2.ARM64EFI**
 
+## In-Development Profiles
+- **Leap15.3.x86_64** (potential for Rockstor 4 're-launch')
+- **Leap15.3.RaspberryPi4**
+- **Leap15.3.ARM64EFI** (N.B. Ten64 compatibility awaiting mcbridematt repo update)
+
 #### Raspberry Pi4 Notes:
 As we are attempting to stick as closely as possible to upstream, and have limited resources, this installer requires
 the recent Raspberry OS initiated firmware updates and associated /boot files copied over to enable USB boot.
