@@ -158,7 +158,7 @@ sed -i 's/https:\/\/www.opensuse.org/http:\/\/rockstor.com/g' /usr/lib/os-releas
 # Configure Raspberry Pi specifics
 # from: https://build.opensuse.org/package/view_file/openSUSE:Factory:ToTest/kiwi-templates-JeOS/config.sh
 #--------------------------------------
-if [[ "$kiwi_profiles" == *"Leap15.2.RaspberryPi4"* ]]; then
+if [[ "$kiwi_profiles" == *"Leap15.2.RaspberryPi4"* ]] || [[ "$kiwi_profiles" == *"Leap15.3.RaspberryPi4"* ]]; then
   # Also show WLAN interfaces in /etc/issue
   baseUpdateSysConfig /etc/sysconfig/issue-generator NETWORK_INTERFACE_REGEX '^[bew]'
 
