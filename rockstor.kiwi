@@ -412,6 +412,8 @@ which includes aarch64 relevant content -->
         <package name="timezone"/>
         <package name="vim"/>
         <package name="which"/>
+        <!-- Fix choice between kernel-firmware and kernel-firmware-all -->
+        <!-- <package name="kernel-firmware"/> -->
         <!--ADDITIONAL ROCKSTOR DEPENDENCIES-->
         <package name="at"/>
         <package name="avahi"/>
@@ -458,13 +460,12 @@ which includes aarch64 relevant content -->
         <package name="rockstor-4.0.4-0"/>
     </packages>
     <packages type="image" profiles="Leap15.2.RaspberryPi4,Leap15.3.RaspberryPi4">
+        <package name="raspberrypi-eeprom" arch="aarch64"/>
         <package name="raspberrypi-firmware" arch="aarch64"/>
         <package name="raspberrypi-firmware-config" arch="aarch64"/>
         <package name="raspberrypi-firmware-dt" arch="aarch64"/>
         <!-- For WiFi: -->
         <package name="bcm43xx-firmware"/>
-        <package
-                name="kernel-firmware"/><!-- Fix choice between kernel-firmware and kernel-firmware-all -->
         <package name="u-boot-rpiarm64" arch="aarch64"/>
     </packages>
     <packages type="image" profiles="Leap15.2.ARM64EFI">
