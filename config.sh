@@ -19,11 +19,6 @@ test -f /.profile && . /.profile
 echo "Configure image: [$kiwi_iname]..."
 
 #======================================
-# Mount system filesystems
-#--------------------------------------
-baseMount
-
-#======================================
 # Setup baseproduct link
 #--------------------------------------
 suseSetupProduct
@@ -186,10 +181,5 @@ echo >> /etc/default/grub
 echo "# Set distributor for custom menu text" >> /etc/default/grub
 echo 'GRUB_DISTRIBUTOR="Rockstor NAS"' >> /etc/default/grub
 echo >> /etc/default/grub
-
-#======================================
-# Umount kernel filesystems
-#--------------------------------------
-baseCleanMount
 
 exit 0
