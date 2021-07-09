@@ -10,7 +10,7 @@ https://build.opensuse.org/package/view_file/openSUSE:Leap:15.2:ARM:Images/JeOS/
 which includes aarch64 relevant content -->
 <!-- OBS-Profiles: @BUILD_FLAVOR@ -->
 
-<!-- Change to "Rockstor-<baseos-machine>" e.g. "Rockstor-Leap15.2-RaspberryPi4" -->
+<!--Change to "Rockstor-<baseos-machine>" e.g. "Rockstor-Leap15.2-RaspberryPi4"-->
 <image schemaversion="7.1" name="Rockstor-NAS">
 
     <description type="system">
@@ -456,7 +456,7 @@ which includes aarch64 relevant content -->
         <package name="systemtap-runtime"/>
         <package name="ypbind"/>
         <!--ROCKSTOR PACKAGE-->
-        <!--Change to reflect the version specified, i.e. 4.0.4-0 -->
+        <!--Change to reflect the version specified, i.e. 4.0.4-0-->
         <package name="rockstor-4.0.4-0"/>
     </packages>
     <packages type="image" profiles="Leap15.2.RaspberryPi4,Leap15.3.RaspberryPi4">

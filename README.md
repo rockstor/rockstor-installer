@@ -107,8 +107,10 @@ sudo zypper install python3-kiwi btrfsprogs
 ```
 
 ### Edit rockstor.kiwi
-Edit all lines directly preceeded by **<!-- Change to ...** to reflect your chosen profile any rockstor rpm version changes you make.
-These edits are done automatically by our release infrastructure but are required when exucuting by hand, as in this HowTo.
+No edit is required if you wish to use the generic installer filename and default rockstor package version (recommended).
+To change these defaults edit all lines directly preceded by **<!--Change to ...** as per the **...** details given.
+Our release infrastructure performs these same edits to set official installer filenames and rockstor package versions.
+
 
 ### Warning
 It is recommended that a discrete OS install is used to build the Rockstor installer due to the root user requirement and the scope of operations performed.
