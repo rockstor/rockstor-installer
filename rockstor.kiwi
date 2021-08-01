@@ -335,10 +335,6 @@ which includes aarch64 relevant content -->
                 profiles="Leap15.2.RaspberryPi4,Leap15.2.ARM64EFI">
         <source path="https://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Leap_15.2_ARM/"/>
     </repository>
-    <repository type="rpm-md" alias="pi-eeprom" priority="97" imageinclude="true"
-                profiles="Leap15.2.RaspberryPi4,Leap15.2.ARM64EFI">
-        <source path="https://download.opensuse.org/repositories/hardware:/boot/openSUSE_Factory_ARM/"/>
-    </repository>
     <!-- Leap 15.3 repo now multi architecture -->
     <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true"
                 profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
@@ -464,7 +460,6 @@ which includes aarch64 relevant content -->
         <package name="rockstor-4.0.7-0"/>
     </packages>
     <packages type="image" profiles="Leap15.2.RaspberryPi4,Leap15.3.RaspberryPi4">
-        <package name="raspberrypi-eeprom" arch="aarch64"/>
         <package name="raspberrypi-firmware" arch="aarch64"/>
         <package name="raspberrypi-firmware-config" arch="aarch64"/>
         <package name="raspberrypi-firmware-dt" arch="aarch64"/>
