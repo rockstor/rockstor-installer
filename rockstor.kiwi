@@ -459,7 +459,16 @@ which includes aarch64 relevant content -->
         <!--Change to reflect the version specified, i.e. 4.0.7-0-->
         <package name="rockstor-4.0.7-0"/>
     </packages>
-    <packages type="image" profiles="Leap15.2.RaspberryPi4,Leap15.3.RaspberryPi4">
+    <packages type="image" profiles="Leap15.2.RaspberryPi4">
+        <package name="raspberrypi-firmware" arch="aarch64"/>
+        <package name="raspberrypi-firmware-config" arch="aarch64"/>
+        <package name="raspberrypi-firmware-dt" arch="aarch64"/>
+        <!-- For WiFi: -->
+        <package name="bcm43xx-firmware"/>
+        <package name="u-boot-rpiarm64" arch="aarch64"/>
+    </packages>
+    <packages type="image" profiles="Leap15.3.RaspberryPi4">
+        <package name="raspberrypi-eeprom" arch="aarch64"/>
         <package name="raspberrypi-firmware" arch="aarch64"/>
         <package name="raspberrypi-firmware-config" arch="aarch64"/>
         <package name="raspberrypi-firmware-dt" arch="aarch64"/>
