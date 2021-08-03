@@ -1,0 +1,14 @@
+# Added by the Rockstor-installer
+# See: https://github.com/rockstor/rockstor-installer
+#
+# Get more options/information on http://elinux.org/RPiconfig
+# or on https://www.raspberrypi.org/documentation/configuration/config-txt.md
+#
+# !!!!! This file is an updates safe addition to config.txt   !!!!!
+# !!!!!  via that file's "include extraconfig.txt" option.    !!!!!
+# !!!!! For Additional configuration options or dt overlays.  !!!!!
+
+# Avoid log spam with empty sdcard reader.
+# See: https://github.com/raspberrypi/linux/issues/3092
+# N.B. this will also disable sdcard polling after the one time boot poll.
+dtparam=sd_poll_once=on
