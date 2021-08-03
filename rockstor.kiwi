@@ -79,7 +79,7 @@ which includes aarch64 relevant content -->
                 devicepersistency="by-label"
                 btrfs_root_is_snapshot="true"
                 btrfs_quota_groups="false"
-                efipartsize="33"
+                efipartsize="64"
         >
             <systemdisk>
                 <volume name="home"/>
