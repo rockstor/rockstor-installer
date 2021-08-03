@@ -31,12 +31,12 @@ We can make no promises for the 'supported' status of any additional profiles bu
 
 ### Working Profiles:
 - **Leap15.2.x86_64** (recommended) - proposed for our Rockstor 4 're-launch')
-- **Leap15.2.RaspberryPi4**
+- **Leap15.2.RaspberryPi4** (RPi400 built-in keyboard does not work)
 - **Leap15.2.ARM64EFI**
 
 ## In-Development Profiles
 - **Leap15.3.x86_64** (potential for Rockstor 4 're-launch')
-- **Leap15.3.RaspberryPi4**
+- **Leap15.3.RaspberryPi4** (required for RPi400 built-in keyboard function)
 - **Leap15.3.ARM64EFI** (N.B. Ten64 compatibility awaiting mcbridematt repo update)
 
 #### Raspberry Pi4 Notes:
@@ -44,6 +44,10 @@ As we are attempting to stick as closely as possible to upstream, and have limit
 the recent Raspberry OS initiated firmware updates and associated /boot files copied over to enable USB boot.
 See later "AArch64 host ..." section for more details.
 However, regular microSD card boot should work out-of-the-box.
+
+#### Raspberry Pi400 Notes:
+We have had reports that the current Leap15.2 based profiles do not enable the built-in keyboard.
+This bug was not seen in our Leap 15.3 profile.
 
 ### Broken Profiles
 Prior to Tumbleweed dropping some Python 2 libraries this profile was functional.
@@ -87,24 +91,48 @@ For an openSUSE Leap 15.2 OS from kiwi-ng's doc [Installation](https://osinside.
 
 #### x86_64 host for x86_64 profiles
 Any x86_64 machine, although keep in mind that building the ISO installer is computationally expensive so Haswell or better is recommended.
+
+##### Leap 15.2 host
 ```shell script
 sudo zypper addrepo http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2/ appliance-builder
 sudo zypper install python3-kiwi btrfsprogs gfxboot
 ```
 
+##### Leap 15.3 host
+```shell script
+sudo zypper addrepo http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.3/ appliance-builder
+sudo zypper install python3-kiwi btrfsprogs gfxboot
+```
+
+
 #### AArch64 host (e.g. a Pi4) for AArch64 profiles
-See [HCL:Raspberry Pi4](https://en.opensuse.org/HCL:Raspberry_Pi4). Install, for example, an appliance JeOS Leap 15.2 image as the host OS.
-Enabling USB boot on the Pi4 will allow for the use of, for example, an SSD as the system drive which will massively speed up installer building.
-This will likely require a bootloader update via a fully updated Raspberry OS and copying the resulting /boot/start4* and /boot/fixup4*
-files from that OS over the ones found in the JeOS Leap 15.2 /EFI dir. The same procedure may also be required for USB booting the resulting Rockstor installer.
-Depending on upstream updates, and the existing version of your Pi4 bootloader, neither step may be necessary.
+See [HCL:Raspberry Pi4](https://en.opensuse.org/HCL:Raspberry_Pi4).
+Install, for example, an appliance JeOS Leap 15.2 image as the host OS.
+Enabling USB boot on older Pi4 systems will allow for the use of, for example, an SSD as the system drive which will massively speed up installer building.
+USB booting on the Pi4 may require a bootloader update via a fully updated Raspberry OS.
+Also, using a 15.2 appliance will likely require updated /boot/start4* and /boot/fixup4* files from say Raspberry OS.
+Use these to overwrite the ones found in the JeOS Leap 15.2 /EFI dir.
+These files do not need updating when using a Leap 15.3 Appliance image.
+Note that for 15.2 profiles the same procedure may also be required for USB booting the resulting Rockstor installer.
+Sdcard booting of both the appliance JeOS images and the resulting Rockstor installer should work without these modifications. 
 
 Pi4 EEPROM/bootloader version "Jun 15 2020" or later will be required for USB boot regardless of any installer /EFI file changes.
-   
+
+##### For a JeOS Leap 15.2 host:
+ 
 ```shell script
 sudo zypper addrepo https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2_ARM/ appliance-builder
 sudo zypper install python3-kiwi btrfsprogs
 ```
+
+##### For a JeOS Leap 15.3 host:
+(Leap 15.3 has moved to mixed X86_64/aarch64 repos) 
+
+```shell script
+sudo zypper addrepo https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.3/ appliance-builder
+sudo zypper install python3-kiwi btrfsprogs
+```
+
 
 ### Edit rockstor.kiwi
 No edit is required if you wish to use the generic installer filename and default rockstor package version (recommended).
@@ -125,6 +153,7 @@ kiwi-ng --profile=Leap15.2.x86_64 --type oem system build --description ./ --tar
 
 ### Leap15.2.RaspberryPi4 profile
 Executed, as the root user, in the directory containing this repositories rockstor.kiwi file.
+N.B. RPi400 built in keyboard is known not to work with this profile. 
 ```shell script
 kiwi-ng --profile=Leap15.2.RaspberryPi4 --type oem system build --description ./ --target-dir /home/kiwi-images/
 ```
