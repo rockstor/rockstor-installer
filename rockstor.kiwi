@@ -272,6 +272,22 @@ which includes aarch64 relevant content -->
                 profiles="Tumbleweed.x86_64">
         <source path="https://download.opensuse.org/update/tumbleweed/"/>
     </repository>
+    <!-- Alias repo-backports-update Name="Update repository of openSUSE Backports" -->
+    <!-- or "openSUSE_Backports_SLE-15-SP3_Update" / "Online updates for openSUSE:Backports:SLE-15-SP3 (standard)" -->
+    <!-- Alias repo-sle-update Name="Update repository with updates from SUSE Linux Enterprise 15" -->
+    <!-- or "openSUSE_Leap_15.3_SLE-Update" / "Online updates for openSUSE Leap 15.3 (SLE)" -->
+    <!-- See: https://doc.opensuse.org/release-notes/x86_64/openSUSE/Leap/15.3/#installation-new-update-repos -->
+    <!-- Leap 15.3 profiles only - repos are multi architecture -->
+    <!-- Not included in image as auto added by installed system. -->
+    <!-- Used during image build to capture updates at time of installer build -->
+    <repository type="rpm-md" alias="repo-backports-update"
+                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
+        <source path="https://download.opensuse.org/update/leap/15.3/backports/"/>
+    </repository>
+    <repository type="rpm-md" alias="repo-sle-update"
+                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
+        <source path="https://download.opensuse.org/update/leap/15.3/sle/"/>
+    </repository>
     <!-- https://osinside.github.io/kiwi/working_with_kiwi/xml_description.html#adding-repositories -->
     <!-- Local-Repository on build host: for pre-installed rockstor package -->
     <!--    <repository type="rpm-dir" alias="Local-Repository">-->
