@@ -85,9 +85,29 @@ cd rockstor-installer/
 The above commands installs the 'git' program, uses it to 'clone' (read copy locally) the GitHub repo, and sets your working directory to be inside the local copy.
 Now you just need the kiwi-ng program this config requires to make the final installer. 
 
-### kiwi-ng install
-For an openSUSE Leap 15.2 OS from kiwi-ng's doc [Installation](https://osinside.github.io/kiwi/installation.html#installation) section we have:
+### For building on any linux host with KVM support
+Kiwi now has support for using KVM virtual machines to build in isolated environments, regardless of the linux host.
 
+On any linux platform with KVM virtualization enabled, and python3, you can use an isolated python virtualenvironment to 
+build without touching your host OS, or needing to manually set up a openSUSE virtual machine. This does have some overhead 
+compared to building on a baremetal installation, but on reasonably powerful hardware it still took less than twenty minutes.
+
+By default, kiwi-boxed-plugin will reserve 8GB of memory, and 4 CPU cores. This can be edited with
+`--box-memory=<vmgb> --box-smp-cpus=<number>`. Arguments before the `--` are passed to boxbuild, and after are passed to the
+kiwi-ng build itself.
+
+```shell
+python3 -m venv kiwi-env
+./kiwi-env/bin/pip install kiwi kiwi-boxed-plugin
+./kiwi-env/bin/kiwi-ng --profile=Leap15.2.x86_64 --type oem \
+  system boxbuild --box leap \
+  -- --description ./ --target-dir ./images
+```
+
+### For building on dedicated openSUSE installations
+
+#### kiwi-ng install
+For an openSUSE Leap 15.2 OS from kiwi-ng's doc [Installation](https://osinside.github.io/kiwi/installation.html#installation) section we have:
 
 #### x86_64 host for x86_64 profiles
 Any x86_64 machine, although keep in mind that building the ISO installer is computationally expensive so Haswell or better is recommended.
@@ -133,17 +153,10 @@ sudo zypper addrepo https://download.opensuse.org/repositories/Virtualization:/A
 sudo zypper install python3-kiwi btrfsprogs
 ```
 
-
 ### Edit rockstor.kiwi
 No edit is required if you wish to use the generic installer filename and default rockstor package version (recommended).
 To change these defaults edit all lines directly preceded by **<!--Change to ...** as per the **...** details given.
 Our release infrastructure performs these same edits to set official installer filenames and rockstor package versions.
-
-
-### Warning
-It is recommended that a discrete OS install is used to build the Rockstor installer due to the root user requirement and the scope of operations performed.
-We hope later to transition to a newer mechanism within kiwi-ng where by KVM is employed to create the required build environment.
-Any assistance with this endeavour would be much appreciated. See: kiwi-ng's new [boxbuild](https://osinside.github.io/kiwi/self_contained.html) capability.   
 
 ### Leap15.2.x86_64 profile
 Executed, as the root user, in the directory containing this repositories rockstor.kiwi file.
