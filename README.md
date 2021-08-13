@@ -93,8 +93,10 @@ build without touching your host OS, or needing to manually set up a openSUSE vi
 compared to building on a baremetal installation, but on reasonably powerful hardware it still took less than twenty minutes.
 
 By default, kiwi-boxed-plugin will reserve 8GB of memory, and 4 CPU cores. This can be edited with
-`--box-memory=<vmgb> --box-smp-cpus=<number>`. Arguments before the `--` are passed to boxbuild, and after are passed to the
-kiwi-ng build itself.
+`--box-memory=<vm>G --box-smp-cpus=<number>`, e.g. `--box-memory 4G --box-smp-cpus=2`. On machines with low ram, building with as 
+low as 1GB has been tested successfully. Assigning too much ram will crash your host, so be sure to set a safe amount smaller than
+your current available ram when running. Arguments before the `--` are passed to boxbuild, and after are passed to the kiwi-ng
+build itself.
 
 ```shell
 python3 -m venv kiwi-env
