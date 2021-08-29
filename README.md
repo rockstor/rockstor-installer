@@ -117,13 +117,13 @@ Any x86_64 machine, although keep in mind that building the ISO installer is com
 ##### Leap 15.2 host
 ```shell script
 sudo zypper addrepo http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2/ appliance-builder
-sudo zypper install python3-kiwi btrfsprogs gfxboot
+sudo zypper install python3-kiwi btrfsprogs gfxboot qemu-tools gptfdisk e2fsprogs squashfs xorriso
 ```
 
 ##### Leap 15.3 host
 ```shell script
 sudo zypper addrepo http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.3/ appliance-builder
-sudo zypper install python3-kiwi btrfsprogs gfxboot
+sudo zypper install python3-kiwi btrfsprogs gfxboot qemu-tools gptfdisk e2fsprogs squashfs xorriso
 ```
 
 
@@ -144,7 +144,7 @@ Pi4 EEPROM/bootloader version "Jun 15 2020" or later will be required for USB bo
  
 ```shell script
 sudo zypper addrepo https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2_ARM/ appliance-builder
-sudo zypper install python3-kiwi btrfsprogs
+sudo zypper install python3-kiwi btrfsprogs qemu-tools gptfdisk e2fsprogs squashfs xorriso
 ```
 
 ##### For a JeOS Leap 15.3 host:
@@ -152,7 +152,7 @@ sudo zypper install python3-kiwi btrfsprogs
 
 ```shell script
 sudo zypper addrepo https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.3/ appliance-builder
-sudo zypper install python3-kiwi btrfsprogs
+sudo zypper install python3-kiwi btrfsprogs qemu-tools gptfdisk e2fsprogs squashfs xorriso
 ```
 
 ### Edit rockstor.kiwi
