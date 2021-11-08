@@ -136,11 +136,20 @@ do
     sed -i 's/SUSE، LLC./Rockstor, Inc./g' "${license_file}"  # Arabic comma (U+060C)
     sed -i 's/SUSE LLC/Rockstor, Inc./g' "${license_file}"
     sed -i 's/SUSE/Store Smartly/g' "${license_file}"
-    sed -i 's/50/24/g' "${license_file}"
-    sed -i 's/2008-2019/2012-2020/g' "${license_file}"
-    sed -i 's/2008-2020/2012-2020/g' "${license_file}"  # presumably pending
-    sed -i 's/http:\/\/en.opensuse.org\/Legal/http:\/\/rockstor.com\/legal.html/g' "${license_file}"
-    sed -i 's/http:\/\/www.opensuse.org\/Legal/http:\/\/rockstor.com\/legal.html/g' "${license_file}"
+    sed -i 's/$50US/1ST SUBSCRIPTION PAYED/g' "${license_file}"
+    sed -i 's/$50/1ST SUBSCRIPTION PAYED/g' "${license_file}"
+    sed -i 's/50 USD/1ST SUBSCRIPTION PAYED/g' "${license_file}"
+    sed -i 's/(50 $)/(1ST SUBSCRIPTION PAYED)/g' "${license_file}"
+    sed -i 's/(US \$ 50)/(1ST SUBSCRIPTION PAYED)/g' "${license_file}"
+    sed -i 's/50 $/1ST SUBSCRIPTION PAYED/g' "${license_file}"
+    sed -i 's/50/1ST SUBSCRIPTION PAYED/g' "${license_file}"
+    sed -i 's/US-DOLLAR//g' "${license_file}"
+    sed -i 's/US\$//g' "${license_file}"
+    sed -i 's/2008-2019/2012-2021/g' "${license_file}"
+    sed -i 's/2008-2020/2012-2021/g' "${license_file}"
+    sed -i 's/2008-2021/2012-2021/g' "${license_file}"
+    sed -i 's/http:\/\/en.opensuse.org\/Legal/https:\/\/rockstor.com\/legal.html/g' "${license_file}"
+    sed -i 's/http:\/\/www.opensuse.org\/Legal/https:\/\/rockstor.com\/legal.html/g' "${license_file}"
 done
 # Alter the distro display name to add the suggested "Rockstor built on ..." prefix.
 sed -i 's/PRETTY_NAME="openSUSE/PRETTY_NAME="Rockstor built on openSUSE/g' /usr/lib/os-release
