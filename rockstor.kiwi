@@ -372,6 +372,31 @@ which includes aarch64 relevant content -->
                 profiles="Leap15.3.ARM64EFI">
         <source path="obs://home:mcbridematt/openSUSE_Leap_15.3/" />
     </repository>
+    <!-- THE FOLLOWING KERNEL REPOS ARE NOT SUPPORTED. -->
+    <!-- Provided here remarked-out for developer convenience only. -->
+    <!-- https://doc.opensuse.org/documentation/leap/reference/html/book-reference/cha-tuning-multikernel.html -->
+    <!-- "Installing a kernel from Kernel:HEAD should never be necessary, -->
+    <!-- because important fixes are backported by SUSE and are made available as official updates. -->
+    <!-- Installing the latest kernel only makes sense for kernel developers and kernel testers."-->
+    <!-- Kernel HEAD Backports -->
+    <!-- https://build.opensuse.org/repositories/Kernel:HEAD:Backport -->
+    <!--    <repository type="rpm-md" alias="Kernel_HEAD_Backport" imageinclude="true"-->
+    <!--                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">-->
+    <!--        <source path="https://download.opensuse.org/repositories/Kernel:/HEAD:/Backport/standard/"/>-->
+    <!--    </repository>-->
+    <!-- Kernel Stable Backports -->
+    <!-- https://build.opensuse.org/project/show/Kernel:stable:Backport -->
+    <!-- See also: https://rockstor.com/docs/howtos/stable_kernel_backport.html  -->
+    <!--    <repository type="rpm-md" alias="Kernel_stable_Backport" imageinclude="true"-->
+    <!--                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">-->
+    <!--        <source path="https://download.opensuse.org/repositories/Kernel:/stable:/Backport/standard/"/>-->
+    <!--    </repository>-->
+    <!-- btrfs-progs backport via filesystems repo -->
+    <!-- https://build.opensuse.org/project/show/filesystems -->
+    <!--    <repository type="rpm-md" alias="filesystems" imageinclude="true"-->
+    <!--                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">-->
+    <!--        <source path="https://download.opensuse.org/repositories/filesystems/15.3/"/>-->
+    <!--    </repository>-->
     <packages type="image">
         <package name="adaptec-firmware"/>  <!--Razor AIC94xx Series SAS-->
         <package name="bash-completion"/>
