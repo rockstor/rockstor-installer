@@ -374,20 +374,15 @@ which includes aarch64 relevant content -->
     </repository>
     <!-- THE FOLLOWING KERNEL REPOS ARE NOT SUPPORTED. -->
     <!-- Provided here remarked-out for developer convenience only. -->
-    <!-- Kernel HEAD -->
     <!-- https://doc.opensuse.org/documentation/leap/reference/html/book-reference/cha-tuning-multikernel.html -->
     <!-- "Installing a kernel from Kernel:HEAD should never be necessary, -->
     <!-- because important fixes are backported by SUSE and are made available as official updates. -->
     <!-- Installing the latest kernel only makes sense for kernel developers and kernel testers."-->
-    <!-- ARM -->
-    <repository type="rpm-md" alias="Kernel_HEAD" imageinclude="true"
-                profiles="Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
-        <source path="https://download.opensuse.org/repositories/Kernel:/HEAD/ARM/"/>
-    </repository>
-    <!-- X86_64 -->
-    <repository type="rpm-md" alias="Kernel_HEAD" imageinclude="true"
-                profiles="Leap15.3.x86_64">
-        <source path="https://download.opensuse.org/repositories/Kernel:/HEAD/standard/"/>
+    <!-- https://build.opensuse.org/repositories/Kernel:HEAD:Backport -->
+    <!-- Kernel HEAD Backports -->
+    <repository type="rpm-md" alias="Kernel_HEAD_Backport" imageinclude="true"
+                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
+        <source path="https://download.opensuse.org/repositories/Kernel:/HEAD:/Backport/standard/"/>
     </repository>
     <!-- Kernel Stable Backports -->
     <!-- https://build.opensuse.org/project/show/Kernel:stable:Backport -->
@@ -402,12 +397,10 @@ which includes aarch64 relevant content -->
                 profiles="Leap15.3.x86_64">
         <source path="https://download.opensuse.org/repositories/filesystems/openSUSE_Leap_15.3/"/>
     </repository>
-    <!-- WARNING this is a tumbleweed repo as no ARM64 available for 15.3 in filesystems -->
+    <!-- the following arm repo for filesystems is untested -->
     <repository type="rpm-md" alias="filesystems" imageinclude="true"
                 profiles="Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
-        <source path="https://download.opensuse.org/repositories/filesystems/openSUSE_Tumbleweed/"/>
-        <!-- alt multi arch from SLE 15.2 as closer than TW is to Leap 15.3 -->
-        <!-- <source path="https://download.opensuse.org/repositories/filesystems/SLE_15_SP2/"/> -->
+        <source path="https://download.opensuse.org/repositories/filesystems/SLE_15_SP2/"/>
     </repository>
     <packages type="image">
         <package name="adaptec-firmware"/>  <!--Razor AIC94xx Series SAS-->
