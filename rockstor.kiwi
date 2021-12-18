@@ -386,7 +386,7 @@ which includes aarch64 relevant content -->
     </repository>
     <!-- Kernel Stable Backports -->
     <!-- https://build.opensuse.org/project/show/Kernel:stable:Backport -->
-    <!-- Multi arch  -->
+    <!-- See also: https://rockstor.com/docs/howtos/stable_kernel_backport.html  -->
     <!--    <repository type="rpm-md" alias="Kernel_stable_Backport" imageinclude="true"-->
     <!--                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">-->
     <!--        <source path="https://download.opensuse.org/repositories/Kernel:/stable:/Backport/standard/"/>-->
