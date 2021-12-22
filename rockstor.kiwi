@@ -395,7 +395,7 @@ which includes aarch64 relevant content -->
     <!-- https://build.opensuse.org/project/show/filesystems -->
     <repository type="rpm-md" alias="filesystems" imageinclude="true"
                 profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
-        <source path="https://download.opensuse.org/repositories/filesystems/openSUSE_Leap_15.3/"/>
+        <source path="https://download.opensuse.org/repositories/filesystems/15.3/"/>
     </repository>
     <packages type="image">
         <package name="adaptec-firmware"/>  <!--Razor AIC94xx Series SAS-->
