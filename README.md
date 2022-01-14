@@ -57,8 +57,8 @@ Note that this is not a supported configuration so do indicate this modification
 Please see the [overview](https://osinside.github.io/kiwi/overview.html) section of the kiwi-ng docs for the canonical
 [System Requirements](https://osinside.github.io/kiwi/overview.html#system-requirements) for building the installer: e.g. 15 GB free space, Python 3.5+ etc.
 
-Given our image target OS is exclusively 'Built on openSUSE', a vanilla openSUSE Leap 15.3 install is recommended as the kiwi-ng host operating system.
-But if using the build
+Given our image target OS is exclusively 'Built on openSUSE', a vanilla openSUSE Leap 15.3 install is recommended if not using the kiwi-ng boxbuild method.
+But if the newer kiwi-ng boxbuild method in "Building on any linux host... " is used, any relatively modern linux system can be used to build the installer.
 
 ### rockstor-installer local copy
 
