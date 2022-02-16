@@ -183,6 +183,15 @@ EOF
 fi
 
 #======================================
+# Configure Helios64 specifics
+# from: https://build.opensuse.org/package/view_file/openSUSE:Factory:ToTest/kiwi-templates-JeOS/config.sh
+#--------------------------------------
+if [[ "$kiwi_profiles" == *"Leap15.3.Helios64"* ]]; then
+  # Add necessary kernel modules to initrd
+  # echo 'add_drivers+=" bcm2835_dma dwc2 "' > /etc/dracut.conf.d/raspberrypi_modules.conf
+fi
+
+#======================================
 # Apply grub config
 # Setup Grub Distributor option
 #--------------------------------------
