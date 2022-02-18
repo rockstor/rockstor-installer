@@ -172,7 +172,6 @@ which includes aarch64 relevant content -->
         <bootloader-theme>upstream</bootloader-theme>  <!--gfxboot theme-->
         <!-- https://osinside.github.io/kiwi/building/build_oem_disk.html#oem -->
         <!--bootpartition= is redundant post kiwi issue #1351-->
-        <!--firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64 -->
         <!--Re AArch64: https://github.com/OSInside/kiwi/issues/1491 -->
         <!--devicepersistency="by-uuid" differs from our normal !. Needs testing-->
         <type
@@ -181,13 +180,11 @@ which includes aarch64 relevant content -->
             filesystem="btrfs"
             fsmountoptions="noatime,compress=lzo"
             bootloader="grub2"
-            firmware="efi"
             kernelcmdline="plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G"
             bootpartition="false"
             devicepersistency="by-uuid"
             btrfs_root_is_snapshot="true"
             btrfs_quota_groups="false"
-            efipartsize="64"
             editbootinstall="editbootinstall_helios64.sh"
         >
             <systemdisk>
@@ -196,8 +193,6 @@ which includes aarch64 relevant content -->
                 <volume name="tmp"/>
                 <volume name="opt"/>
                 <volume name="srv"/>
-                <volume name="boot/grub2/arm64-efi"
-                        mountpoint="boot/grub2/arm64-efi"/>
                 <volume name="usr/local"/>
                 <volume name="var" copy_on_write="false"/>
             </systemdisk>
