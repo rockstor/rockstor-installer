@@ -180,7 +180,7 @@ which includes aarch64 relevant content -->
             filesystem="btrfs"
             fsmountoptions="noatime,compress=lzo"
             bootloader="grub2"
-            kernelcmdline="plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G"
+            kernelcmdline="plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G console=ttyS2,1500000 console=tty1 consoleblank=0 loglevel=1"
             bootpartition="false"
             devicepersistency="by-uuid"
             btrfs_root_is_snapshot="true"
