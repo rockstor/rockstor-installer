@@ -108,7 +108,7 @@ Any x86_64 machine, although keep in mind that building the ISO installer is com
 The openSUSE host version should, ideally, be at least the version of the target profile.
 ```shell
 sudo zypper addrepo http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.3/ appliance-builder
-sudo zypper install python3-kiwi btrfsprogs gfxboot qemu-tools gptfdisk e2fsprogs squashfs xorriso
+sudo zypper install python3-kiwi btrfsprogs gfxboot qemu-tools gptfdisk e2fsprogs squashfs xorriso dosfstools
 ```
 
 #### AArch64 host (e.g. a Pi4) for AArch64 profiles
@@ -124,7 +124,7 @@ Pi4 EEPROM/bootloader version "Jun 15 2020" or later will be required for USB bo
 
 ```shell
 sudo zypper addrepo https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.3/ appliance-builder
-sudo zypper install python3-kiwi btrfsprogs qemu-tools gptfdisk e2fsprogs squashfs xorriso
+sudo zypper install python3-kiwi btrfsprogs qemu-tools gptfdisk e2fsprogs squashfs xorriso dosfstools
 ```
 
 ### Edit rockstor.kiwi
