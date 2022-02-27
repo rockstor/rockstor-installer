@@ -39,7 +39,7 @@ Please contribute to this profile if you are interested as we would very much li
 ### Special mention:
 - ARM64EFI
 
-We are very exited to welcome contributions for the innovative [Traverse Ten64](https://www.crowdsupply.com/traverse-technologies/ten64) AArch64 platform.
+We are very excited to welcome contributions for the innovative [Traverse Ten64](https://www.crowdsupply.com/traverse-technologies/ten64) AArch64 platform.
 [Traverse technologies](https://traverse.com.au/) are an important contributor to the [rockstor-core](https://github.com/rockstor/rockstor-core) code base
 and have been instrumental in achieving our initial AArch64 aims.
 The resulting installer is intended to supports 64-bit ARM systems that implement the [Embedded Boot](https://github.com/ARM-software/ebbr) or [Server boot](https://github.com/ARM-software/sbsa-acs) standard.
@@ -84,13 +84,26 @@ This boxbuild approach does have some overheads compared to building on a bareme
 
 By default, the kiwi-boxed-plugin will reserve 8GB of memory, and 4 CPU cores.
 This can be modified with `--box-memory=<vm>G --box-smp-cpus=<number>`, e.g. `--box-memory 4G --box-smp-cpus=2`.
-On machines with low ram, building with as low as 1GB has been tested successfully.
+On machines with low RAM, building with as low as 1GB has been tested successfully.
 Assigning too much ram will crash your host, so be sure to set a safe amount smaller than your current available host ram.
 Arguments before the `--` are passed to boxbuild, and after are passed to the kiwi-ng build itself.
 
+Note on `pip` usage:
+Some distros might still have a split between Python 2.x/3.x usage of `pip` (i.e. pip3 vs. pip), or an existing system that is being used had both installed over time. If that is the case, one wants to ensure that the 3.x version is used, by explicitly declaring `pip3` in the below command line. Otherwise this can lead to execution errors down the line.
+
 ```shell
 python3 -m venv kiwi-env
+```
+If the system/distro has dropped python 2.x support or it is not installed on the system that is used for the build:
+```shell
 ./kiwi-env/bin/pip install kiwi kiwi-boxed-plugin
+```
+Or go with the explicit version 3.x of pip:
+```shell
+./kiwi-env/bin/pip3 install kiwi kiwi-boxed-plugin
+```
+The rest remains the same (make sure to consider the memory and CPU defaults mentioned above)
+```shell
 ./kiwi-env/bin/kiwi-ng --profile=Leap15.3.x86_64 --type oem \
   system boxbuild --box leap -- --description ./ --target-dir ./images
 ```
