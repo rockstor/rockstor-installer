@@ -11,8 +11,13 @@ required_plugins.each do |plugin|
   system "vagrant plugin install #{plugin}" unless Vagrant.has_plugin? plugin
 end
 
-MEM = 2048
-CPU = 2
+# !!! IMPORTANT !!!
+# If host machine has sufficient memory and CPUs use these values, otherwise reduce accordingly to not cripple the host machine.
+# If adjusting here, ensure that the command line to start the installer build is adjusted for memory and CPUs as well.
+MEM = 8192
+CPU = 4
+
+# Environment Profiles - currently only 
 PROFILE = ENV['PROFILE'] || 'x86_64'
 
 VAGRANTFILE_API_VERSION = '2'
@@ -21,55 +26,48 @@ VAGRANTFILE_API_VERSION = '2'
 #  in the wiki:  https://github.com/josenk/vagrant-vmware-esxi/wiki
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
+	# map external folders
     config.vm.synced_folder "./", "/vagrant"
     config.vm.synced_folder "../", "/home/vagrant/rockstor-installer"
 
-    # Disable update of guest additions when box is opensuse
-    # Comment out until we get back to opensuse
-    #if vagrant.has_plugin?("vagrant-vbguest")
-    #  config.vbguest.auto_update = false
-    #end
-
-    config.vm.define "rockstor-installer" do |v|
+     config.vm.define "rockstor-installer" do |v|
         v.vm.hostname = "rockstor-installer"
         if PROFILE == "x86_64" then
-            # Switch back to bento until we figure out what broke in opensuse
-            #v.vm.box = 'opensuse/Leap-15.2.x86_64'
-            #v.vm.box_version = "15.2.31.325"
-            v.vm.box = 'bento/opensuse-leap-15'
+            # One can switch back to bento in case OpenSUSE is broken (typically issues around VB guest additions
+            v.vm.box = 'opensuse/Leap-15.3.x86_64'
+		# if a specific version should be used:
+			# v.vm.box_version = '15.3.9.361'
+            # v.vm.box = 'bento/opensuse-leap-15.3'
+		# if a specific version should be used:
+			# v.vm.box_version = '202112.23.0'
         else
-            v.vm.box = 'opensuse/Leap-15.2.aarch64'
+            v.vm.box = 'opensuse/Leap-15.3.aarch64'
         end
 
-        # Provider specific variable
+        # Provider specific variables
         v.vm.provider :virtualbox do |vb|
             vb.memory = MEM
             vb.cpus = CPU
+			# Enable nested VMs, so kiwi box-build can be used
+			vb.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
         end
 
         if PROFILE == "x86_64" then
             config.vm.provision "shell", inline: <<-SHELL
-                sudo zypper --non-interactive addrepo --refresh http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2/ appliance-builder
-                sudo zypper --non-interactive --gpg-auto-import-keys refresh
-            SHELL
-        else
-            config.vm.provision "shell", inline: <<-SHELL
-                sudo zypper --non-interactive addrepo --refresh http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.2_ARM/ appliance-builder
-                sudo zypper --non-interactive --gpg-auto-import-keys refresh
-            SHELL
-        end
-
-        config.vm.provision "shell", inline: <<-SHELL
-            REPO_URL="https://github.com/rockstor/rockstor-installer.git"
-            REPO_DIR="rockstor-installer/"
-            sudo zypper --non-interactive install git btrfsprogs gfxboot
-            sudo zypper --non-interactive install python3-kiwi
-            if [ ! -e ${REPO_DIR} ]; then
-                git clone ${REPO_URL} ${REPO_DIR}
-            fi
-            # Fix for broken python lxml (see: https://www.suse.com/support/kb/doc/?id=000019818)
-            pip install --force-reinstall lxml
+			# install KVM and KVM tools for virtual machine within VM & python dev tools
+				sudo zypper -n install -t pattern kvm_server kvm_tools
+				sudo zypper -n install git python3-devel gcc
+			# create virtual python environment
+				python3 -m venv kiwi-env
+			# update pip if necessary
+				sudo ./kiwi-env/bin/python3 -m pip install --upgrade pip
+			# install kiwi and kiwi box plugin
+				./kiwi-env/bin/pip3 install kiwi kiwi-boxed-plugin
+			# copy build script from local to VM
+				sudo cp ./rockstor-installer/vagrant_env/run_kiwi.sh ./
+			# make build script executable
+				sudo chmod u+x run_kiwi.sh
         SHELL
+		end
     end
 end
-
