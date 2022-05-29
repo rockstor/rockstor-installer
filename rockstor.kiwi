@@ -39,6 +39,9 @@ which includes aarch64 relevant content -->
         <profile name="Leap15.3.RaspberryPi4"
                  description="Rockstor built on openSUSE Leap 15.3 Raspberry_Pi"
                  arch="aarch64"/>
+        <profile name="Leap15.3.Helios64"
+                 description="Rockstor built on openSUSE Leap 15.3 Helios64"
+                 arch="aarch64"/>
         <profile name="Leap15.3.ARM64EFI"
                  description="Rockstor built on openSUSE Leap 15.3 ARM64 EFI/VM/Ten64"
                  arch="aarch64"/>
@@ -154,6 +157,52 @@ which includes aarch64 relevant content -->
             </oemconfig>
         </type>
     </preferences>
+    <preferences profiles="Leap15.3.Helios64">
+        <!--Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release)-->
+        <version>4.0.8-0</version>
+        <packagemanager>zypper</packagemanager>
+        <locale>en_GB</locale>
+        <keytable>gb</keytable>
+        <timezone>Europe/London</timezone>
+        <rpm-excludedocs>true</rpm-excludedocs>
+        <rpm-check-signatures>false</rpm-check-signatures>
+        <!--bgrt, charge, fade-in-->
+        <bootsplash-theme>upstream</bootsplash-theme>  <!--boot theme-->
+        <!--bgrt,breeze,starfield-->
+        <bootloader-theme>upstream</bootloader-theme>  <!--gfxboot theme-->
+        <!-- https://osinside.github.io/kiwi/building/build_oem_disk.html#oem -->
+        <!--bootpartition= is redundant post kiwi issue #1351-->
+        <!--Re AArch64: https://github.com/OSInside/kiwi/issues/1491 -->
+        <!--devicepersistency="by-uuid" differs from our normal !. Needs testing-->
+        <type
+            image="oem"
+            initrd_system="dracut"
+            filesystem="btrfs"
+            fsmountoptions="noatime,compress=lzo"
+            bootloader="grub2"
+            kernelcmdline="plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G earlycon console=ttyS2,1500000 console=tty1 consoleblank=0 loglevel=1"
+            bootpartition="false"
+            devicepersistency="by-uuid"
+            btrfs_root_is_snapshot="true"
+            btrfs_quota_groups="false"
+            editbootinstall="editbootinstall_helios64.sh"
+        >
+            <systemdisk>
+                <volume name="home"/>
+                <volume name="root"/>
+                <volume name="tmp"/>
+                <volume name="opt"/>
+                <volume name="srv"/>
+                <volume name="usr/local"/>
+                <volume name="var" copy_on_write="false"/>
+            </systemdisk>
+            <oemconfig>
+                <oem-swap>true</oem-swap>
+                <oem-swapsize>2048</oem-swapsize>
+                <oem-skip-verify>true</oem-skip-verify>
+            </oemconfig>
+        </type>
+    </preferences>
     <preferences profiles="Leap15.2.ARM64EFI,Leap15.3.ARM64EFI">
         <!--Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release)-->
         <version>4.0.8-0</version>
@@ -224,7 +273,7 @@ which includes aarch64 relevant content -->
     </repository>
     <!-- Leap 15.3 repo now dual architecture -->
     <repository type="rpm-md" alias="kiwi" priority="1"
-                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
+                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.Helios64,Leap15.3.ARM64EFI">
         <source path="obs://Virtualization:Appliances:Builder/openSUSE_Leap_15.3"/>
     </repository>
     <repository type="rpm-md" alias="kiwi" priority="1"
@@ -247,7 +296,7 @@ which includes aarch64 relevant content -->
     </repository>
     <!-- Leap 15.3 repo now multi architecture -->
     <repository type="rpm-md" alias="Leap_15_3" imageinclude="true"
-                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
+                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.Helios64,Leap15.3.ARM64EFI">
         <source path="obs://openSUSE:Leap:15.3/standard"/>
     </repository>
     <repository type="rpm-md" alias="Tumbleweed" imageinclude="true"
@@ -265,7 +314,7 @@ which includes aarch64 relevant content -->
     </repository>
     <!-- Leap 15.3 repo now multi architecture -->
     <repository type="rpm-md" alias="Leap_15_3_Updates" imageinclude="true"
-                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
+                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.Helios64,Leap15.3.ARM64EFI">
         <source path="https://download.opensuse.org/update/leap/15.3/oss/"/>
     </repository>
     <repository type="rpm-md" alias="Tumbleweed_Updates" imageinclude="true"
@@ -281,11 +330,11 @@ which includes aarch64 relevant content -->
     <!-- Not included in image as auto added by installed system. -->
     <!-- Used during image build to capture updates at time of installer build -->
     <repository type="rpm-md" alias="repo-backports-update"
-                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
+                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.Helios64,Leap15.3.ARM64EFI">
         <source path="https://download.opensuse.org/update/leap/15.3/backports/"/>
     </repository>
     <repository type="rpm-md" alias="repo-sle-update"
-                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
+                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.Helios64,Leap15.3.ARM64EFI">
         <source path="https://download.opensuse.org/update/leap/15.3/sle/"/>
     </repository>
     <!-- https://osinside.github.io/kiwi/working_with_kiwi/xml_description.html#adding-repositories -->
@@ -307,7 +356,7 @@ which includes aarch64 relevant content -->
         <source path="http://updates.rockstor.com:8999/rockstor-testing/leap/15.3/"/>
     </repository>
     <repository type="rpm-md" alias="Rockstor-Testing"
-                profiles="Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
+                profiles="Leap15.3.RaspberryPi4,Leap15.3.Helios64,Leap15.3.ARM64EFI">
         <source path="http://updates.rockstor.com:8999/rockstor-testing/leap/15.3_aarch64/"/>
     </repository>
     <repository type="rpm-md" alias="Rockstor-Testing"
@@ -332,7 +381,7 @@ which includes aarch64 relevant content -->
     <!-- Maintain lower priority to upstream in case shellinabox is added there -->
     <!-- https://build.opensuse.org/project/show/home:rockstor -->
     <repository type="rpm-md" alias="home_rockstor" priority="105" imageinclude="true"
-                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
+                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.Helios64,Leap15.3.ARM64EFI">
         <source path="https://download.opensuse.org/repositories/home:/rockstor/openSUSE_Leap_15.3/"/>
     </repository>
     <repository type="rpm-md" alias="shells" priority="105" imageinclude="true"
@@ -353,7 +402,7 @@ which includes aarch64 relevant content -->
     </repository>
     <!-- Leap 15.3 repo now multi architecture -->
     <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true"
-                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.ARM64EFI">
+                profiles="Leap15.3.x86_64,Leap15.3.RaspberryPi4,Leap15.3.Helios64,Leap15.3.ARM64EFI">
         <source path="https://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Leap_15.3/"/>
     </repository>
     <!-- TODO: Only a factory option, no tumbleweed option so factory for now -->
