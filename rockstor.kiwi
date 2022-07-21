@@ -441,6 +441,7 @@ which includes aarch64 relevant content -->
         <package name="openssh"/>
         <package name="parted"/>
         <package name="patterns-base-base"/>
+        <package name="pesign"/>
         <package name="rpcbind"/>
         <package name="shim" arch="x86_64"/>
         <package name="snapper"/>
@@ -451,6 +452,7 @@ which includes aarch64 relevant content -->
         <package name="systemd-sysvinit"/>
         <package name="tar"/>
         <package name="timezone"/>
+        <package name="tree"/>
         <package name="vim"/>
         <package name="which"/>
         <!-- Fix choice between kernel-firmware and kernel-firmware-all -->
@@ -471,6 +473,7 @@ which includes aarch64 relevant content -->
         <package name="net-snmp"/>
         <package name="nfs-kernel-server"/>
         <package name="nginx"/>
+        <package name="ntfs-3g"/>
         <package name="ntp"/>  <!--would seem redundant with chrony-->
         <package name="nut"/>
         <package name="nut-drivers-net"/>
