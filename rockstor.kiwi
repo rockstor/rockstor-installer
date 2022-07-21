@@ -426,6 +426,7 @@ which includes aarch64 relevant content -->
         <package name="grub2-snapper-plugin"/>
         <package name="grub2-x86_64-efi" arch="x86_64"/>
         <package name="htop"/>
+        <package name="ibutils"/> <!-- OpenIB Mellanox InfiniBand Diagnostic Tools -->
         <package name="iproute2"/>
         <package name="iputils"/>
         <package name="jeos-firstboot"/>
