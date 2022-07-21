@@ -439,6 +439,7 @@ which includes aarch64 relevant content -->
         <package name="NetworkManager-branding-upstream"/>  <!--or branding-openSUSE-->
         <package name="nfs-client"/>
         <package name="open-iscsi"/>
+        <!-- <package name="open-vm-tools"/> -->
         <package name="openssh"/>
         <package name="parted"/>
         <package name="patterns-base-base"/>
