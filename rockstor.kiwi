@@ -64,7 +64,7 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.3:Images/JeOS
                 bootloader="grub2"
                 firmware="efi"
                 installiso="true"
-                kernelcmdline="plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G"
+                kernelcmdline="nomodeset plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G"
                 bootpartition="false"
                 devicepersistency="by-label"
                 btrfs_root_is_snapshot="true"
