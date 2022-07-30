@@ -366,6 +366,7 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.3:Images/JeOS
         <package name="iputils"/>
         <package name="jeos-firstboot"/>
         <package name="kernel-default"/>
+        <package name="kernel-firmware-bnx2"/>
         <package name="keyutils"/>
         <package name="less"/>
         <package name="lsof"/>  <!--for zypper ps-->
