@@ -110,13 +110,7 @@ fi
 # Enable chrony if installed
 #-------------------------------------
 if [ -f /etc/chrony.conf ]; then
-  # chronyc sits at 100% CPU even if chronyd service is disable
-  # Looks like: https://github.com/balena-os/meta-balena/issues/1360
-  # This should help once sorted; for now not installing chronyd (shame)
-  # suseInsertService chronyd
-  for i in 0 1 2 3; do
-    echo "server $i.opensuse.pool.ntp.org iburst"
-  done > /etc/chrony.d/opensuse.conf
+    suseInsertService chronyd
 fi
 
 #=====================================
