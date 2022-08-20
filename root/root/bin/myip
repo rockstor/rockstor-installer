@@ -5,6 +5,6 @@ if [[ $MYIP ]]
 then
     echo $MYIP
 else
-    echo "No DHCP assigned IP address found."
+    echo "No DHCP-assigned IP address found."
     echo "Use 'nmtui' or 'nmcli' to set a static IP address."
 fi
