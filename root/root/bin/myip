@@ -1,3 +1,10 @@
 #!/bin/bash
-# Quick hack to get ip address, change to wrapper around python script.
-ip a | grep -oE '((1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\.){3}(1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])' | grep -v '127\|255' | sed -e "s/^/https:\/\//"
+# Quick hack to get ip address.
+MYIP=$(ip a | grep -oE '((1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\.){3}(1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])' | grep -v '127\|255' | sed -e "s/^/https:\/\//")
+if [[ $MYIP ]]
+then
+    echo $MYIP
+else
+    echo "No DHCP-assigned IP address found."
+    echo "Use 'nmtui' or 'nmcli' to set a static IP address."
+fi
