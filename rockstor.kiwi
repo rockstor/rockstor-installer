@@ -309,10 +309,10 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.3:Images/JeOS
         <source path="http://updates.rockstor.com:8999/rockstor-testing/leap/15.3_aarch64/"/>
     </repository>
     <!-- Rockstor repos are multi-arch from 15.4 onwards -->
-    <repository type="rpm-md" alias="Rockstor-Testing"
-                profiles="Leap15.4.x86_64,Leap15.4.RaspberryPi4,Leap15.4.ARM64EFI">
-        <source path="http://updates.rockstor.com:8999/rockstor-testing/leap/15.4/"/>
-    </repository>
+<!--    <repository type="rpm-md" alias="Rockstor-Testing"-->
+<!--                profiles="Leap15.4.x86_64,Leap15.4.RaspberryPi4,Leap15.4.ARM64EFI">-->
+<!--        <source path="http://updates.rockstor.com:8999/rockstor-testing/leap/15.4/"/>-->
+<!--    </repository>-->
     <repository type="rpm-md" alias="Rockstor-Testing"
                 profiles="Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.ARM64EFI">
         <source path="http://updates.rockstor.com:8999/rockstor-testing/tumbleweed/"/>
