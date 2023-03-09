@@ -139,9 +139,7 @@ do
     sed -i 's/50/1ST SUBSCRIPTION PAYED/g' "${license_file}"
     sed -i 's/US-DOLLAR//g' "${license_file}"
     sed -i 's/US\$//g' "${license_file}"
-    sed -i 's/2008-2019/2012-2021/g' "${license_file}"
-    sed -i 's/2008-2020/2012-2021/g' "${license_file}"
-    sed -i 's/2008-2021/2012-2021/g' "${license_file}"
+    sed -i 's/2008-..../2012-2023/g' "${license_file}"
     sed -i 's/http:\/\/en.opensuse.org\/Legal/https:\/\/rockstor.com\/legal.html/g' "${license_file}"
     sed -i 's/http:\/\/www.opensuse.org\/Legal/https:\/\/rockstor.com\/legal.html/g' "${license_file}"
 done
@@ -150,7 +148,9 @@ sed -i 's/PRETTY_NAME="openSUSE/PRETTY_NAME="Rockstor built on openSUSE/g' /usr/
 # Alter BUG_REPORT_URL
 sed -i 's/https:\/\/bugs.opensuse.org/https:\/\/forum.rockstor.com/g' /usr/lib/os-release
 # Alter HOME_URL
-sed -i 's/https:\/\/www.opensuse.org/http:\/\/rockstor.com/g' /usr/lib/os-release
+sed -i 's/https:\/\/www.opensuse.org/https:\/\/rockstor.com/g' /usr/lib/os-release
+# Alter DOCUMENTATION_URL
+sed -i 's/^DOCUMENTATION_URL.*/DOCUMENTATION_URL="https:\/\/rockstor.com\/docs"/' /usr/lib/os-release
 
 #======================================
 # Configure Raspberry Pi specifics
