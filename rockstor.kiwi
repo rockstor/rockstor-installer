@@ -47,7 +47,7 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.3:Images/JeOS
                  description="Rockstor built on openSUSE Tumbleweed x86_64"
                  arch="x86_64"/>
         <profile name="Tumbleweed.RaspberryPi4"
-                 description="Rockstor built on openSUSE Tumbleweed x86_64"
+                 description="Rockstor built on openSUSE Tumbleweed Raspberry_Pi"
                  arch="aarch64"/>
         <profile name="Tumbleweed.ARM64EFI"
                  description="Rockstor built on openSUSE Tumbleweed ARM64 EFI/VM/Ten64"
@@ -55,7 +55,7 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.3:Images/JeOS
     </profiles>
     <preferences profiles="Leap15.3.x86_64,Leap15.4.x86_64,Tumbleweed.x86_64">
         <!--Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release)-->
-        <version>4.5.5-0</version>
+        <version>4.5.8-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
         <keytable>gb</keytable>
@@ -110,7 +110,7 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.3:Images/JeOS
 
     <preferences profiles="Leap15.3.RaspberryPi4,Leap15.4.RaspberryPi4,Tumbleweed.RaspberryPi4">
         <!--Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release)-->
-        <version>4.5.6-0</version>
+        <version>4.5.8-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
         <keytable>gb</keytable>
@@ -161,7 +161,7 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.3:Images/JeOS
     </preferences>
     <preferences profiles="Leap15.3.ARM64EFI,Leap15.4.ARM64EFI,Tumbleweed.ARM64EFI">
         <!--Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release)-->
-        <version>4.5.6-0</version>
+        <version>4.5.8-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
         <keytable>gb</keytable>
@@ -418,7 +418,13 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.3:Images/JeOS
         <package name="iputils"/>
         <package name="jeos-firstboot"/>
         <package name="kernel-default"/>
-        <package name="kernel-firmware-bnx2"/>
+        <package name="kernel-firmware-bnx2"/> <!--10.8MiB - Broadcom net drivers-->
+        <package name="kernel-firmware-chelsio"/> <!--2.9 MiB - Chelsio net drivers-->
+        <package name="kernel-firmware-intel"/> <!--2.5MiB - Intel platform drivers-->
+        <package name="kernel-firmware-marvell"/> <!--2.3 MiB - Marvell net drivers-->
+        <package name="kernel-firmware-network"/> <!--3.6MiB misc net drivers-->
+        <package name="kernel-firmware-platform"/> <!--1.6 MiB - misc platform drivers-->
+        <package name="kernel-firmware-qlogic"/> <!--12.8MiB - QLogic net drivers-->
         <package name="keyutils"/>
         <package name="less"/>
         <package name="lsof"/>  <!--for zypper ps-->
@@ -444,13 +450,12 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.3:Images/JeOS
         <package name="timezone"/>
         <package name="tree"/>
         <package name="vim"/>
+        <package name="wget"/> <!--enable building from source via build.sh-->
         <package name="which"/>
         <package name="ntfs-3g"/>
-        <!-- Fix choice between kernel-firmware and kernel-firmware-all -->
-        <!-- <package name="kernel-firmware"/> -->
         <!--ROCKSTOR PACKAGE WITH MANY ADDITIONAL DISTRO SPECIFIC DEPENDENCIES-->
-        <!--Change to reflect the version specified, i.e. 4.5.6-0-->
-        <package name="rockstor-4.5.6-0"/>
+        <!--Change to reflect the version specified, i.e. 4.5.8-0-->
+        <package name="rockstor-4.5.8-0"/>
     </packages>
     <packages type="image" profiles="Leap15.3.RaspberryPi4,Leap15.4.RaspberryPi4,Tumbleweed.RaspberryPi4">
         <package name="raspberrypi-eeprom" arch="aarch64"/>
@@ -470,8 +475,12 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.3:Images/JeOS
         <package name="ca-certificates-mozilla"/>
         <package name="cracklib-dict-full"/>
         <package name="filesystem"/>
+        <package name="gawk"/>
         <package name="glibc-locale"/>  <!-- possbily glibc-locale-base-->
+        <package name="grep"/>
+        <package name="gzip"/>
         <package name="openSUSE-release"/>  <!-- /etc/os-release etc -->
         <package name="udev"/>
+        <package name="xz"/>
     </packages>
 </image>
