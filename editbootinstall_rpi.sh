@@ -1,11 +1,11 @@
 #!/bin/bash
-# from: https://build.opensuse.org/package/view_file/openSUSE:Factory:ToTest/kiwi-templates-JeOS
+# from: https://build.opensuse.org/package/show/openSUSE:Factory:ToTest/kiwi-templates-Minimal
 set -euxo pipefail
 
 diskname=$1
 devname="$2"
 loopname="${devname%*p?}"
-loopdev=/dev/${loopname#/dev/mapper/*}
+loopdev=${loopname#/dev/mapper/*}
 
 #==========================================
 # copy Raspberry Pi firmware to EFI partition
