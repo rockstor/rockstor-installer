@@ -16,9 +16,9 @@ With the latter ARM64EFI spanning both generic (Arm64) and specific (64 bit EFI)
 ## Core Profiles
 Our current pre-built installers, see: [Downloads](https://rockstor.com/dls.html), are built using the following profiles:
 
-- **Leap15.3.x86_64**
-- **Leap15.3.RaspberryPi4** (supports RPi400 also)
-- **Leap15.3.ARM64EFI** (N.B. Full Ten64 compatibility awaiting mcbridematt repo update)
+- **Leap15.4.x86_64**
+- **Leap15.4.RaspberryPi4** (supports RPi400 also)
+- **Leap15.4.ARM64EFI** (N.B. Full Ten64 compatibility awaiting mcbridematt repo update)
 
 ### Contributing a Profile
 If you would like to add a specific target system installer profile, please take a look at the [examples](https://github.com/OSInside/kiwi-descriptions) referenced in the second link above.
@@ -57,7 +57,7 @@ Note that this is not a supported configuration so do indicate this modification
 Please see the [overview](https://osinside.github.io/kiwi/overview.html) section of the kiwi-ng docs for the canonical
 [System Requirements](https://osinside.github.io/kiwi/overview.html#system-requirements) for building the installer: e.g. 15 GB free space, Python 3.5+ etc.
 
-Given our image target OS is exclusively 'Built on openSUSE', a vanilla openSUSE Leap 15.3 install is recommended if not using the kiwi-ng boxbuild method.
+Given our image target OS is exclusively 'Built on openSUSE', a vanilla openSUSE Leap 15.4 install is recommended if not using the kiwi-ng boxbuild method.
 But if the newer kiwi-ng boxbuild method in "Building on any linux host... " is used, any relatively modern linux system can be used to build the installer.
 
 ### rockstor-installer local copy
@@ -72,7 +72,7 @@ git clone https://github.com/rockstor/rockstor-installer.git
 cd rockstor-installer/
 ```  
 
-The above commands install the 'git' program, and uses it to 'clone' (read copy locally) the GitHub repo, then sets your working directory to be inside this local copy.
+The above commands install the 'git' program, and use it to 'clone' (read copy locally) the GitHub repo, before setting your working directory to be inside this local copy.
 Now you just need the kiwi-ng program this config requires to make the final installer. 
 
 ### Building on any linux host (KVM support required)
@@ -110,7 +110,7 @@ Or go with the explicit version 3.x of pip:
 ```
 The rest remains the same (make sure to consider the memory and CPU defaults mentioned above)
 ```shell
-./kiwi-env/bin/kiwi-ng --profile=Leap15.3.x86_64 --type oem \
+./kiwi-env/bin/kiwi-ng --profile=Leap15.4.x86_64 --type oem \
   system boxbuild --box leap -- --description ./ --target-dir ./images
 ```
 
@@ -118,31 +118,31 @@ The rest remains the same (make sure to consider the memory and CPU defaults men
 This was the preferred method before the above kiwi-ng boxbuild capability existed.
 
 #### kiwi-ng install
-For an openSUSE Leap 15.3 OS from kiwi-ng's doc [Installation](https://osinside.github.io/kiwi/installation.html#installation) section we have:
+For an openSUSE Leap 15.4 OS from kiwi-ng's doc [Installation](https://osinside.github.io/kiwi/installation.html#installation) section we have:
 
 #### x86_64 host for x86_64 profiles
 Any x86_64 machine, although keep in mind that building the ISO installer is computationally expensive so Haswell or better is recommended.
 
-##### Leap 15.3 host
+##### Leap 15.4 host
 The openSUSE host version should, ideally, be at least the version of the target profile.
 ```shell
-sudo zypper addrepo http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.3/ appliance-builder
+sudo zypper addrepo http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.4/ appliance-builder
 sudo zypper install python3-kiwi btrfsprogs gfxboot qemu-tools gptfdisk e2fsprogs squashfs xorriso dosfstools
 ```
 
 #### AArch64 host (e.g. a Pi4) for AArch64 profiles
 See [HCL:Raspberry Pi4](https://en.opensuse.org/HCL:Raspberry_Pi4).
-Install, for example, an appliance JeOS Leap 15.3 image as the host OS.
+Install, for example, an appliance JeOS Leap 15.4 image as the host OS.
 Enabling USB boot on older Pi4 systems will allow for the use of, for example, an SSD as the system drive which will massively speed up installer building.
 USB booting on the Pi4 may require a bootloader update via a fully updated Raspberry OS.
 
 Pi4 EEPROM/bootloader version "Jun 15 2020" or later will be required for USB boot regardless of any installer /EFI file changes.
 
-##### For a JeOS Leap 15.3 host:
-(Leap 15.3 has moved to mixed X86_64/aarch64 repos) 
+##### For a JeOS Leap 15.4 host:
+(Leap 15.3 and higher has moved to mixed X86_64/aarch64 repos) 
 
 ```shell
-sudo zypper addrepo https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.3/ appliance-builder
+sudo zypper addrepo https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.4/ appliance-builder
 sudo zypper install python3-kiwi btrfsprogs qemu-tools gptfdisk e2fsprogs squashfs xorriso dosfstools
 ```
 
@@ -151,17 +151,17 @@ No edit is required if you wish to use the generic installer filename and defaul
 To change these defaults edit all lines directly preceded by **<!--Change to ...** as per the **...** details given.
 Our release infrastructure performs these same edits to set official installer filenames and rockstor package versions.
 
-### Leap15.3.x86_64 profile
-Executed, as the root user, in the directory containing this repositories rockstor.kiwi file.
+### Leap15.4.x86_64 profile
+Executed, as the root user, in the directory containing this repository's rockstor.kiwi file.
 ```shell
-kiwi-ng --profile=Leap15.3.x86_64 --type oem system build --description ./ --target-dir /home/kiwi-images/
+kiwi-ng --profile=Leap15.4.x86_64 --type oem system build --description ./ --target-dir /home/kiwi-images/
 ```
 
-### Leap15.3.RaspberryPi4 profile
-Executed, as the root user, in the directory containing this repositories rockstor.kiwi file.
+### Leap15.4.RaspberryPi4 profile
+Executed, as the root user, in the directory containing this repository's rockstor.kiwi file.
 N.B. RPi400 built in keyboard is known not to work with this profile. 
 ```shell
-kiwi-ng --profile=Leap15.3.RaspberryPi4 --type oem system build --description ./ --target-dir /home/kiwi-images/
+kiwi-ng --profile=Leap15.4.RaspberryPi4 --type oem system build --description ./ --target-dir /home/kiwi-images/
 ```
 
 ## Resulting Rockstor installers
