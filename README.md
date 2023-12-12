@@ -151,6 +151,10 @@ No edit is required if you wish to use the generic installer filename and defaul
 To change these defaults edit all lines directly preceded by **<!--Change to ...** as per the **...** details given.
 Our release infrastructure performs these same edits to set official installer filenames and rockstor package versions.
 
+If you want to enable LUKS encryption of the Root disk (where Rockstor is installed), uncomment the relevant parameters
+that are available in the **Leap15.5.x86_64** profile which are preceded by relevant comments. This will enable `luks2` encryption
+and utilize PBKDF2, as grub does not yet support the more recent `argon2id` algorithm.
+
 ### Leap15.5.x86_64 profile
 Executed, as the root user, in the directory containing this repository's `rockstor.kiwi` file.
 ```shell
