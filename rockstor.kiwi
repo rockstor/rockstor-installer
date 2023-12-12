@@ -88,8 +88,19 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
                 btrfs_root_is_snapshot="true"
                 btrfs_quota_groups="false"
                 efipartsize="64"
+				<!-- For root disk LUKS encryption (using luks2 & PBKDF2 instead of argon2id -->
+				<!-- uncomment below entries -->
+				<!-- note: change Pass Phrase -->
+				<!-- luks="c00l_Pa$$Phra$e" -->
+				<!-- luks_version="luks2" -->
         >
-            <systemdisk>
+            <!-- For full disk LUKS encryption uncomment below entries -->
+			<!-- PBKDF2 is required for grub to recognize encryption -->
+			<!-- add any other command line LUKS options if deviating from defaults -->
+			<!-- <luksformat> -->
+                <!-- <option name="--pbkdf" value="PBKDF2"/> -->
+            <!-- </luksformat> -->
+			<systemdisk>
                 <volume name="home"/>
                 <volume name="root"/>
                 <volume name="tmp"/>
