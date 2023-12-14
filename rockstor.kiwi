@@ -73,6 +73,11 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
         <!--bootpartition= is redundant post kiwi issue #1351-->
         <!--firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64-->
         <!--Re AArch64: https://github.com/OSInside/kiwi/issues/1491-->
+        <!-- For root disk LUKS encryption (using luks2 & PBKDF2 instead of argon2id) -->
+        <!-- add below 2 luks attributes below the 'efipartsize' entry in the type definition-->
+        <!-- note: change luks Pass Phrase -->
+        <!--        luks="c00l_Pa$$Phra$e" -->
+        <!--        luks_version="luks2" -->
         <type
                 image="oem"
                 primary="true"
@@ -88,18 +93,12 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
                 btrfs_root_is_snapshot="true"
                 btrfs_quota_groups="false"
                 efipartsize="64"
-                <!-- For root disk LUKS encryption (using luks2 & PBKDF2 instead of argon2id -->
-                <!-- uncomment below entries -->
-                <!-- note: change Pass Phrase -->
-                <!-- luks="c00l_Pa$$Phra$e" -->
-                <!-- luks_version="luks2" -->
         >
-            <!-- For full disk LUKS encryption uncomment below entries -->
-            <!-- PBKDF2 is required for grub to recognize encryption -->
-            <!-- add any other command line LUKS options if deviating from defaults -->
-            <!-- <luksformat> -->
-                <!-- <option name="--pbkdf" value="PBKDF2"/> -->
-            <!-- </luksformat> -->
+        <!-- For full disk LUKS encryption uncomment below entries -->
+        <!-- PBKDF2 is required for grub to recognize encryption -->
+            <luksformat>
+                <option name="&#45;&#45;pbkdf" value="PBKDF2"/>
+            </luksformat>
             <systemdisk>
                 <volume name="home"/>
                 <volume name="root"/>
