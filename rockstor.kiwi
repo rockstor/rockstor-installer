@@ -400,7 +400,7 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
         <package name="fontconfig"/>
         <package name="fonts-config"/>
         <package name="gfxboot-branding-upstream" arch="x86_64"/> <!-- grub bg -->
-        <package name="gio-branding-upstream"/> <!--or branding-openSUSE-->
+        <!-- <package name="gio-branding-upstream"/> <!-- breaks in TW re gio-branding-openSUSE--> -->
         <package name="group(mail)"/>
         <package name="group(wheel)"/>
         <package name="grub2"/>
