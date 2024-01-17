@@ -477,6 +477,7 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
         <package name="glibc-locale"/>  <!-- possbily glibc-locale-base-->
         <package name="grep"/>
         <package name="gzip"/>
+        <package name="diffutils"/>
         <package name="openSUSE-release"/>  <!-- /etc/os-release etc -->
         <package name="udev"/>
         <package name="xz"/>
