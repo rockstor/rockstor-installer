@@ -96,9 +96,9 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
         >
         <!-- For full disk LUKS encryption uncomment below entries -->
         <!-- PBKDF2 is required for grub to recognize encryption -->
-            <luksformat>
-                <option name="&#45;&#45;pbkdf" value="PBKDF2"/>
-            </luksformat>
+        <!--    <luksformat> -->
+        <!--        <option name="&#45;&#45;pbkdf" value="PBKDF2"/> -->
+        <!--    </luksformat> -->
             <systemdisk>
                 <volume name="home"/>
                 <volume name="root"/>
