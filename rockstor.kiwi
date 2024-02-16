@@ -339,13 +339,13 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
                 profiles="Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI">
         <source path="https://pkgs.tailscale.com/stable/opensuse/leap/15.5/aarch64"/>
     </repository>
-    <repository type="rpm-md" alias="tailscale" imageinclude="true"
+    <repository type="rpm-md" alias="tailscale-stable" imageinclude="true"
                 repository_gpgcheck="true" package_gpgcheck="false"
                 customize="add_tailscale_repo_gpgkey.sh"
                 profiles="Tumbleweed.x86_64">
         <source path="https://pkgs.tailscale.com/stable/opensuse/tumbleweed/x86_64"/>
     </repository>
-    <repository type="rpm-md" alias="tailscale" imageinclude="true"
+    <repository type="rpm-md" alias="tailscale-stable" imageinclude="true"
                 repository_gpgcheck="true" package_gpgcheck="false"
                 customize="add_tailscale_repo_gpgkey.sh"
                 profiles="Tumbleweed.RaspberryPi4,Tumbleweed.ARM64EFI">
