@@ -84,7 +84,6 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
                 initrd_system="dracut"
                 filesystem="btrfs"
                 fsmountoptions="noatime"
-                bootloader="grub2"
                 firmware="efi"
                 installiso="true"
                 kernelcmdline="nomodeset plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G"
@@ -94,6 +93,7 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
                 btrfs_quota_groups="false"
                 efipartsize="64"
         >
+            <bootloader name="grub2"/>
         <!-- For full disk LUKS encryption uncomment below entries -->
         <!-- PBKDF2 is required for grub to recognize encryption -->
         <!--    <luksformat> -->
@@ -144,7 +144,6 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
                 initrd_system="dracut"
                 filesystem="btrfs"
                 fsmountoptions="noatime,compress=lzo"
-                bootloader="grub2"
                 firmware="efi"
                 kernelcmdline="plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G console=ttyS0,115200 console=tty"
                 bootpartition="false"
@@ -154,6 +153,7 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
                 efipartsize="64"
                 editbootinstall="editbootinstall_rpi.sh"
         >
+            <bootloader name="grub2"/>
             <systemdisk>
                 <volume name="home"/>
                 <volume name="root"/>
@@ -195,7 +195,6 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
                 initrd_system="dracut"
                 filesystem="btrfs"
                 fsmountoptions="noatime,compress=lzo"
-                bootloader="grub2"
                 firmware="efi"
                 kernelcmdline="plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G earlycon"
                 bootpartition="false"
@@ -205,6 +204,7 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
                 efipartsize="64"
                 format="qcow2"
         >
+            <bootloader name="grub2"/>
             <systemdisk>
                 <volume name="home"/>
                 <volume name="root"/>
