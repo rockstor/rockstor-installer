@@ -220,4 +220,4 @@ If you find an issue with this procedure and its associated kiwi-ng config, plea
 or improvements you consequently discover or invent.
 
 'The Rockstor Project' is a community endeavour and depends on [update channel](https://rockstor.com/docs/update-channels/update_channels.html)
-subscriptions and contributions for it's continued open source development.  
+subscriptions and contributions for its continued open source development.  
