@@ -50,10 +50,8 @@
         <timezone>Europe/London</timezone>
         <rpm-excludedocs>true</rpm-excludedocs>
         <rpm-check-signatures>false</rpm-check-signatures>
-        <!-- bgrt, charge, fade-in -->
-        <bootsplash-theme>upstream</bootsplash-theme>  <!-- boot theme -->
-        <!-- bgrt,breeze,starfield -->
-        <bootloader-theme>upstream</bootloader-theme>  <!-- gfxboot theme -->
+        <bootsplash-theme>upstream</bootsplash-theme>
+        <bootloader-theme>upstream</bootloader-theme>
         <!-- https://osinside.github.io/kiwi/building/build_oem_disk.html#oem -->
         <!-- bootpartition= is redundant post kiwi issue #1351 -->
         <!-- firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64 -->
@@ -114,10 +112,8 @@
         <timezone>Europe/London</timezone>
         <rpm-excludedocs>true</rpm-excludedocs>
         <rpm-check-signatures>false</rpm-check-signatures>
-        <!-- bgrt, charge, fade-in -->
-        <bootsplash-theme>upstream</bootsplash-theme>  <!--boot theme -->
-        <!-- bgrt,breeze,starfield -->
-        <bootloader-theme>upstream</bootloader-theme>   gfxboot theme -->
+        <bootsplash-theme>upstream</bootsplash-theme>
+        <bootloader-theme>upstream</bootloader-theme>
         <!-- https://osinside.github.io/kiwi/building/build_oem_disk.html#oem -->
         <!-- bootpartition= is redundant post kiwi issue #1351 -->
         <!-- firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64 -->
@@ -164,10 +160,8 @@
         <timezone>Europe/London</timezone>
         <rpm-excludedocs>true</rpm-excludedocs>
         <rpm-check-signatures>false</rpm-check-signatures>
-        <!-- bgrt, charge, fade-in -->
-        <bootsplash-theme>upstream</bootsplash-theme>  <!--boot theme -->
-        <!-- bgrt,breeze,starfield -->
-        <bootloader-theme>upstream</bootloader-theme>  <!--gfxboot theme -->
+        <bootsplash-theme>upstream</bootsplash-theme>
+        <bootloader-theme>upstream</bootloader-theme>
         <!-- https://osinside.github.io/kiwi/building/build_oem_disk.html#oem -->
         <!-- bootpartition= is redundant post kiwi issue #1351 -->
         <!-- firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64 -->
