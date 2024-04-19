@@ -1,18 +1,15 @@
-<!-- we are after an OEM image for install media CD/DVD or flash disk -->
-<!-- schema doc available at:
-https://osinside.github.io/kiwi/development/schema.html#schema-docs -->
-<!-- For reference we have:
-https://en.opensuse.org/Portal:JeOS
-https://documentation.suse.com/kiwi/9/single-html/kiwi/index.html
-https://build.opensuse.org/package/show/openSUSE:Leap:15.5/kiwi-templates-Minimal
-https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/kiwi-templates-Minimal
-https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
+<!-- We are an OEM image for install media CD/DVD or flash disk -->
+<!-- Schema doc available at: -->
+<!-- https://osinside.github.io/kiwi/development/schema.html#schema-docs -->
+<!-- For reference see: -->
+<!-- https://en.opensuse.org/Portal:JeOS -->
+<!-- https://documentation.suse.com/kiwi/9/single-html/kiwi/index.html -->
+<!-- https://build.opensuse.org/package/show/openSUSE:Leap:15.5/kiwi-templates-Minimal -->
+<!-- https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/kiwi-templates-Minimal -->
+<!-- https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS -->
 
-
--->
 <!-- OBS-Profiles: @BUILD_FLAVOR@ -->
 
-<!--Change to "Rockstor-<baseos-machine>" e.g. "Rockstor-Leap15.3-RaspberryPi4"-->
 <image schemaversion="7.1" name="Rockstor-NAS">
 
     <description type="system">
@@ -24,7 +21,7 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
     </description>
     <profiles>
         <!-- For preferences, drivers, repository, packages, and users elements -->
-        <!-- https://osinside.github.io/kiwi/working_with_kiwi/xml_description.html#image-profiles-->
+        <!-- https://osinside.github.io/kiwi/working_with_kiwi/xml_description.html#image-profiles -->
         <!-- N.B. can inherit one profile within another via requires profile="" -->
         <profile name="Leap15.5.x86_64"
                  description="Rockstor built on openSUSE Leap 15.5 x86_64"
@@ -46,24 +43,24 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
                  arch="aarch64"/>
     </profiles>
     <preferences profiles="Leap15.5.x86_64,Tumbleweed.x86_64">
-        <!--Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release)-->
-        <version>4.5.8-0</version>
+        <!-- Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release) -->
+        <version>5.0.9-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
         <keytable>gb</keytable>
         <timezone>Europe/London</timezone>
         <rpm-excludedocs>true</rpm-excludedocs>
         <rpm-check-signatures>false</rpm-check-signatures>
-        <!--bgrt, charge, fade-in-->
-        <bootsplash-theme>upstream</bootsplash-theme>  <!--boot theme-->
-        <!--bgrt,breeze,starfield-->
-        <bootloader-theme>upstream</bootloader-theme>  <!--gfxboot theme-->
+        <!-- bgrt, charge, fade-in -->
+        <bootsplash-theme>upstream</bootsplash-theme>  <!-- boot theme -->
+        <!-- bgrt,breeze,starfield -->
+        <bootloader-theme>upstream</bootloader-theme>  <!-- gfxboot theme -->
         <!-- https://osinside.github.io/kiwi/building/build_oem_disk.html#oem -->
-        <!--bootpartition= is redundant post kiwi issue #1351-->
-        <!--firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64-->
-        <!--Re AArch64: https://github.com/OSInside/kiwi/issues/1491-->
+        <!-- bootpartition= is redundant post kiwi issue #1351 -->
+        <!-- firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64 -->
+        <!-- Re AArch64: https://github.com/OSInside/kiwi/issues/1491 -->
         <!-- For root disk LUKS encryption (using luks2 & PBKDF2 instead of argon2id) -->
-        <!-- add below 2 luks attributes below the 'efipartsize' entry in the type definition-->
+        <!-- add below 2 luks attributes below the 'efipartsize' entry in the type definition -->
         <!-- note: change luks Pass Phrase -->
         <!--        luks="c00l_Pa$$Phra$e" -->
         <!--        luks_version="luks2" -->
@@ -111,23 +108,23 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
     </preferences>
 
     <preferences profiles="Leap15.5.RaspberryPi4,Tumbleweed.RaspberryPi4">
-        <!--Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release)-->
-        <version>4.5.8-0</version>
+        <!-- Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release) -->
+        <version>5.0.9-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
         <keytable>gb</keytable>
         <timezone>Europe/London</timezone>
         <rpm-excludedocs>true</rpm-excludedocs>
         <rpm-check-signatures>false</rpm-check-signatures>
-        <!--bgrt, charge, fade-in-->
-        <bootsplash-theme>upstream</bootsplash-theme>  <!--boot theme-->
-        <!--bgrt,breeze,starfield-->
-        <bootloader-theme>upstream</bootloader-theme>  <!--gfxboot theme-->
+        <!-- bgrt, charge, fade-in -->
+        <bootsplash-theme>upstream</bootsplash-theme>  <!--boot theme -->
+        <!-- bgrt,breeze,starfield -->
+        <bootloader-theme>upstream</bootloader-theme>   gfxboot theme -->
         <!-- https://osinside.github.io/kiwi/building/build_oem_disk.html#oem -->
-        <!--bootpartition= is redundant post kiwi issue #1351-->
-        <!--firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64-->
-        <!--Re AArch64: https://github.com/OSInside/kiwi/issues/1491-->
-        <!--devicepersistency="by-uuid" differs from our normal !. Needs testing-->
+        <!-- bootpartition= is redundant post kiwi issue #1351 -->
+        <!-- firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64 -->
+        <!-- Re AArch64: https://github.com/OSInside/kiwi/issues/1491 -->
+        <!-- devicepersistency="by-uuid" differs from our normal !. Needs testing -->
         <type
                 image="oem"
                 initrd_system="dracut"
@@ -162,23 +159,23 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
         </type>
     </preferences>
     <preferences profiles="Leap15.5.ARM64EFI,Tumbleweed.ARM64EFI">
-        <!--Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release)-->
-        <version>4.5.8-0</version>
+        <!-- Change to reflect the Rockstor version used #.#.# (rpm version) -# (rpm release) -->
+        <version>5.0.9-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
         <keytable>gb</keytable>
         <timezone>Europe/London</timezone>
         <rpm-excludedocs>true</rpm-excludedocs>
         <rpm-check-signatures>false</rpm-check-signatures>
-        <!--bgrt, charge, fade-in-->
-        <bootsplash-theme>upstream</bootsplash-theme>  <!--boot theme-->
-        <!--bgrt,breeze,starfield-->
-        <bootloader-theme>upstream</bootloader-theme>  <!--gfxboot theme-->
+        <!-- bgrt, charge, fade-in -->
+        <bootsplash-theme>upstream</bootsplash-theme>  <!--boot theme -->
+        <!-- bgrt,breeze,starfield -->
+        <bootloader-theme>upstream</bootloader-theme>  <!--gfxboot theme -->
         <!-- https://osinside.github.io/kiwi/building/build_oem_disk.html#oem -->
-        <!--bootpartition= is redundant post kiwi issue #1351-->
-        <!--firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64-->
-        <!--Re AArch64: https://github.com/OSInside/kiwi/issues/1491-->
-        <!--devicepersistency="by-uuid" differs from our normal !. Needs testing-->
+        <!-- bootpartition= is redundant post kiwi issue #1351 -->
+        <!-- firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64 -->
+        <!-- Re AArch64: https://github.com/OSInside/kiwi/issues/1491 -->
+        <!-- devicepersistency="by-uuid" differs from our normal !. Needs testing -->
         <type
                 image="oem"
                 initrd_system="dracut"
@@ -224,7 +221,7 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
         <source path="obs://Virtualization:Appliances:Builder/openSUSE_Tumbleweed"/>
     </repository>
     <!-- https://en.opensuse.org/Package_repositories -->
-    <!-- Alias repo-oss Name="Main Repository" in JeOS-->
+    <!-- Alias repo-oss Name="Main Repository" in JeOS -->
     <repository type="rpm-md" alias="Leap_15_5" imageinclude="true"
                 profiles="Leap15.5.x86_64,Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI">
         <source path="obs://openSUSE:Leap:15.5/standard"/>
@@ -237,7 +234,7 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
                 profiles="Tumbleweed.RaspberryPi4,Tumbleweed.ARM64EFI">
         <source path="https://download.opensuse.org/ports/aarch64/tumbleweed/repo/oss/"/>
     </repository>
-    <!-- Alias repo-update Name="Main Update Repository" or "openSUSE-Tumbleweed-Update" in JeOS-->
+    <!-- Alias repo-update Name="Main Update Repository" or "openSUSE-Tumbleweed-Update" in JeOS -->
     <repository type="rpm-md" alias="Leap_15_5_Updates" imageinclude="true"
                 profiles="Leap15.5.x86_64,Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI">
         <source path="https://download.opensuse.org/update/leap/15.5/oss/"/>
@@ -263,8 +260,8 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
         <source path="https://download.opensuse.org/update/leap/15.5/sle/"/>
     </repository>
     <!-- open H264 repos: -->
-    <!-- https://news.opensuse.org/2023/01/24/opensuse-simplifies-codec-install/-->
-    <!-- https://codecs.opensuse.org/openh264/-->
+    <!-- https://news.opensuse.org/2023/01/24/opensuse-simplifies-codec-install/ -->
+    <!-- https://codecs.opensuse.org/openh264/ -->
     <repository type="rpm-md" alias="repo-openh264" imageinclude="true"
                 profiles="Leap15.5.x86_64,Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI">
         <source path="http://codecs.opensuse.org/openh264/openSUSE_Leap"/>
@@ -275,8 +272,8 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
     </repository>
 
     <!-- Tailscale repos: -->
-    <!-- https://tailscale.com/kb/1303/install-opensuse-leap/-->
-    <!-- https://tailscale.com/kb/1047/install-opensuse-tumbleweed/-->
+    <!-- https://tailscale.com/kb/1303/install-opensuse-leap/ -->
+    <!-- https://tailscale.com/kb/1047/install-opensuse-tumbleweed/ -->
     <repository type="rpm-md" alias="tailscale-stable" imageinclude="true"
                 repository_gpgcheck="true" package_gpgcheck="false"
                 customize="add_tailscale_repo_gpgkey.sh"
@@ -304,9 +301,9 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
 
     <!-- https://osinside.github.io/kiwi/working_with_kiwi/xml_description.html#adding-repositories -->
     <!-- Local-Repository on build host: for pre-installed rockstor package -->
-    <!--    <repository type="rpm-dir" alias="Local-Repository">-->
-    <!--        <source path="dir:/mnt/localrepo"/>-->
-    <!--    </repository>-->
+    <!--    <repository type="rpm-dir" alias="Local-Repository"> -->
+    <!--        <source path="dir:/mnt/localrepo"/> -->
+    <!--    </repository> -->
     <!-- Resource Rockstor Testing channel during installer build only -->
     <!-- Rockstor repos are multi-arch from 15.4 onwards -->
     <repository type="rpm-md" alias="Rockstor-Testing"
@@ -333,7 +330,7 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
         <source path="https://download.opensuse.org/repositories/home:/rockstor/openSUSE_Tumbleweed/"/>
     </repository>
     <!-- As per https://en.opensuse.org/Archive:Making_an_openSUSE_based_distribution -->
-    <!-- We are required to de/re-brand packages that have no "...branding-upstream" equivalent-->
+    <!-- We are required to de/re-brand packages that have no "...branding-upstream" equivalent -->
     <!-- This repo currently provides: systemd-presets-branding-rockstor -->
     <!-- https://build.opensuse.org/package/show/home:rockstor:branches:Base:System/systemd-presets-branding-rockstor -->
     <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true"
@@ -352,25 +349,25 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
     <!-- Installing the latest kernel only makes sense for kernel developers and kernel testers."-->
     <!-- Kernel HEAD Backports -->
     <!-- https://build.opensuse.org/repositories/Kernel:HEAD:Backport -->
-    <!--    <repository type="rpm-md" alias="Kernel_HEAD_Backport" imageinclude="true"-->
-    <!--                profiles="Leap15.5.x86_64,Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI">-->
-    <!--        <source path="https://download.opensuse.org/repositories/Kernel:/HEAD:/Backport/standard/"/>-->
-    <!--    </repository>-->
+    <!--    <repository type="rpm-md" alias="Kernel_HEAD_Backport" imageinclude="true" -->
+    <!--                profiles="Leap15.5.x86_64,Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI"> -->
+    <!--        <source path="https://download.opensuse.org/repositories/Kernel:/HEAD:/Backport/standard/"/> -->
+    <!--    </repository> -->
     <!-- Kernel Stable Backports -->
     <!-- https://build.opensuse.org/project/show/Kernel:stable:Backport -->
     <!-- See also: https://rockstor.com/docs/howtos/stable_kernel_backport.html  -->
-    <!--    <repository type="rpm-md" alias="Kernel_stable_Backport" imageinclude="true"-->
-    <!--                profiles="Leap15.5.x86_64,Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI">-->
-    <!--        <source path="https://download.opensuse.org/repositories/Kernel:/stable:/Backport/standard/"/>-->
+    <!--    <repository type="rpm-md" alias="Kernel_stable_Backport" imageinclude="true" -->
+    <!--                profiles="Leap15.5.x86_64,Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI"> -->
+    <!--        <source path="https://download.opensuse.org/repositories/Kernel:/stable:/Backport/standard/"/> -->
     <!--    </repository>-->
     <!-- btrfs-progs backport via filesystems repo -->
     <!-- https://build.opensuse.org/project/show/filesystems -->
-    <!--    <repository type="rpm-md" alias="filesystems" imageinclude="true"-->
-    <!--                profiles="Leap15.5.x86_64,Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI">-->
-    <!--        <source path="https://download.opensuse.org/repositories/filesystems/15.5/"/>-->
-    <!--    </repository>-->
+    <!--    <repository type="rpm-md" alias="filesystems" imageinclude="true" -->
+    <!--                profiles="Leap15.5.x86_64,Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI"> -->
+    <!--        <source path="https://download.opensuse.org/repositories/filesystems/15.5/"/> -->
+    <!--    </repository> -->
     <packages type="image">
-        <package name="adaptec-firmware"/>  <!--Razor AIC94xx Series SAS-->
+        <package name="adaptec-firmware"/>  <!-- Razor AIC94xx Series SAS -->
         <package name="bash-completion"/>
         <package name="bind-utils"/>
         <package name="btrfsmaintenance"/>
@@ -404,19 +401,19 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
         <package name="iputils"/>
         <package name="jeos-firstboot"/>
         <package name="kernel-default"/>
-        <package name="kernel-firmware-bnx2"/> <!--10.8MiB - Broadcom net drivers-->
-        <package name="kernel-firmware-chelsio"/> <!--2.9 MiB - Chelsio net drivers-->
-        <package name="kernel-firmware-intel"/> <!--2.5MiB - Intel platform drivers-->
-        <package name="kernel-firmware-marvell"/> <!--2.3 MiB - Marvell net drivers-->
-        <package name="kernel-firmware-network"/> <!--3.6MiB misc net drivers-->
-        <package name="kernel-firmware-platform"/> <!--1.6 MiB - misc platform drivers-->
-        <package name="kernel-firmware-qlogic"/> <!--12.8MiB - QLogic net drivers-->
+        <package name="kernel-firmware-bnx2"/> <!-- 10.8MiB - Broadcom net drivers -->
+        <package name="kernel-firmware-chelsio"/> <!-- 2.9 MiB - Chelsio net drivers -->
+        <package name="kernel-firmware-intel"/> <!-- 2.5MiB - Intel platform drivers -->
+        <package name="kernel-firmware-marvell"/> <!-- 2.3 MiB - Marvell net drivers -->
+        <package name="kernel-firmware-network"/> <!-- 3.6MiB misc net drivers -->
+        <package name="kernel-firmware-platform"/> <!-- 1.6 MiB - misc platform drivers -->
+        <package name="kernel-firmware-qlogic"/> <!-- 12.8MiB - QLogic net drivers -->
         <package name="keyutils"/>
         <package name="less"/>
-        <package name="lsof"/>  <!--for zypper ps-->
+        <package name="lsof"/>  <!-- for zypper ps -->
         <package name="nano"/>
         <package name="NetworkManager"/>
-        <package name="NetworkManager-branding-upstream"/>  <!--or branding-openSUSE-->
+        <package name="NetworkManager-branding-upstream"/>  <!-- or branding-openSUSE -->
         <package name="nfs-client"/>
         <package name="open-iscsi"/>
         <!-- <package name="open-vm-tools"/> -->
@@ -430,19 +427,18 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
         <package name="snapper-zypp-plugin"/>
         <package name="syslinux" arch="x86_64"/>
         <package name="systemd"/>
-        <package name="systemd-presets-branding"/> <!--or branding-openSUSE-->
+        <package name="systemd-presets-branding"/> <!-- or branding-openSUSE -->
         <package name="systemd-sysvinit"/>
         <package name="tar"/>
         <package name="timezone"/>
         <package name="tree"/>
         <package name="vim"/>
-        <package name="wget"/> <!--enable building from source via build.sh-->
+        <package name="wget"/> <!-- enable building from source via build.sh -->
         <package name="which"/>
         <package name="ntfs-3g"/>
         <package name="tailscale"/>
-        <!--ROCKSTOR PACKAGE WITH MANY ADDITIONAL DISTRO SPECIFIC DEPENDENCIES-->
-        <!--Change to reflect the version specified, i.e. 5.0.8-0-->
-        <package name="rockstor-5.0.8-0"/>
+        <!-- ROCKSTOR PACKAGE: CHANGE VERSION AS REQUIRED -->
+        <package name="rockstor-5.0.9-0"/>
     </packages>
     <packages type="image" profiles="Leap15.5.RaspberryPi4,Tumbleweed.RaspberryPi4">
         <package name="raspberrypi-eeprom" arch="aarch64"/>
@@ -461,7 +457,7 @@ https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS
         <package name="cracklib-dict-full"/>
         <package name="filesystem"/>
         <package name="gawk"/>
-        <package name="glibc-locale"/>  <!-- possbily glibc-locale-base-->
+        <package name="glibc-locale"/>  <!-- possbily glibc-locale-base -->
         <package name="grep"/>
         <package name="gzip"/>
         <package name="diffutils"/>
