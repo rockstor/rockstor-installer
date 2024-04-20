@@ -19,6 +19,7 @@
             Rockstor install image based on openSUSE
         </specification>
     </description>
+
     <profiles>
         <!-- For preferences, drivers, repository, packages, and users elements -->
         <!-- https://osinside.github.io/kiwi/working_with_kiwi/xml_description.html#image-profiles -->
@@ -32,6 +33,15 @@
         <profile name="Leap15.5.ARM64EFI"
                  description="Rockstor built on openSUSE Leap 15.5 ARM64 EFI/VM/Ten64"
                  arch="aarch64"/>
+        <profile name="Leap15.6.x86_64"
+                 description="Rockstor built on openSUSE Leap 15.6 x86_64"
+                 arch="x86_64"/>
+        <profile name="Leap15.6.RaspberryPi4"
+                 description="Rockstor built on openSUSE Leap 15.6 Raspberry_Pi"
+                 arch="aarch64"/>
+        <profile name="Leap15.6.ARM64EFI"
+                 description="Rockstor built on openSUSE Leap 15.6 ARM64 EFI/VM/Ten64"
+                 arch="aarch64"/>
         <profile name="Tumbleweed.x86_64"
                  description="Rockstor built on openSUSE Tumbleweed x86_64"
                  arch="x86_64"/>
@@ -42,7 +52,8 @@
                  description="Rockstor built on openSUSE Tumbleweed ARM64 EFI/VM/Ten64"
                  arch="aarch64"/>
     </profiles>
-    <preferences profiles="Leap15.5.x86_64,Tumbleweed.x86_64">
+
+    <preferences profiles="Leap15.5.x86_64,Leap15.6.x86_64,Tumbleweed.x86_64">
         <version>5.0.9-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
@@ -52,8 +63,6 @@
         <rpm-check-signatures>false</rpm-check-signatures>
         <bootsplash-theme>upstream</bootsplash-theme>
         <bootloader-theme>upstream</bootloader-theme>
-        <!-- https://osinside.github.io/kiwi/building/build_oem_disk.html#oem -->
-        <!-- bootpartition= is redundant post kiwi issue #1351 -->
         <!-- firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64 -->
         <!-- Re AArch64: https://github.com/OSInside/kiwi/issues/1491 -->
         <!-- For root disk LUKS encryption (using luks2 & PBKDF2 instead of argon2id) -->
@@ -104,7 +113,7 @@
         </type>
     </preferences>
 
-    <preferences profiles="Leap15.5.RaspberryPi4,Tumbleweed.RaspberryPi4">
+    <preferences profiles="Leap15.5.RaspberryPi4,Leap15.6.RaspberryPi4,Tumbleweed.RaspberryPi4">
         <version>5.0.9-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
@@ -114,11 +123,8 @@
         <rpm-check-signatures>false</rpm-check-signatures>
         <bootsplash-theme>upstream</bootsplash-theme>
         <bootloader-theme>upstream</bootloader-theme>
-        <!-- https://osinside.github.io/kiwi/building/build_oem_disk.html#oem -->
-        <!-- bootpartition= is redundant post kiwi issue #1351 -->
         <!-- firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64 -->
         <!-- Re AArch64: https://github.com/OSInside/kiwi/issues/1491 -->
-        <!-- devicepersistency="by-uuid" differs from our normal !. Needs testing -->
         <type
                 image="oem"
                 initrd_system="dracut"
@@ -152,7 +158,8 @@
             </oemconfig>
         </type>
     </preferences>
-    <preferences profiles="Leap15.5.ARM64EFI,Tumbleweed.ARM64EFI">
+
+    <preferences profiles="Leap15.5.ARM64EFI,Leap15.6.ARM64EFI,Tumbleweed.ARM64EFI">
         <version>5.0.9-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
@@ -162,11 +169,8 @@
         <rpm-check-signatures>false</rpm-check-signatures>
         <bootsplash-theme>upstream</bootsplash-theme>
         <bootloader-theme>upstream</bootloader-theme>
-        <!-- https://osinside.github.io/kiwi/building/build_oem_disk.html#oem -->
-        <!-- bootpartition= is redundant post kiwi issue #1351 -->
         <!-- firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64 -->
         <!-- Re AArch64: https://github.com/OSInside/kiwi/issues/1491 -->
-        <!-- devicepersistency="by-uuid" differs from our normal !. Needs testing -->
         <type
                 image="oem"
                 initrd_system="dracut"
@@ -201,21 +205,30 @@
             </oemconfig>
         </type>
     </preferences>
+
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root"
               name="root" groups="root"/>
     </users>
+
     <!-- For zypper priority 1 is highest, priority 0 returns to default of 99 -->
     <!-- https://build.opensuse.org/project/show/Virtualization:Appliances:Builder -->
+
     <repository type="rpm-md" alias="kiwi" priority="1"
                 profiles="Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.ARM64EFI">
         <source path="obs://Virtualization:Appliances:Builder/openSUSE_Tumbleweed"/>
     </repository>
+
     <!-- https://en.opensuse.org/Package_repositories -->
     <!-- Alias repo-oss Name="Main Repository" in JeOS -->
+
     <repository type="rpm-md" alias="Leap_15_5" imageinclude="true"
                 profiles="Leap15.5.x86_64,Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI">
         <source path="obs://openSUSE:Leap:15.5/standard"/>
+    </repository>
+    <repository type="rpm-md" alias="Leap_15_6" imageinclude="true"
+                profiles="Leap15.6.x86_64,Leap15.6.RaspberryPi4,Leap15.6.ARM64EFI">
+        <source path="obs://openSUSE:Leap:15.6/standard"/>
     </repository>
     <repository type="rpm-md" alias="Tumbleweed" imageinclude="true"
                 profiles="Tumbleweed.x86_64">
@@ -225,15 +238,22 @@
                 profiles="Tumbleweed.RaspberryPi4,Tumbleweed.ARM64EFI">
         <source path="https://download.opensuse.org/ports/aarch64/tumbleweed/repo/oss/"/>
     </repository>
+
     <!-- Alias repo-update Name="Main Update Repository" or "openSUSE-Tumbleweed-Update" in JeOS -->
+
     <repository type="rpm-md" alias="Leap_15_5_Updates" imageinclude="true"
                 profiles="Leap15.5.x86_64,Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI">
         <source path="https://download.opensuse.org/update/leap/15.5/oss/"/>
+    </repository>
+    <repository type="rpm-md" alias="Leap_15_6_Updates" imageinclude="true"
+                profiles="Leap15.6.x86_64,Leap15.6.RaspberryPi4,Leap15.6.ARM64EFI">
+        <source path="https://download.opensuse.org/update/leap/15.6/oss/"/>
     </repository>
     <repository type="rpm-md" alias="Tumbleweed_Updates" imageinclude="true"
                 profiles="Tumbleweed.x86_64">
         <source path="https://download.opensuse.org/update/tumbleweed/"/>
     </repository>
+
     <!-- Alias repo-backports-update Name="Update repository of openSUSE Backports" -->
     <!-- or "openSUSE_Backports_SLE-15-SP3_Update" / "Online updates for openSUSE:Backports:SLE-15-SP3 (standard)" -->
     <!-- Alias repo-sle-update Name="Update repository with updates from SUSE Linux Enterprise 15" -->
@@ -242,6 +262,7 @@
     <!-- Leap 15.3+ profiles only - repos are multi architecture -->
     <!-- Not included in image as auto added by installed system. -->
     <!-- Used during image build to capture updates at time of installer build -->
+
     <repository type="rpm-md" alias="repo-backports-update"
                 profiles="Leap15.5.x86_64,Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI">
         <source path="https://download.opensuse.org/update/leap/15.5/backports/"/>
@@ -250,11 +271,25 @@
                 profiles="Leap15.5.x86_64,Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI">
         <source path="https://download.opensuse.org/update/leap/15.5/sle/"/>
     </repository>
+    <repository type="rpm-md" alias="repo-backports-update"
+                profiles="Leap15.6.x86_64,Leap15.6.RaspberryPi4,Leap15.6.ARM64EFI">
+        <source path="https://download.opensuse.org/update/leap/15.6/backports/"/>
+    </repository>
+    <repository type="rpm-md" alias="repo-sle-update"
+                profiles="Leap15.6.x86_64,Leap15.6.RaspberryPi4,Leap15.6.ARM64EFI">
+        <source path="https://download.opensuse.org/update/leap/15.6/sle/"/>
+    </repository>
+
     <!-- open H264 repos: -->
     <!-- https://news.opensuse.org/2023/01/24/opensuse-simplifies-codec-install/ -->
     <!-- https://codecs.opensuse.org/openh264/ -->
+
     <repository type="rpm-md" alias="repo-openh264" imageinclude="true"
                 profiles="Leap15.5.x86_64,Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI">
+        <source path="http://codecs.opensuse.org/openh264/openSUSE_Leap"/>
+    </repository>
+    <repository type="rpm-md" alias="repo-openh264" imageinclude="true"
+                profiles="Leap15.6.x86_64,Leap15.6.RaspberryPi4,Leap15.6.ARM64EFI">
         <source path="http://codecs.opensuse.org/openh264/openSUSE_Leap"/>
     </repository>
     <repository type="rpm-md" alias="repo-openh264" imageinclude="true"
@@ -265,6 +300,7 @@
     <!-- Tailscale repos: -->
     <!-- https://tailscale.com/kb/1303/install-opensuse-leap/ -->
     <!-- https://tailscale.com/kb/1047/install-opensuse-tumbleweed/ -->
+
     <repository type="rpm-md" alias="tailscale-stable" imageinclude="true"
                 repository_gpgcheck="true" package_gpgcheck="false"
                 customize="add_tailscale_repo_gpgkey.sh"
@@ -276,6 +312,18 @@
                 customize="add_tailscale_repo_gpgkey.sh"
                 profiles="Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI">
         <source path="https://pkgs.tailscale.com/stable/opensuse/leap/15.5/aarch64"/>
+    </repository>
+    <repository type="rpm-md" alias="tailscale-stable" imageinclude="true"
+                repository_gpgcheck="true" package_gpgcheck="false"
+                customize="add_tailscale_repo_gpgkey.sh"
+                profiles="Leap15.6.x86_64" >
+        <source path="https://pkgs.tailscale.com/stable/opensuse/leap/15.6/x86_64"/>
+    </repository>
+    <repository type="rpm-md" alias="tailscale-stable" imageinclude="true"
+                repository_gpgcheck="true" package_gpgcheck="false"
+                customize="add_tailscale_repo_gpgkey.sh"
+                profiles="Leap15.6.RaspberryPi4,Leap15.6.ARM64EFI">
+        <source path="https://pkgs.tailscale.com/stable/opensuse/leap/15.6/aarch64"/>
     </repository>
     <repository type="rpm-md" alias="tailscale-stable" imageinclude="true"
                 repository_gpgcheck="true" package_gpgcheck="false"
@@ -295,16 +343,23 @@
     <!--    <repository type="rpm-dir" alias="Local-Repository"> -->
     <!--        <source path="dir:/mnt/localrepo"/> -->
     <!--    </repository> -->
+
     <!-- Resource Rockstor Testing channel during installer build only -->
     <!-- Rockstor repos are multi-arch from 15.4 onwards -->
+
     <repository type="rpm-md" alias="Rockstor-Testing"
                 profiles="Leap15.5.x86_64,Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI">
         <source path="http://updates.rockstor.com:8999/rockstor-testing/leap/15.5/"/>
     </repository>
     <repository type="rpm-md" alias="Rockstor-Testing"
+                profiles="Leap15.6.x86_64,Leap15.6.RaspberryPi4,Leap15.6.ARM64EFI">
+        <source path="http://updates.rockstor.com:8999/rockstor-testing/leap/15.6/"/>
+    </repository>
+    <repository type="rpm-md" alias="Rockstor-Testing"
                 profiles="Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.ARM64EFI">
         <source path="http://updates.rockstor.com:8999/rockstor-testing/tumbleweed/"/>
     </repository>
+
     <!-- For shellinabox package -->
     <!-- https://build.opensuse.org/package/show/shells/shellinabox -->
     <!-- Lower priority (higher number) than default 99 to avoid other dev shell packages supplanting -->
@@ -312,26 +367,38 @@
     <!-- Rockstor home repo on OBS for Leap 15.3 + now hosts dual arch shellinabox -->
     <!-- Maintain lower priority to upstream in case shellinabox is added there -->
     <!-- https://build.opensuse.org/project/show/home:rockstor -->
+
     <repository type="rpm-md" alias="home_rockstor" priority="105" imageinclude="true"
                 profiles="Leap15.5.x86_64,Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI">
         <source path="https://download.opensuse.org/repositories/home:/rockstor/15.5/"/>
     </repository>
     <repository type="rpm-md" alias="home_rockstor" priority="105" imageinclude="true"
+                profiles="Leap15.6.x86_64,Leap15.6.RaspberryPi4,Leap15.6.ARM64EFI">
+        <source path="https://download.opensuse.org/repositories/home:/rockstor/15.6/"/>
+    </repository>
+    <repository type="rpm-md" alias="home_rockstor" priority="105" imageinclude="true"
                 profiles="Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.ARM64EFI">
         <source path="https://download.opensuse.org/repositories/home:/rockstor/openSUSE_Tumbleweed/"/>
     </repository>
+
+    <!-- This repo currently provides: systemd-presets-branding-rockstor -->
     <!-- As per https://en.opensuse.org/Archive:Making_an_openSUSE_based_distribution -->
     <!-- We are required to de/re-brand packages that have no "...branding-upstream" equivalent -->
-    <!-- This repo currently provides: systemd-presets-branding-rockstor -->
     <!-- https://build.opensuse.org/package/show/home:rockstor:branches:Base:System/systemd-presets-branding-rockstor -->
+
     <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true"
                 profiles="Leap15.5.x86_64,Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI">
+        <source path="https://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/15.5/"/>
+    </repository>
+    <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true"
+                profiles="Leap15.6.x86_64,Leap15.6.RaspberryPi4,Leap15.6.ARM64EFI">
         <source path="https://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/15.5/"/>
     </repository>
     <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true"
                 profiles="Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.ARM64EFI">
         <source path="https://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Tumbleweed/"/>
     </repository>
+
     <!-- THE FOLLOWING KERNEL REPOS ARE NOT SUPPORTED. -->
     <!-- Provided here remarked-out for developer convenience only. -->
     <!-- https://doc.opensuse.org/documentation/leap/reference/html/book-reference/cha-tuning-multikernel.html -->
@@ -357,6 +424,7 @@
     <!--                profiles="Leap15.5.x86_64,Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI"> -->
     <!--        <source path="https://download.opensuse.org/repositories/filesystems/15.5/"/> -->
     <!--    </repository> -->
+
     <packages type="image">
         <package name="adaptec-firmware"/>  <!-- Razor AIC94xx Series SAS -->
         <package name="bash-completion"/>
@@ -431,7 +499,8 @@
         <!-- ROCKSTOR PACKAGE: CHANGE VERSION AS REQUIRED -->
         <package name="rockstor-5.0.9-0"/>
     </packages>
-    <packages type="image" profiles="Leap15.5.RaspberryPi4,Tumbleweed.RaspberryPi4">
+
+    <packages type="image" profiles="Leap15.5.RaspberryPi4,Leap15.6.RaspberryPi4,Tumbleweed.RaspberryPi4">
         <package name="raspberrypi-eeprom" arch="aarch64"/>
         <package name="raspberrypi-firmware" arch="aarch64"/>
         <package name="raspberrypi-firmware-config" arch="aarch64"/>
@@ -440,6 +509,7 @@
         <package name="bcm43xx-firmware"/>
         <package name="u-boot-rpiarm64" arch="aarch64"/>
     </packages>
+
     <packages type="bootstrap">
         <package name="ca-certificates"/>
         <!-- https://github.com/OSInside/kiwi/issues/776#issuecomment-403724943 -->
