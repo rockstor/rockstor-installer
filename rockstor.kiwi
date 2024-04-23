@@ -1,6 +1,6 @@
 <!-- We are an OEM image for install media CD/DVD or flash disk -->
 <!-- Schema doc available at: -->
-<!-- https://osinside.github.io/kiwi/development/schema.html#schema-docs -->
+<!-- https://osinside.github.io/kiwi/image_description.html -->
 <!-- For reference see: -->
 <!-- https://en.opensuse.org/Portal:JeOS -->
 <!-- https://documentation.suse.com/kiwi/9/single-html/kiwi/index.html -->
@@ -10,7 +10,7 @@
 
 <!-- OBS-Profiles: @BUILD_FLAVOR@ -->
 
-<image schemaversion="7.1" name="Rockstor-NAS">
+<image schemaversion="8.1" name="Rockstor-NAS">
 
     <description type="system">
         <author>Philip Guyton</author>
@@ -22,7 +22,7 @@
 
     <profiles>
         <!-- For preferences, drivers, repository, packages, and users elements -->
-        <!-- https://osinside.github.io/kiwi/working_with_kiwi/xml_description.html#image-profiles -->
+        <! --https://osinside.github.io/kiwi/working_with_images/build_with_profiles.html -->
         <!-- N.B. can inherit one profile within another via requires profile="" -->
         <profile name="Leap15.5.x86_64"
                  description="Rockstor built on openSUSE Leap 15.5 x86_64"
@@ -339,9 +339,9 @@
         <source path="https://pkgs.tailscale.com/stable/opensuse/tumbleweed/aarch64"/>
     </repository>
 
-    <!-- https://osinside.github.io/kiwi/working_with_kiwi/xml_description.html#adding-repositories -->
+    <!--https://osinside.github.io/kiwi/concept_and_workflow/repository_setup.html -->
     <!-- Local-Repository on build host: for pre-installed rockstor package -->
-    <!--    <repository type="rpm-dir" alias="Local-Repository"> -->
+    <!--    <repository alias="Local-Repository"> -->
     <!--        <source path="dir:/mnt/localrepo"/> -->
     <!--    </repository> -->
 
