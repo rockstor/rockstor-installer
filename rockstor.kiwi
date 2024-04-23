@@ -22,7 +22,7 @@
 
     <profiles>
         <!-- For preferences, drivers, repository, packages, and users elements -->
-        <! --https://osinside.github.io/kiwi/working_with_images/build_with_profiles.html -->
+        <!-- https://osinside.github.io/kiwi/working_with_images/build_with_profiles.html -->
         <!-- N.B. can inherit one profile within another via requires profile="" -->
         <profile name="Leap15.5.x86_64"
                  description="Rockstor built on openSUSE Leap 15.5 x86_64"
@@ -339,7 +339,7 @@
         <source path="https://pkgs.tailscale.com/stable/opensuse/tumbleweed/aarch64"/>
     </repository>
 
-    <!--https://osinside.github.io/kiwi/concept_and_workflow/repository_setup.html -->
+    <!-- https://osinside.github.io/kiwi/concept_and_workflow/repository_setup.html -->
     <!-- Local-Repository on build host: for pre-installed rockstor package -->
     <!--    <repository alias="Local-Repository"> -->
     <!--        <source path="dir:/mnt/localrepo"/> -->
