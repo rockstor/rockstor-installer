@@ -10,7 +10,9 @@
 
 <!-- OBS-Profiles: @BUILD_FLAVOR@ -->
 
-<image schemaversion="8.1" name="Rockstor-NAS">
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="7.4" name="Rockstor-NAS">
 
     <description type="system">
         <author>Philip Guyton</author>
