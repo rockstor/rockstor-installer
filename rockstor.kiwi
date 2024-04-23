@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!-- We are an OEM image for install media CD/DVD or flash disk -->
 <!-- Schema doc available at: -->
 <!-- https://osinside.github.io/kiwi/image_description.html -->
@@ -9,8 +10,6 @@
 <!-- https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS -->
 
 <!-- OBS-Profiles: @BUILD_FLAVOR@ -->
-
-<?xml version="1.0" encoding="utf-8"?>
 
 <image schemaversion="7.4" name="Rockstor-NAS">
 
