@@ -9,7 +9,7 @@
 <!-- https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/kiwi-templates-Minimal -->
 <!-- https://build.opensuse.org/package/show/openSUSE:Leap:15.5:Images/JeOS -->
 <!-- OBS-Profiles: @BUILD_FLAVOR@ -->
-<image schemaversion="7.4" name="Rockstor-NAS">
+<image schemaversion="8.1" name="Rockstor-NAS">
     <description type="system">
         <author>Philip Guyton</author>
         <contact>philip@yewtreeapps.com</contact>
