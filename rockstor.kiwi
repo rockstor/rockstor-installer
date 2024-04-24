@@ -11,8 +11,8 @@
 <!-- OBS-Profiles: @BUILD_FLAVOR@ -->
 <image schemaversion="8.1" name="Rockstor-NAS">
     <description type="system">
-        <author>Philip Guyton</author>
-        <contact>philip@yewtreeapps.com</contact>
+        <author>The Rockstor Project</author>
+        <contact>support@rockstor.com</contact>
         <specification>
             Rockstor install image based on openSUSE
         </specification>
