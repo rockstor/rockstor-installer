@@ -202,28 +202,6 @@
     <repository type="rpm-md" alias="repo-openh264" imageinclude="true" profiles="Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.ARM64EFI">
         <source path="http://codecs.opensuse.org/openh264/openSUSE_Tumbleweed"/>
     </repository>
-    <!-- Tailscale repos: -->
-    <!-- https://tailscale.com/kb/1303/install-opensuse-leap/ -->
-    <!-- https://tailscale.com/kb/1047/install-opensuse-tumbleweed/ -->
-    <repository type="rpm-md" alias="tailscale-stable" imageinclude="true" repository_gpgcheck="true" package_gpgcheck="false" customize="add_tailscale_repo_gpgkey.sh" profiles="Leap15.5.x86_64">
-        <source path="https://pkgs.tailscale.com/stable/opensuse/leap/15.5/x86_64"/>
-    </repository>
-    <repository type="rpm-md" alias="tailscale-stable" imageinclude="true" repository_gpgcheck="true" package_gpgcheck="false" customize="add_tailscale_repo_gpgkey.sh" profiles="Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI">
-        <source path="https://pkgs.tailscale.com/stable/opensuse/leap/15.5/aarch64"/>
-    </repository>
-    <!-- TODO POST TAILSCALE LEAP 15.6 REPO AVAILABLE - TEMP USE OF 15.5 -->
-    <repository type="rpm-md" alias="tailscale-stable" imageinclude="true" repository_gpgcheck="true" package_gpgcheck="false" customize="add_tailscale_repo_gpgkey.sh" profiles="Leap15.6.x86_64">
-        <source path="https://pkgs.tailscale.com/stable/opensuse/leap/15.5/x86_64"/>
-    </repository>
-    <repository type="rpm-md" alias="tailscale-stable" imageinclude="true" repository_gpgcheck="true" package_gpgcheck="false" customize="add_tailscale_repo_gpgkey.sh" profiles="Leap15.6.RaspberryPi4,Leap15.6.ARM64EFI">
-        <source path="https://pkgs.tailscale.com/stable/opensuse/leap/15.5/aarch64"/>
-    </repository>
-    <repository type="rpm-md" alias="tailscale-stable" imageinclude="true" repository_gpgcheck="true" package_gpgcheck="false" customize="add_tailscale_repo_gpgkey.sh" profiles="Tumbleweed.x86_64">
-        <source path="https://pkgs.tailscale.com/stable/opensuse/tumbleweed/x86_64"/>
-    </repository>
-    <repository type="rpm-md" alias="tailscale-stable" imageinclude="true" repository_gpgcheck="true" package_gpgcheck="false" customize="add_tailscale_repo_gpgkey.sh" profiles="Tumbleweed.RaspberryPi4,Tumbleweed.ARM64EFI">
-        <source path="https://pkgs.tailscale.com/stable/opensuse/tumbleweed/aarch64"/>
-    </repository>
     <!-- https://osinside.github.io/kiwi/concept_and_workflow/repository_setup.html -->
     <!-- Local-Repository on build host: for pre-installed rockstor package -->
     <!--    <repository alias="Local-Repository"> -->
@@ -364,7 +342,6 @@
         <package name="wget"/> <!-- enable building from source via build.sh -->
         <package name="which"/>
         <package name="ntfs-3g"/>
-        <package name="tailscale"/>
         <!-- ROCKSTOR PACKAGE: CHANGE VERSION AS REQUIRED -->
         <package name="rockstor-5.0.9-0"/>
     </packages>
