@@ -282,7 +282,6 @@
         <package name="dracut"/>
         <package name="dracut-kiwi-oem-dump"/>
         <package name="dracut-kiwi-oem-repart"/>
-        <package name="fbiterm"/> <!-- Opt used by jeos-firstboot - non-latin fonts -->
         <package name="fontconfig"/>
         <package name="fonts-config"/>
         <package name="gfxboot-branding-upstream" arch="x86_64"/> <!-- grub bg -->
