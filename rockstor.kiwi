@@ -141,11 +141,6 @@
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
-    <!-- For zypper priority 1 is highest, priority 0 returns to default of 99 -->
-    <!-- https://build.opensuse.org/project/show/Virtualization:Appliances:Builder -->
-    <repository type="rpm-md" alias="kiwi" priority="1" profiles="Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.ARM64EFI">
-        <source path="obs://Virtualization:Appliances:Builder/openSUSE_Tumbleweed"/>
-    </repository>
     <!-- https://en.opensuse.org/Package_repositories -->
     <!-- Alias repo-oss Name="Main Repository" in JeOS -->
     <repository type="rpm-md" alias="Leap_15_5" imageinclude="true" profiles="Leap15.5.x86_64,Leap15.5.RaspberryPi4,Leap15.5.ARM64EFI">
