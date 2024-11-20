@@ -18,8 +18,9 @@ sudo zypper -n install python311 git
 echo "================================================="
 echo "install kiwi-ng 10.x and other dependencies"
 echo "================================================="
-sudo zypper -n addrepo http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.6/ appliance-builder
+sudo zypper -n addrepo https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.6/ appliance-builder
 sudo zypper --gpg-auto-import-keys refresh appliance-builder
+# for TW kiwi-ng package = python3-kiwi for LEAP 15.6 = python311-kiwi
 sudo zypper -n install python311-kiwi btrfsprogs gfxboot qemu-tools gptfdisk e2fsprogs squashfs xorriso dosfstools binutils xz
 
 echo "================================================="
