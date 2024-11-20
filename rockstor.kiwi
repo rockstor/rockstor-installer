@@ -32,7 +32,7 @@
         <profile name="Tumbleweed.ARM64EFI" description="Rockstor built on openSUSE Tumbleweed ARM64 EFI/VM/Ten64" arch="aarch64"/>
     </profiles>
     <preferences profiles="Leap15.5.x86_64,Leap15.6.x86_64,Tumbleweed.x86_64">
-        <version>5.0.9-0</version>
+        <version>5.0.15-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
         <keytable>gb</keytable>
@@ -48,7 +48,7 @@
         <!-- note: change luks Pass Phrase -->
         <!--        luks="c00l_Pa$$Phra$e" -->
         <!--        luks_version="luks2" -->
-        <type image="oem" primary="true" initrd_system="dracut" filesystem="btrfs" fsmountoptions="noatime" firmware="efi" installiso="true" kernelcmdline="nomodeset plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G" bootpartition="false" devicepersistency="by-label" btrfs_root_is_snapshot="true" btrfs_quota_groups="false" efipartsize="64">
+        <type image="oem" primary="true" initrd_system="dracut" filesystem="btrfs" fsmountoptions="noatime" firmware="efi" installiso="true" kernelcmdline="nomodeset plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G" bootpartition="false" devicepersistency="by-label" btrfs_root_is_subvolume="true" btrfs_root_is_snapshot="true" btrfs_quota_groups="false" efipartsize="64">
             <bootloader name="grub2" bls="false"/>
             <!-- For full disk LUKS encryption uncomment below entries -->
             <!-- PBKDF2 is required for grub to recognize encryption -->
@@ -76,7 +76,7 @@
         </type>
     </preferences>
     <preferences profiles="Leap15.5.RaspberryPi4,Leap15.6.RaspberryPi4,Tumbleweed.RaspberryPi4">
-        <version>5.0.9-0</version>
+        <version>5.0.15-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
         <keytable>gb</keytable>
@@ -87,7 +87,7 @@
         <bootloader-theme>upstream</bootloader-theme>
         <!-- firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64 -->
         <!-- Re AArch64: https://github.com/OSInside/kiwi/issues/1491 -->
-        <type image="oem" initrd_system="dracut" filesystem="btrfs" fsmountoptions="noatime,compress=lzo" firmware="efi" kernelcmdline="plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G console=ttyS0,115200 console=tty" bootpartition="false" devicepersistency="by-uuid" btrfs_root_is_snapshot="true" btrfs_quota_groups="false" efipartsize="64" editbootinstall="editbootinstall_rpi.sh">
+        <type image="oem" initrd_system="dracut" filesystem="btrfs" fsmountoptions="noatime,compress=lzo" firmware="efi" kernelcmdline="plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G console=ttyS0,115200 console=tty" bootpartition="false" devicepersistency="by-uuid" btrfs_root_is_subvolume="true" btrfs_root_is_snapshot="true" btrfs_quota_groups="false" efipartsize="64" editbootinstall="editbootinstall_rpi.sh">
             <bootloader name="grub2" bls="false"/>
             <systemdisk>
                 <volume name="home"/>
@@ -107,7 +107,7 @@
         </type>
     </preferences>
     <preferences profiles="Leap15.5.ARM64EFI,Leap15.6.ARM64EFI,Tumbleweed.ARM64EFI">
-        <version>5.0.9-0</version>
+        <version>5.0.15-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
         <keytable>gb</keytable>
@@ -118,7 +118,7 @@
         <bootloader-theme>upstream</bootloader-theme>
         <!-- firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64 -->
         <!-- Re AArch64: https://github.com/OSInside/kiwi/issues/1491 -->
-        <type image="oem" initrd_system="dracut" filesystem="btrfs" fsmountoptions="noatime,compress=lzo" firmware="efi" kernelcmdline="plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G earlycon" bootpartition="false" devicepersistency="by-uuid" btrfs_root_is_snapshot="true" btrfs_quota_groups="false" efipartsize="64" format="qcow2">
+        <type image="oem" initrd_system="dracut" filesystem="btrfs" fsmountoptions="noatime,compress=lzo" firmware="efi" kernelcmdline="plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G earlycon" bootpartition="false" devicepersistency="by-uuid" btrfs_root_is_subvolume="true" btrfs_root_is_snapshot="true" btrfs_quota_groups="false" efipartsize="64" format="qcow2">
             <bootloader name="grub2" bls="false"/>
             <systemdisk>
                 <volume name="home"/>
@@ -337,7 +337,7 @@
         <package name="which"/>
         <package name="ntfs-3g"/>
         <!-- ROCKSTOR PACKAGE: CHANGE VERSION AS REQUIRED -->
-        <package name="rockstor-5.0.9-0"/>
+        <package name="rockstor-5.0.15-0"/>
     </packages>
     <packages type="image" profiles="Leap15.5.RaspberryPi4,Leap15.6.RaspberryPi4,Tumbleweed.RaspberryPi4">
         <package name="raspberrypi-eeprom" arch="aarch64"/>
