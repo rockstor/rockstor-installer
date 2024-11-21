@@ -117,31 +117,29 @@ fi
 # Edit the base distro openSUSE license files in accordance with the following:
 # https://en.opensuse.org/Archive:Making_an_openSUSE_based_distribution
 # Files to edit /usr/share/licenses/openSUSE-release/*.txt
-#
-# test success via no output from:
-# grep 'opensuse\|openSUSE\|OPENSUSE\|SUSE\|2008\|LLC' /usr/share/licenses/openSUSE-release/license.*
 #-------------------------------------
 shopt -s nullglob
 for license_file in /usr/share/licenses/openSUSE-release/*.txt
 do
-    sed -i 's/openSUSE/Rockstor/g' "${license_file}"
+    sed -i 's/openSUSE®/Rockstor "Built on openSUSE"/g' "${license_file}"
+    sed -i 's/The openSUSE Project/The Rockstor Project/g' "${license_file}"
+    sed -i 's/openSUSE Leap /Rockstor "Built on openSUSE" Leap /g' "${license_file}"
+    sed -i 's/OPENSUSE Leap /Rockstor "Built on openSUSE" Leap /g' "${license_file}"
+    sed -i 's/openSUSE Tumbleweed /Rockstor "Built on openSUSE" Tumbleweed /g' "${license_file}"
+    sed -i 's/OPENSUSE Tumbleweed /Rockstor "Built on openSUSE" Tumbleweed /g' "${license_file}"
     sed -i 's/OPENSUSE/ROCKSTOR/g' "${license_file}"
-    sed -i 's/SUSE, LLC./Rockstor, Inc./g' "${license_file}"
-    sed -i 's/SUSE، LLC./Rockstor, Inc./g' "${license_file}"  # Arabic comma (U+060C)
-    sed -i 's/SUSE LLC/Rockstor, Inc./g' "${license_file}"
-    sed -i 's/SUSE/Store Smartly/g' "${license_file}"
-    sed -i 's/$50US/1ST SUBSCRIPTION PAYED/g' "${license_file}"
-    sed -i 's/$50/1ST SUBSCRIPTION PAYED/g' "${license_file}"
-    sed -i 's/50 USD/1ST SUBSCRIPTION PAYED/g' "${license_file}"
-    sed -i 's/(50 $)/(1ST SUBSCRIPTION PAYED)/g' "${license_file}"
-    sed -i 's/(US \$ 50)/(1ST SUBSCRIPTION PAYED)/g' "${license_file}"
-    sed -i 's/50 $/1ST SUBSCRIPTION PAYED/g' "${license_file}"
-    sed -i 's/50/1ST SUBSCRIPTION PAYED/g' "${license_file}"
+
+    sed -i 's/$50US/1ST STABLE UPDATES SUBSCRIPTION PAYED/g' "${license_file}"
+    sed -i 's/$50/1ST STABLE UPDATES SUBSCRIPTION PAYED/g' "${license_file}"
+    sed -i 's/50 USD/1ST STABLE UPDATES SUBSCRIPTION PAYED/g' "${license_file}"
+    sed -i 's/(50 $)/(1ST STABLE UPDATES STABLE UPDATES SUBSCRIPTION PAYED)/g' "${license_file}"
+    sed -i 's/(US \$ 50)/(1ST STABLE UPDATES SUBSCRIPTION PAYED)/g' "${license_file}"
+    sed -i 's/50 $/1ST STABLE UPDATES SUBSCRIPTION PAYED/g' "${license_file}"
+    sed -i 's/50/1ST STABLE UPDATES SUBSCRIPTION PAYED/g' "${license_file}"
     sed -i 's/US-DOLLAR//g' "${license_file}"
     sed -i 's/US\$//g' "${license_file}"
-    sed -i 's/2008-..../2012-2023/g' "${license_file}"
-    sed -i 's/http:\/\/en.opensuse.org\/Legal/https:\/\/rockstor.com\/legal.html/g' "${license_file}"
-    sed -i 's/http:\/\/www.opensuse.org\/Legal/https:\/\/rockstor.com\/legal.html/g' "${license_file}"
+
+    sed -i 's/2008-..../2024/g' "${license_file}"
 done
 # Alter the distro display name to add the suggested "Rockstor built on ..." prefix.
 sed -i 's/PRETTY_NAME="openSUSE/PRETTY_NAME="Rockstor built on openSUSE/g' /usr/lib/os-release
