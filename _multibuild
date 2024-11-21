@@ -1,5 +1,5 @@
 <multibuild>
-  <flavor>Leap15.5.x86_64</flavor>
-  <flavor>Leap15.5.RaspberryPi4</flavor>
-  <flavor>Leap15.5.ARM64EFI</flavor>
+  <flavor>Leap15.6.x86_64</flavor>
+  <flavor>Leap15.6.RaspberryPi4</flavor>
+  <flavor>Leap15.6.ARM64EFI</flavor>
 </multibuild>
