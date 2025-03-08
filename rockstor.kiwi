@@ -27,11 +27,12 @@
         <profile name="Leap15.6.x86_64" description="Rockstor built on openSUSE Leap 15.6 x86_64" arch="x86_64"/>
         <profile name="Leap15.6.RaspberryPi4" description="Rockstor built on openSUSE Leap 15.6 Raspberry_Pi" arch="aarch64"/>
         <profile name="Leap15.6.ARM64EFI" description="Rockstor built on openSUSE Leap 15.6 ARM64 EFI/VM/Ten64" arch="aarch64"/>
+        <profile name="Slowroll.x86_64" description="Rockstor built on openSUSE Slowroll x86_64" arch="x86_64"/>
         <profile name="Tumbleweed.x86_64" description="Rockstor built on openSUSE Tumbleweed x86_64" arch="x86_64"/>
         <profile name="Tumbleweed.RaspberryPi4" description="Rockstor built on openSUSE Tumbleweed Raspberry_Pi" arch="aarch64"/>
         <profile name="Tumbleweed.ARM64EFI" description="Rockstor built on openSUSE Tumbleweed ARM64 EFI/VM/Ten64" arch="aarch64"/>
     </profiles>
-    <preferences profiles="Leap15.5.x86_64,Leap15.6.x86_64,Tumbleweed.x86_64">
+    <preferences profiles="Leap15.5.x86_64,Leap15.6.x86_64,Slowroll.x86_64,Tumbleweed.x86_64">
         <version>5.0.15-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
@@ -149,6 +150,9 @@
     <repository type="rpm-md" alias="Leap_15_6" imageinclude="true" profiles="Leap15.6.x86_64,Leap15.6.RaspberryPi4,Leap15.6.ARM64EFI">
         <source path="obs://openSUSE:Leap:15.6/standard"/>
     </repository>
+    <repository type="rpm-md" alias="repo-oss" imageinclude="true" profiles="Slowroll.x86_64">
+        <source path="https://download.opensuse.org/slowroll/repo/oss"/>
+    </repository>
     <repository type="rpm-md" alias="Tumbleweed" imageinclude="true" profiles="Tumbleweed.x86_64">
         <source path="obs://openSUSE:Tumbleweed/standard"/>
     </repository>
@@ -161,6 +165,9 @@
     </repository>
     <repository type="rpm-md" alias="Leap_15_6_Updates" imageinclude="true" profiles="Leap15.6.x86_64,Leap15.6.RaspberryPi4,Leap15.6.ARM64EFI">
         <source path="https://download.opensuse.org/update/leap/15.6/oss/"/>
+    </repository>
+    <repository type="rpm-md" alias="update-slowroll" imageinclude="true" profiles="Tumbleweed.x86_64">
+        <source path="https://download.opensuse.org/update/slowroll/repo/oss"/>
     </repository>
     <repository type="rpm-md" alias="Tumbleweed_Updates" imageinclude="true" profiles="Tumbleweed.x86_64">
         <source path="https://download.opensuse.org/update/tumbleweed/"/>
@@ -194,7 +201,7 @@
     <repository type="rpm-md" alias="repo-openh264" imageinclude="true" profiles="Leap15.6.x86_64,Leap15.6.RaspberryPi4,Leap15.6.ARM64EFI">
         <source path="http://codecs.opensuse.org/openh264/openSUSE_Leap"/>
     </repository>
-    <repository type="rpm-md" alias="repo-openh264" imageinclude="true" profiles="Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.ARM64EFI">
+    <repository type="rpm-md" alias="repo-openh264" imageinclude="true" profiles="Slowroll.x86_64,Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.ARM64EFI">
         <source path="http://codecs.opensuse.org/openh264/openSUSE_Tumbleweed"/>
     </repository>
     <!-- Virtualization_Appliances_Builder repos: -->
@@ -206,7 +213,7 @@
     <repository type="rpm-md" alias="Virtualization_Appliances_Builder" imageinclude="true" profiles="Leap15.6.x86_64,Leap15.6.RaspberryPi4,Leap15.6.ARM64EFI">
         <source path="https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.6/"/>
     </repository>
-    <repository type="rpm-md" alias="Virtualization_Appliances_Builder" imageinclude="true" profiles="Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.ARM64EFI">
+    <repository type="rpm-md" alias="Virtualization_Appliances_Builder" imageinclude="true" profiles="Slowroll.x86_64,Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.ARM64EFI">
         <source path="https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Tumbleweed/"/>
     </repository>
     <!-- https://osinside.github.io/kiwi/concept_and_workflow/repository_setup.html -->
@@ -222,7 +229,7 @@
     <repository type="rpm-md" alias="Rockstor-Testing" profiles="Leap15.6.x86_64,Leap15.6.RaspberryPi4,Leap15.6.ARM64EFI">
         <source path="http://updates.rockstor.com:8999/rockstor-testing/leap/15.6/"/>
     </repository>
-    <repository type="rpm-md" alias="Rockstor-Testing" profiles="Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.ARM64EFI">
+    <repository type="rpm-md" alias="Rockstor-Testing" profiles="Slowroll.x86_64,Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.ARM64EFI">
         <source path="http://updates.rockstor.com:8999/rockstor-testing/tumbleweed/"/>
     </repository>
     <!-- For shellinabox package -->
@@ -238,6 +245,9 @@
     <repository type="rpm-md" alias="home_rockstor" priority="105" imageinclude="true" profiles="Leap15.6.x86_64,Leap15.6.RaspberryPi4,Leap15.6.ARM64EFI">
         <source path="https://download.opensuse.org/repositories/home:/rockstor/15.6/"/>
     </repository>
+    <repository type="rpm-md" alias="home_rockstor" priority="105" imageinclude="true" profiles="Slowroll.x86_64">
+        <source path="https://download.opensuse.org/repositories/home:/rockstor/openSUSE_Slowroll/"/>
+    </repository>
     <repository type="rpm-md" alias="home_rockstor" priority="105" imageinclude="true" profiles="Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.ARM64EFI">
         <source path="https://download.opensuse.org/repositories/home:/rockstor/openSUSE_Tumbleweed/"/>
     </repository>
@@ -250,6 +260,9 @@
     </repository>
     <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true" profiles="Leap15.6.x86_64,Leap15.6.RaspberryPi4,Leap15.6.ARM64EFI">
         <source path="https://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/15.5/"/>
+    </repository>
+    <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true" profiles="Slowroll.x86_64">
+        <source path="https://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Slowroll/"/>
     </repository>
     <repository type="rpm-md" alias="home_rockstor_branches_Base_System" priority="97" imageinclude="true" profiles="Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.ARM64EFI">
         <source path="https://download.opensuse.org/repositories/home:/rockstor:/branches:/Base:/System/openSUSE_Tumbleweed/"/>
