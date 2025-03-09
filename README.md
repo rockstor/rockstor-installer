@@ -53,7 +53,7 @@ and the [howto subsection](#howto) below to test proposed changes.
 Please see the [kiwi-ng docs overview](https://osinside.github.io/kiwi/overview.html) for the canonical
 [System Requirements](https://osinside.github.io/kiwi/overview.html#system-requirements) for building the installer:
 e.g., 15 GB free space, Python version, etc.
-It is recommended to use at least Kiwi-ng v10.1.18 to build our [Core Profiles](#core-profiles).
+It is recommended to use at least Kiwi-ng v10.2.13 to build our [Core Profiles](#core-profiles).
 
 Given our profiles' target OSs are exclusively 'Built on openSUSE',
 a vanilla openSUSE Leap 15.5/6 instance is recommended if not using the kiwi-ng boxbuild method.
