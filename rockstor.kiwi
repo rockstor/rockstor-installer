@@ -166,7 +166,7 @@
     <repository type="rpm-md" alias="Leap_15_6_Updates" imageinclude="true" profiles="Leap15.6.x86_64,Leap15.6.RaspberryPi4,Leap15.6.ARM64EFI">
         <source path="https://download.opensuse.org/update/leap/15.6/oss/"/>
     </repository>
-    <repository type="rpm-md" alias="update-slowroll" imageinclude="true" profiles="Tumbleweed.x86_64">
+    <repository type="rpm-md" alias="update-slowroll" imageinclude="true" profiles="Slowroll.x86_64">
         <source path="https://download.opensuse.org/update/slowroll/repo/oss"/>
     </repository>
     <repository type="rpm-md" alias="Tumbleweed_Updates" imageinclude="true" profiles="Tumbleweed.x86_64">
