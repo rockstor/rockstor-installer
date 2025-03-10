@@ -20,6 +20,7 @@ Our current pre-built installers are built using the following profiles (see: [D
 - **Leap15.6.x86_64**
 - **Leap15.6.RaspberryPi4**
 - **Leap15.6.ARM64EFI**
+- **Slowroll.x86_64**
 - **Tumbleweed.x86_64**
 - **Tumbleweed.RaspberryPi4**
 - **Tumbleweed.ARM64EFI**
