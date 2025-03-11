@@ -6,7 +6,9 @@
 # activation or deactivation of certain services (insserv). The call is not
 # made until after the switch to the image has been made with chroot.
 
-# https://osinside.github.io/kiwi/working_with_kiwi/shell_scripts.html
+# https://osinside.github.io/kiwi/concept_and_workflow/shell_scripts.html
+# "... usually used to apply a permanent and final change of data in the root tree,
+# such as modifying a package-specific config file."
 
 # Functions...
 #--------------------------------------
@@ -92,19 +94,8 @@ rm -rf /usr/share/doc/manual/*
 #=====================================
 # Configure snapper
 #-------------------------------------
-if [ "$kiwi_btrfs_root_is_snapshot" = 'true' ]; then
-        echo "creating initial snapper config ..."
-        # we can't call snapper here as the .snapshots subvolume
-        # already exists and snapper create-config doens't like
-        # that.
-        cp /etc/snapper/config-templates/default /etc/snapper/configs/root
-        # Change configuration to match SLES12-SP1 values
-        sed -i -e '/^TIMELINE_CREATE=/s/yes/no/' /etc/snapper/configs/root
-        sed -i -e '/^NUMBER_LIMIT=/s/50/10/'     /etc/snapper/configs/root
-
-        baseUpdateSysConfig /etc/sysconfig/snapper SNAPPER_CONFIGS root
-fi
-
+echo "Enabling snapper config ..."
+baseUpdateSysConfig /etc/sysconfig/snapper SNAPPER_CONFIGS root
 
 #=====================================
 # Enable chrony if installed
