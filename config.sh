@@ -91,6 +91,11 @@ baseSetRunlevel 3
 rm -rf /usr/share/doc/packages/*
 rm -rf /usr/share/doc/manual/*
 
+#=====================================
+# Configure snapper
+#-------------------------------------
+echo "Enabling snapper config ..."
+baseUpdateSysConfig /etc/sysconfig/snapper SNAPPER_CONFIGS root
 
 #=====================================
 # Enable chrony if installed
