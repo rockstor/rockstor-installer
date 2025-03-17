@@ -57,7 +57,7 @@ e.g., 15 GB free space, Python version, etc.
 It is recommended to use at least Kiwi-ng v10.2.13 to build our [Core Profiles](#core-profiles).
 
 Given our profiles' target OSs are exclusively 'Built on openSUSE',
-a vanilla openSUSE Leap 15.5/6 instance is recommended if not using the kiwi-ng boxbuild method.
+a vanilla openSUSE Leap 15.6 instance is recommended if not using the kiwi-ng boxbuild method.
 But if the newer kiwi-ng boxbuild method in "Building on any linux host... " is used,
 any relatively modern linux system can be used to build the installer.
 
@@ -133,7 +133,7 @@ Or go with the explicit version 3.x of pip:
 ```
 The rest remains the same (make sure to consider the memory and CPU defaults mentioned above)
 ```shell
-./kiwi-env/bin/kiwi-ng --profile=Leap15.5.x86_64 --type oem \
+./kiwi-env/bin/kiwi-ng --profile=Leap15.6.x86_64 --type oem \
   system boxbuild --box leap -- --description ./ --target-dir ./images
 ```
 
@@ -141,15 +141,15 @@ The rest remains the same (make sure to consider the memory and CPU defaults men
 This was the preferred method before the above kiwi-ng boxbuild capability existed.
 
 #### kiwi-ng install
-For an openSUSE Leap 15.5/6 OS from kiwi-ng's doc [Installation](https://osinside.github.io/kiwi/installation.html#installation) section we have:
+For an openSUSE Leap 15.6 OS from kiwi-ng's doc [Installation](https://osinside.github.io/kiwi/installation.html#installation) section we have:
 
 #### x86_64 host for x86_64 profiles
 Any x86_64 machine, keeping in mind that building an installer is computationally expensive,
 so systems with a decent-sized CPU/RAM combination released in the last 5-7 years is recommended.
 
-##### Leap 15.5/6 host
+##### Leap 15.6 host
 The openSUSE host version should ideally be at least the version of the target profile.
-Since Leap 15.5/6 ships with a default `python 3.6x` it is necessary to install a higher python version (e.g., `3.11`):
+Since Leap 15.6 ships with a default `python 3.6x` it is necessary to install a higher python version (e.g., `3.11`):
 
 ```shell
 sudo zypper in python311
@@ -157,13 +157,7 @@ sudo zypper in python311
 
 then add the required repository:
 
-for 15.5:
-
-```shell
-sudo zypper addrepo http://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.5/ appliance-builder
-```
-
-or for 15.6
+for 15.6
 
 ```shell
 sudo zypper addrepo https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.6/ appliance-builder
@@ -177,7 +171,7 @@ sudo zypper install python3-kiwi btrfsprogs gfxboot qemu-tools gptfdisk e2fsprog
 
 #### AArch64 host (e.g., a Pi4) for AArch64 profiles
 See [HCL:Raspberry Pi4](https://en.opensuse.org/HCL:Raspberry_Pi4).
-Install, for example, an appliance JeOS Leap 15.5/6 image as the host OS.
+Install, for example, an appliance JeOS Leap 15.6 image as the host OS.
 Enabling USB boot on older Pi4 systems will allow for the use of, for example,
 an SSD as the system drive which will massively speed up installer building.
 See [Pi4 USB boot](#pi4-usb-boot).
@@ -195,7 +189,7 @@ For more information about using the most recent kernels see
 
 #### Root disk LUKS encryption
 If you want to enable LUKS encryption of the Root disk (where Rockstor is installed),
-uncomment the relevant parameters available as example in the **Leap15.5.x86_64** profile.
+uncomment the relevant parameters available as example in the **Leap15.6.x86_64** profile.
 This will enable `LUKS2` encryption and utilize PBKDF2, as grub does not yet support the more recent `argon2id` algorithm.
 
 N.B.: The `luksformat` parameter's preceding hyphens have to be escaped to exist as a comment.

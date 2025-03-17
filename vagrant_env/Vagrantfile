@@ -34,14 +34,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         v.vm.hostname = "rockstor-installer"
         if PROFILE == "x86_64" then
             # One can switch back to bento in case OpenSUSE is broken (typically issues around VB guest additions
-            v.vm.box = 'opensuse/Leap-15.3.x86_64'
-		# if a specific version should be used:
-			# v.vm.box_version = '15.3.9.361'
-            # v.vm.box = 'bento/opensuse-leap-15.3'
-		# if a specific version should be used:
-			# v.vm.box_version = '202112.23.0'
+            # https://portal.cloud.hashicorp.com/vagrant/discover?query=opensuse
+            v.vm.box = 'opensuse/Leap-15.6.x86_64'
+		    # if a specific version should be used:
+			# v.vm.box_version = '15.6.13.356'
         else
-            v.vm.box = 'opensuse/Leap-15.3.aarch64'
+            # https://portal.cloud.hashicorp.com/vagrant/discover?architectures=arm64&query=opensuse
+            v.vm.box = 'bento/opensuse-leap-15.6'
         end
 
         # Provider specific variables
