@@ -24,7 +24,7 @@ sudo zypper --gpg-auto-import-keys refresh appliance-builder
 sudo zypper -n install python311-kiwi btrfsprogs gfxboot qemu-tools gptfdisk e2fsprogs squashfs xorriso dosfstools binutils xz
 
 echo "================================================="
-echo "verify kiwi-ng version. 10.1 or higher"
+echo "verify kiwi-ng version. v10.2.13 or higher"
 echo "================================================="
 sudo kiwi-ng --version
 
