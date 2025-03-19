@@ -157,7 +157,7 @@ sed -i 's/^DOCUMENTATION_URL.*/DOCUMENTATION_URL="https:\/\/rockstor.com\/docs"/
 # Default kernel boot options
 #--------------------------------------
 # Common to all profiles
-cmdline=('plymouth.enable=0' 'rd.kiwi.oem.maxdisk=5000G')
+cmdline=('plymouth.enable=0')
 # Machine targets
 case "${kiwi_profiles}" in
   *x86_64) cmdline+=('nomodeset') ;;

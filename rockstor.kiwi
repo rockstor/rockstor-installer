@@ -46,8 +46,8 @@
         <!-- note: change luks Pass Phrase -->
         <!--        luks="c00l_Pa$$Phra$e" -->
         <!--        luks_version="luks2" -->
-        <!-- See config.sh for kernel cmdline via grub configuration -->
-        <type image="oem" primary="true" initrd_system="dracut" filesystem="btrfs" fsmountoptions="noatime" firmware="efi" installiso="true" bootpartition="false" devicepersistency="by-label" btrfs_root_is_subvolume="true" btrfs_root_is_snapper_snapshot="true" btrfs_quota_groups="false" efipartsize="64">
+        <!-- N.B. kernelcmdline for installer - config.sh re-sets for installed instance -->
+        <type image="oem" primary="true" initrd_system="dracut" filesystem="btrfs" fsmountoptions="noatime" firmware="efi" installiso="true" kernelcmdline="nomodeset plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G" bootpartition="false" devicepersistency="by-label" btrfs_root_is_subvolume="true" btrfs_root_is_snapper_snapshot="true" btrfs_quota_groups="false" efipartsize="64">
             <bootloader name="grub2" bls="false"/>
             <!-- For full disk LUKS encryption uncomment below entries -->
             <!-- PBKDF2 is required for grub to recognize encryption -->
@@ -86,8 +86,8 @@
         <bootloader-theme>starfield</bootloader-theme>
         <!-- firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64 -->
         <!-- Re AArch64: https://github.com/OSInside/kiwi/issues/1491 -->
-        <!-- See config.sh for kernel cmdline via grub configuration -->
-        <type image="oem" initrd_system="dracut" filesystem="btrfs" fsmountoptions="noatime,compress=lzo" firmware="efi" bootpartition="false" devicepersistency="by-uuid" btrfs_root_is_subvolume="true" btrfs_root_is_snapper_snapshot="true" btrfs_quota_groups="false" efipartsize="64" editbootinstall="editbootinstall_rpi.sh">
+        <!-- N.B. kernelcmdline for installer - config.sh re-sets for installed instance -->
+        <type image="oem" initrd_system="dracut" filesystem="btrfs" fsmountoptions="noatime,compress=lzo" firmware="efi" kernelcmdline="plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G console=ttyS0,115200 console=tty" bootpartition="false" devicepersistency="by-uuid" btrfs_root_is_subvolume="true" btrfs_root_is_snapper_snapshot="true" btrfs_quota_groups="false" efipartsize="64" editbootinstall="editbootinstall_rpi.sh">
             <bootloader name="grub2" bls="false"/>
             <systemdisk>
                 <volume name="home"/>
@@ -118,8 +118,8 @@
         <bootloader-theme>starfield</bootloader-theme>
         <!-- firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64 -->
         <!-- Re AArch64: https://github.com/OSInside/kiwi/issues/1491 -->
-        <!-- See config.sh for kernel cmdline via grub configuration -->
-        <type image="oem" initrd_system="dracut" filesystem="btrfs" fsmountoptions="noatime,compress=lzo" firmware="efi" bootpartition="false" devicepersistency="by-uuid" btrfs_root_is_subvolume="true" btrfs_root_is_snapper_snapshot="true" btrfs_quota_groups="false" efipartsize="64" format="qcow2">
+        <!-- N.B. kernelcmdline for installer - config.sh re-sets for installed instance -->
+        <type image="oem" initrd_system="dracut" filesystem="btrfs" fsmountoptions="noatime,compress=lzo" firmware="efi" kernelcmdline="plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G earlycon" bootpartition="false" devicepersistency="by-uuid" btrfs_root_is_subvolume="true" btrfs_root_is_snapper_snapshot="true" btrfs_quota_groups="false" efipartsize="64" format="qcow2">
             <bootloader name="grub2" bls="false"/>
             <systemdisk>
                 <volume name="home"/>
