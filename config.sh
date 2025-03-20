@@ -153,30 +153,6 @@ sed -i 's/^DOCUMENTATION_URL.*/DOCUMENTATION_URL="https:\/\/rockstor.com\/docs"/
 
 #======================================
 # Apply grub configs
-#======================================
-# Default kernel boot options
-#--------------------------------------
-# Common to all profiles
-cmdline=('plymouth.enable=0')
-# Machine targets
-case "${kiwi_profiles}" in
-    *x86_64) cmdline+=('nomodeset') ;;
-    *RaspberryPi4) cmdline+=('console=ttyS0,115200' 'console=tty') ;;
-    *ARM64EFI) cmdline+=('earlycon') ;;
-esac
-# SELinux config - if installed
-if [[ -e /etc/selinux/config ]]; then
-    # `enforcing=0` for permissive (default), 1 for enforcing
-    cmdline+=('security=selinux' 'selinux=1')
-    sed -i -e 's|^SELINUX=.*|SELINUX=permissive|g' \
-           -e 's|^SELINUXTYPE=.*|SELINUXTYPE=targeted|g' \
-           "/etc/selinux/config"
-fi
-if [ -e /etc/default/grub ]; then
-    sed -i "s#^GRUB_CMDLINE_LINUX_DEFAULT=.*\$#GRUB_CMDLINE_LINUX_DEFAULT=\"${cmdline[*]}\"#" /etc/default/grub
-fi
-
-#======================================
 # Setup Grub Distributor option
 #--------------------------------------
 echo >> /etc/default/grub
