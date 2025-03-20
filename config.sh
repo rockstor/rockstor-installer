@@ -10,7 +10,9 @@
 # "... usually used to apply a permanent and final change of data in the root tree,
 # such as modifying a package-specific config file."
 
+#======================================
 # Functions...
+# https://osinside.github.io/kiwi/concept_and_workflow/shell_scripts.html#profile-environment-variables
 #--------------------------------------
 test -f /.kconfig && . /.kconfig
 test -f /.profile && . /.profile

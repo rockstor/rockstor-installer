@@ -1,15 +1,8 @@
 #!/bin/bash
 
 # https://osinside.github.io/kiwi/concept_and_workflow/shell_scripts.html
-# "Executed at the beginning of the image creation process.
-# It runs in the same image root tree created by the prepare step,
-# but it is invoked whenever an image needs to be created from that root tree.
-# It is normally used to apply image type specific changes to the root tree,
-# such as a modification to a config file that must be done when building a live iso,
-# but not when building a virtual disk image."
-
-# https://osinside.github.io/kiwi/concept_and_workflow.html#the-create-step
-# "At the beginning of the image creation process the script named images.sh is executed (if present)."
+# "The pre_disk_sync.sh can be used to change content of the root tree
+# as a last action before the sync to the disk image is performed."
 
 #======================================
 # SELinux config - if installed
