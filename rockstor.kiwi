@@ -46,6 +46,7 @@
         <!-- note: change luks Pass Phrase -->
         <!--        luks="c00l_Pa$$Phra$e" -->
         <!--        luks_version="luks2" -->
+        <!-- N.B. kernelcmdline may be modified by pre_disk_sync.sh -->
         <type image="oem" primary="true" initrd_system="dracut" filesystem="btrfs" fsmountoptions="noatime" firmware="efi" installiso="true" kernelcmdline="nomodeset plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G" bootpartition="false" devicepersistency="by-label" btrfs_root_is_subvolume="true" btrfs_root_is_snapper_snapshot="true" btrfs_quota_groups="false" efipartsize="64">
             <bootloader name="grub2" bls="false"/>
             <!-- For full disk LUKS encryption uncomment below entries -->
@@ -85,6 +86,7 @@
         <bootloader-theme>starfield</bootloader-theme>
         <!-- firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64 -->
         <!-- Re AArch64: https://github.com/OSInside/kiwi/issues/1491 -->
+        <!-- N.B. kernelcmdline may be modified by pre_disk_sync.sh -->
         <type image="oem" initrd_system="dracut" filesystem="btrfs" fsmountoptions="noatime,compress=lzo" firmware="efi" kernelcmdline="plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G console=ttyS0,115200 console=tty" bootpartition="false" devicepersistency="by-uuid" btrfs_root_is_subvolume="true" btrfs_root_is_snapper_snapshot="true" btrfs_quota_groups="false" efipartsize="64" editbootinstall="editbootinstall_rpi.sh">
             <bootloader name="grub2" bls="false"/>
             <systemdisk>
@@ -116,6 +118,7 @@
         <bootloader-theme>starfield</bootloader-theme>
         <!-- firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64 -->
         <!-- Re AArch64: https://github.com/OSInside/kiwi/issues/1491 -->
+        <!-- N.B. kernelcmdline may be modified by pre_disk_sync.sh -->
         <type image="oem" initrd_system="dracut" filesystem="btrfs" fsmountoptions="noatime,compress=lzo" firmware="efi" kernelcmdline="plymouth.enable=0 rd.kiwi.oem.maxdisk=5000G earlycon" bootpartition="false" devicepersistency="by-uuid" btrfs_root_is_subvolume="true" btrfs_root_is_snapper_snapshot="true" btrfs_quota_groups="false" efipartsize="64" format="qcow2">
             <bootloader name="grub2" bls="false"/>
             <systemdisk>
@@ -333,6 +336,22 @@
         <package name="ntfs-3g"/>
         <!-- ROCKSTOR PACKAGE: CHANGE VERSION AS REQUIRED -->
         <package name="rockstor-5.0.15-0"/>
+    </packages>
+    <!-- SELinux packages -->
+    <!-- See config.sh for kernel & grub configuration -->
+    <!-- Installed pkg count/size with `no-recommends` -->
+    <packages type="image" profiles="Slowroll.x86_64,Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.ARM64EFI">
+        <package name="policycoreutils"/>  <!-- 3 pkg 1 MB -->
+        <package name="setools-console"/>  <!-- 3 pkg 15 MB -->
+        <package name="restorecond"/>  <!-- 1 pkg 24 KB -->
+        <package name="audit"/>  <!-- 4 pkg 777 KB -->
+        <package name="selinux-policy"/>   <!-- default permissive/targeted -->
+        <package name="selinux-policy-targeted"/>   <!-- targeted base module depends on selinux-policy -->
+        <package name="checkpolicy"/>  <!-- 1 pkg 2 MB -->
+        <package name="python311-semanage"/>  <!-- 1 pkg 378 KB requried for semanage -->
+        <package name="python311-selinux"/>  <!-- 1 pkg 550 KB requried for semanage -->
+        <package name="policycoreutils-python-utils"/>  <!-- 59 pkg 70.4 MB - semanage plus bloat -->
+        <package name="selinux-autorelabel"/>  <!-- 1 pkg 28 KB early boot relabelling -->
     </packages>
     <packages type="image" profiles="Leap15.6.RaspberryPi4,Tumbleweed.RaspberryPi4">
         <package name="raspberrypi-eeprom" arch="aarch64"/>
