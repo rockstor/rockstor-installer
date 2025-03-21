@@ -351,6 +351,7 @@
         <package name="python311-semanage"/>  <!-- 1 pkg 378 KB requried for semanage -->
         <package name="python311-selinux"/>  <!-- 1 pkg 550 KB requried for semanage -->
         <package name="policycoreutils-python-utils"/>  <!-- 59 pkg 70.4 MB - semanage plus bloat -->
+        <package name="selinux-autorelabel"/>  <!-- 1 pkg 28 KB early boot relabelling -->
     </packages>
     <packages type="image" profiles="Leap15.6.RaspberryPi4,Tumbleweed.RaspberryPi4">
         <package name="raspberrypi-eeprom" arch="aarch64"/>
