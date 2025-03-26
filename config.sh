@@ -10,7 +10,9 @@
 # "... usually used to apply a permanent and final change of data in the root tree,
 # such as modifying a package-specific config file."
 
+#======================================
 # Functions...
+# https://osinside.github.io/kiwi/concept_and_workflow/shell_scripts.html#profile-environment-variables
 #--------------------------------------
 test -f /.kconfig && . /.kconfig
 test -f /.profile && . /.profile
@@ -91,6 +93,16 @@ baseSetRunlevel 3
 rm -rf /usr/share/doc/packages/*
 rm -rf /usr/share/doc/manual/*
 
+#======================================
+# Disable installing documentation
+#--------------------------------------
+sed -i 's/.*rpm.install.excludedocs.*/rpm.install.excludedocs = yes/g' /etc/zypp/zypp.conf
+
+#======================================
+# Disable recommends
+#--------------------------------------
+sed -i 's/.*solver.onlyRequires.*/solver.onlyRequires = true/g' /etc/zypp/zypp.conf
+
 #=====================================
 # Configure snapper
 #-------------------------------------
@@ -142,7 +154,7 @@ sed -i 's/https:\/\/www.opensuse.org/https:\/\/rockstor.com/g' /usr/lib/os-relea
 sed -i 's/^DOCUMENTATION_URL.*/DOCUMENTATION_URL="https:\/\/rockstor.com\/docs"/' /usr/lib/os-release
 
 #======================================
-# Apply grub config
+# Apply grub configs
 # Setup Grub Distributor option
 #--------------------------------------
 echo >> /etc/default/grub
