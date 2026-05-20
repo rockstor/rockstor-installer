@@ -1,0 +1,10 @@
+Rockstor GRUB2 theme
+---------------------------------
+
+boot_menu_*.png and slider_*.png are taken from the default grub2
+'starfield' theme.
+
+OS icons are taken from 'The Definitive Guide To Theming GRUB 2' by Towheed
+Mohammed.
+
+other configurations based on OpenSUSE theme
