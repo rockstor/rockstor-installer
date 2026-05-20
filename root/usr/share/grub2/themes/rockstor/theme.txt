@@ -1,0 +1,91 @@
+# Rockstor grub2 theme
+
+# Copyright (joint work) 2026 The Rockstor Project https://rockstor.com
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+# General settings
+# Rockstor color: #E86645 black: #000, white: #fff, greyish: #f0f0f0
+
+title-text: ""
+title-color: "#fff"
+title-font: "DejaVu Sans Bold 14"
+
+message-font: "DejaVu Sans Regular 12"
+message-color: "#000"
+message-bg-color: "#ffffff"
+desktop-color: "#f0f0f0"
+desktop-image: "rockstor-background.png"
+terminal-font: "Gnu Unifont Mono Regular 16"
+
+# Logo image
+# Original Size 391x311
++ image {
+        width = 156
+        height = 124
+        left = 20
+        top = 10
+        file = "rockstor-logo.png"
+}
+
+# Boot menu format
++ boot_menu {
+        left = 10%
+        width = 80%
+        top = 33%
+        height = 34%
+
+        item_font = "DejaVu Sans Regular 12"
+        item_color = "#ffffff"
+        item_height = 32
+        item_spacing = 2
+
+        selected_item_font = "DejaVu Sans Regular 12"
+        selected_item_color= "#ffffff"
+        selected_item_pixmap_style = "highlight_*.png"
+
+        icon_height = 0
+        icon_width = 0
+
+        scrollbar = true
+        scrollbar_width = 20
+        scrollbar_thumb = "slider_*.png"
+}
+
+# Progress bar
++ progress_bar {
+        id = "__timeout__"
+        left = 20%
+        top = 80%
+        height = 20
+        width = 50%
+        font = "DejaVu Sans Regular 12"
+        text_color = "#000000"
+        fg_color = "#ffffff"
+        bg_color = "#e86645"
+        border_color = "#ffffff"
+        text = "@TIMEOUT_NOTIFICATION_LONG@"
+}
+
+# Help Menu
++ hbox {
+        top = 100%-35
+        left = 20
+        + label {text = "C: Command Line     E: Edit Entry" font = "DejaVu Sans Regular 12" color = "#ffffff" align = "left"}
+}

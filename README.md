@@ -4,8 +4,25 @@
 This repo contains the [kiwi-ng](https://github.com/OSInside/kiwi) configuration used to create Rockstor 'Built on openSUSE' installers.
 Please see the excellent [kiwi ng docs](https://osinside.github.io/kiwi/) for configuration options.
 
-Pull requests most welcome; especially new target system profiles.
+Pull requests are most welcome; especially new target system profiles.
 Please test your modifications on all affected profiles prior to submission and provide details of how you tested the resulting installer.
+
+## License:
+
+The Rockstor installer configuration, this repo, is developed under the following licensing:
+
+* [GPL-3.0-or-later](https://www.gnu.org/licenses/gpl-3.0-standalone.html)
+* Additional licenses for the included Rockstor custom grub theme: [MIT](https://opensource.org/license/mit-0) AND [CC-BY-SA-3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+
+Making the repository license, overall, as per the **Fedora Project Wiki**:
+[Packaging:LicensingGuidelines](https://fedoraproject.org/wiki/Packaging:LicensingGuidelines#Mixed_Source_Licensing_Scenario):
+
+* **"GPL-3.0-or-later AND (MIT AND CC-BY-SA-3.0)"**
+
+*Note: All additional software mentioned below that needs to be installed to make this installer configuration operational,
+as well as software installed as part of the installer build, and its use, is subject to the individual projects' licensing terms.*
+
+See the [SPDX License List](https://spdx.org/licenses) for details on the above assertions.
 
 ## Profile Anatomy
 Profiles are named after their upstream distribution base, i.e. openSUSE Leap version,
