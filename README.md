@@ -11,24 +11,27 @@ Please test your modifications on all affected profiles prior to submission and 
 Profiles are named after their upstream distribution base, i.e. openSUSE Leap version,
 and then the intended target system; with the two elements separated by a ".".
 
-The "target system" element is either generic, i.e. **x86_64** or **AArch64**, or target system specific, i.e. **RaspberryPi4** or **ARM64EFI**.
+The "target system" element is either generic, i.e. **x86_64** or **AArch64**, or target system specific, i.e. **RaspberryPi4/5**, or **ARM64EFI**.
 With the latter ARM64EFI spanning both generic (Arm64) and specific (64 bit EFI).
 
 ## Core Profiles
 Our current pre-built installers are built using the following profiles (see: [Downloads](https://rockstor.com/dls.html)):
 
-- **Leap15.6.x86_64**
-- **Leap15.6.RaspberryPi4**
-- **Leap15.6.ARM64EFI**
+- **Leap16.0.x86_64**
+- **Leap16.0.RaspberryPi4**
+- **Leap16.0.ARM64EFI**
 - **Slowroll.x86_64**
 - **Tumbleweed.x86_64**
 - **Tumbleweed.RaspberryPi4**
 - **Tumbleweed.ARM64EFI**
 
-### Pi4 USB boot
-USB booting on the Pi4 may require a bootloader update via a fully updated Raspberry OS.
-Pi4 EEPROM/bootloader version "Jun 15 2020" or later will be required for USB boot,
-regardless of any installer/EFI file changes.
+Experimental Profile:
+- **Tumbleweed.RaspberryPi5**
+
+### RaspberryPi USB boot
+USB booting on the Pi 4 may require a bootloader update via a fully updated Raspberry OS.
+Pi4 EEPROM/bootloader version "Jun 15 2020" or later will be required for USB boot, regardless of any installer/EFI file changes.
+For the Pi 5 apply the latest bootloader available, as this is still in active development.
 
 ### Special mention
 - ARM64EFI
@@ -53,8 +56,8 @@ and the [howto subsection](#howto) below to test proposed changes.
 
 Please see the [kiwi-ng docs overview](https://osinside.github.io/kiwi/overview.html) for the canonical
 [System Requirements](https://osinside.github.io/kiwi/overview.html#system-requirements) for building the installer:
-e.g., 15 GB free space, Python version, etc.
-It is recommended to use at least Kiwi-ng v10.2.13 to build our [Core Profiles](#core-profiles).
+e.g. 15 GB free space, Python version, etc.
+It is recommended to use at least kiwi-ng v10.3.0 to build our [Core Profiles](#core-profiles).
 
 Given our profiles' target OSs are exclusively 'Built on openSUSE',
 a vanilla openSUSE Leap 15.6 instance is recommended if not using the kiwi-ng boxbuild method.
@@ -147,20 +150,13 @@ For an openSUSE Leap 15.6 OS from kiwi-ng's doc [Installation](https://osinside.
 Any x86_64 machine, keeping in mind that building an installer is computationally expensive,
 so systems with a decent-sized CPU/RAM combination released in the last 5-7 years is recommended.
 
-##### Leap 15.6 host
-The openSUSE host version should ideally be at least the version of the target profile.
-Since Leap 15.6 ships with a default `python 3.6x` it is necessary to install a higher python version (e.g., `3.11`):
+##### Host with Leap 16.x or Tumbleweed
+As the newer distributions already have the required python3 versions,
+just add the the required repository as per distribution (for Slowroll use `openSUSE_Tumbleweed` as well):
 
+e.g. for 16.0:
 ```shell
-sudo zypper in python311
-```
-
-then add the required repository:
-
-for 15.6
-
-```shell
-sudo zypper addrepo https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.6/ appliance-builder
+sudo zypper addrepo https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_LEAP_16.0/ appliance-builder
 ```
 
 and install kiwi and the additional requirements as shown below:
@@ -169,11 +165,29 @@ and install kiwi and the additional requirements as shown below:
 sudo zypper install python3-kiwi btrfsprogs gfxboot qemu-tools gptfdisk e2fsprogs squashfs xorriso dosfstools
 ```
 
-#### AArch64 host (e.g., a Pi4) for AArch64 profiles
+##### Host with Leap < 16.0
+The openSUSE host version should ideally be at least the version of the target profile.
+Since older Leap versions (EOL) can ship with a default python version that is less than the minimum requirement of `python 3.9`,
+it is necessary to install a higher python version (e.g., `3.13`):
+
+```shell
+sudo zypper in python313
+```
+
+then add the required repository, e.g.
+
+for 15.6
+
+```shell
+sudo zypper addrepo https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.6/ appliance-builder
+```
+
+Then proceed to install kiwi and the additional requirements as above.
+
+#### AArch64 host (e.g. a Pi4) for AArch64 profiles
 See [HCL:Raspberry Pi4](https://en.opensuse.org/HCL:Raspberry_Pi4).
-Install, for example, an appliance JeOS Leap 15.6 image as the host OS.
-Enabling USB boot on older Pi4 systems will allow for the use of, for example,
-an SSD as the system drive which will massively speed up installer building.
+Install, for example, an appliance JeOS Leap 16.0 image as the host OS.
+Enabling USB boot on older Pi4 systems will allow for the use of, for example, an SSD as the system drive which will massively speed up installer building.
 See [Pi4 USB boot](#pi4-usb-boot).
 
 ### Edit rockstor.kiwi
@@ -181,7 +195,7 @@ No edit is required if you wish to use the generic installer filename and defaul
 To change these defaults edit all lines directly preceded by **<!--Change to ...** as per the **...** details given.
 Our release infrastructure performs these same edits to set official installer filenames and rockstor package versions.
 
-#### Stable Kernel Backport & matching btrfs-progs
+#### Stable Kernel Backport & matching btrfs-progs (only applicable for OpenSUSE LEAP < 16.0)
 To enable the use of 'Stable Kernel Backport' and 'filesystems' repositories within our `rockstor.kiwi` config,
 uncomment the corresponding repositories.
 For more information about using the most recent kernels see
@@ -189,25 +203,25 @@ For more information about using the most recent kernels see
 
 #### Root disk LUKS encryption
 If you want to enable LUKS encryption of the Root disk (where Rockstor is installed),
-uncomment the relevant parameters available as example in the **Leap15.6.x86_64** profile.
+uncomment the relevant parameters available as example in the **Leap16.0.x86_64** profile.
 This will enable `LUKS2` encryption and utilize PBKDF2, as grub does not yet support the more recent `argon2id` algorithm.
 
 N.B.: The `luksformat` parameter's preceding hyphens have to be escaped to exist as a comment.
 When adding more non-commented parameters,
 the required double-hyphens can be inserted without escaping them to their Unicode character codes.
 
-### Leap15.6.x86_64 profile
+### Leap16.0.x86_64 profile
 Executed, as the root user, in the directory containing this repository's `rockstor.kiwi` file.
 
 ```shell
-kiwi-ng --profile=Leap15.6.x86_64 --type oem system build --description ./ --target-dir /home/kiwi-images/
+kiwi-ng --profile=Leap16.0.x86_64 --type oem system build --description ./ --target-dir /home/kiwi-images/
 ```
 
-### Leap15.6.RaspberryPi4 profile
+### Leap16.0.RaspberryPi4 profile
 Executed, as the root user, in the directory containing this repository's `rockstor.kiwi` file.
 
 ```shell
-kiwi-ng --profile=Leap15.6.RaspberryPi4 --type oem system build --description ./ --target-dir /home/kiwi-images/
+kiwi-ng --profile=Leap16.0.RaspberryPi4 --type oem system build --description ./ --target-dir /home/kiwi-images/
 ```
 
 ## Resulting Rockstor installers
@@ -215,7 +229,7 @@ With the above suggested `kiwi-ng` commands the resulting installers will be fou
 
 - For the x86_64 profiles the resulting installer is an ISO image intended for image transfer to an installer only device.
 Use the file ending in ".iso".
-- For the RaspberryPi4 profile the resulting installer is an uncompressed raw disk image intended for image transfer to the target system disk directly.
+- For the RaspberryPi 4 and 5 profiles the resulting installer is an uncompressed raw disk image intended for image transfer to the target system disk directly.
 Use the file ending in ".raw".
 
 The resulting installs will grow on first boot to the size of their host devices.
@@ -226,13 +240,11 @@ Please see [Rockstor’s “Built on openSUSE” installer](https://rockstor.com
 ## Help or Assistance
 Our [friendly forum](https://forum.rockstor.com/) is a good place to ask question regarding this How-to.
 If you enable any of the above described enhancements i.e. backported kernel, LUKS, or add other options,
-be sure to include their details when reporting any problems.
-Please be patient as our support is community based and the above procedures are always in-flux/development.
+be sure to include those details when reporting any problems.
+Please be patient as our support is community based and the above procedures are always in flux/development.
 
-If you find an issues with these instructions, or the kiwi-ng config,
-please consider creating an issue and submitting a pull request with a proposed fix.
+If you find an issue with these instructions, or the kiwi-ng config, please consider creating an issue and submitting a pull request with a proposed fix.
 
-[The Rockstor Project](https://opencollective.com/the-rockstor-project) is an [Open Collective](https://opencollective.com/)
-Non-Profit/Non-Business Open Source community endeavour.
-As such it depends on subscriptions and contributions for its sustainability.
-
+[The Rockstor Project](https://opencollective.com/the-rockstor-project) is an [Open Collective](https://opencollective.com/) Non-Profit/Non-Business Open Source community endeavour.
+We are supported by our contributors, and fiscally hosted by [Open Source Europe (OSE)](https://opencollective.com/europe).
+As such it depends on contributions for its sustainability.
