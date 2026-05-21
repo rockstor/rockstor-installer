@@ -223,6 +223,22 @@ Executed, as the root user, in the directory containing this repository's `rocks
 ```shell
 kiwi-ng --profile=Leap16.0.RaspberryPi4 --type oem system build --description ./ --target-dir /home/kiwi-images/
 ```
+### Tumbleweed.RaspberryPi5 profile
+Executed, as the root user, in the directory containing this repository's `rockstor.kiwi` file.
+
+```shell
+kiwi-ng --profile=Tumbleweed.RaspberryPi5 --type oem system build --description ./ --target-dir /home/kiwi-images/
+```
+Since the rpi5 comes with a changed architecture and a new chip (BCM2712), it took quite some time to make it work for OpenSUSE.
+Finally, at the end of 2025 openSUSE has started offering the first (Tumbleweed only) rpi5 images that can be written directly to the SD card using `rip imager` and boot them up.
+The (wiki page)[https://en.opensuse.org/HCL:Raspberry_Pi5] is periodically updated with remaining issues and other news related to this porting effort.
+In order to create a Rockstor Pi5 installer, it requires `kiwi-ng` to be run on actual pi5 hardware.
+(So far, qemu/KVM based builds have been unsuccessful due to the boot section being markedly different from typical aarch64 builds).
+After installing the OpenSUSE base image, and the above mentioned preparations (install packages on build host), a Rockstor `raw` image can be successfully built.
+That image can then be written to the SD card using the graphical `rpi-imager` software (windows or linux).
+
+Note: As of May 2026 there is no option to use Rockstor on the jeOS base image using the rpm installation method via zypper. The installation is successful,
+but because the base images uses `ext4` as its file system and not btrfs, Rockstor will not allow for the setup to proceed.
 
 ## Resulting Rockstor installers
 With the above suggested `kiwi-ng` commands the resulting installers will be found in **/home/kiwi-images/** on the kiwi-ng host systems.

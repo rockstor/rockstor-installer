@@ -77,7 +77,7 @@
         </type>
     </preferences>
     <preferences profiles="Leap16.0.RaspberryPi4,Tumbleweed.RaspberryPi4,Tumbleweed.RaspberryPi5">
-        <version>5.0.15-0</version>
+        <version>5.5.3-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
         <keytable>gb</keytable>
@@ -109,7 +109,7 @@
         </type>
     </preferences>
     <preferences profiles="Leap16.0.ARM64EFI,Tumbleweed.ARM64EFI">
-        <version>5.0.15-0</version>
+        <version>5.5.3-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
         <keytable>gb</keytable>
@@ -317,7 +317,7 @@
         <package name="syslinux" arch="x86_64"/>
         <package name="systemd"/>
         <package name="systemd-presets-branding"/> <!-- or branding-openSUSE -->
-        <package name="systemd-sysvinit"/>
+        <!-- <package name="systemd-sysvinit"/> -->
         <package name="tar"/>
         <package name="timezone"/>
         <package name="tree"/>
