@@ -162,7 +162,7 @@ sudo zypper addrepo https://download.opensuse.org/repositories/Virtualization:/A
 and install kiwi and the additional requirements as shown below:
 
 ```shell
-sudo zypper install python3-kiwi btrfsprogs gfxboot qemu-tools gptfdisk e2fsprogs squashfs xorriso dosfstools
+sudo zypper install python3-kiwi btrfsprogs qemu-tools gptfdisk e2fsprogs squashfs xorriso dosfstools binutils
 ```
 
 ##### Host with Leap < 16.0
