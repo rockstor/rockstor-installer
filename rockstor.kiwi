@@ -40,7 +40,7 @@
         <rpm-excludedocs>true</rpm-excludedocs>
         <rpm-check-signatures>false</rpm-check-signatures>
         <bootsplash-theme>upstream</bootsplash-theme>
-        <bootloader-theme>starfield</bootloader-theme>
+        <bootloader-theme>rockstor</bootloader-theme>
         <!-- firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64 -->
         <!-- Re AArch64: https://github.com/OSInside/kiwi/issues/1491 -->
         <!-- For root disk LUKS encryption (using luks2 & PBKDF2 instead of argon2id) -->
@@ -85,7 +85,7 @@
         <rpm-excludedocs>true</rpm-excludedocs>
         <rpm-check-signatures>false</rpm-check-signatures>
         <bootsplash-theme>upstream</bootsplash-theme>
-        <bootloader-theme>starfield</bootloader-theme>
+        <bootloader-theme>rockstor</bootloader-theme>
         <!-- firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64 -->
         <!-- Re AArch64: https://github.com/OSInside/kiwi/issues/1491 -->
         <!-- N.B. kernelcmdline may be modified by pre_disk_sync.sh -->
@@ -117,7 +117,7 @@
         <rpm-excludedocs>true</rpm-excludedocs>
         <rpm-check-signatures>false</rpm-check-signatures>
         <bootsplash-theme>upstream</bootsplash-theme>
-        <bootloader-theme>starfield</bootloader-theme>
+        <bootloader-theme>rockstor</bootloader-theme>
         <!-- firmware="efi" See https://github.com/OSInside/kiwi/issues/1428 re AArch64 -->
         <!-- Re AArch64: https://github.com/OSInside/kiwi/issues/1491 -->
         <!-- N.B. kernelcmdline may be modified by pre_disk_sync.sh -->
