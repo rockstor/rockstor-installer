@@ -367,12 +367,17 @@
         <package name="cracklib-dict-full"/>
         <package name="filesystem"/>
         <package name="gawk"/>
-        <package name="glibc-locale"/>  <!-- possbily glibc-locale-base -->
+        <package name="glibc-locale"/>  <!-- possibly glibc-locale-base -->
         <package name="grep"/>
         <package name="gzip"/>
         <package name="diffutils"/>
-        <package name="openSUSE-release"/>  <!-- /etc/os-release etc -->
         <package name="udev"/>
         <package name="xz"/>
+    </packages>
+    <packages type="bootstrap" profiles="Slowroll.x86_64,Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.RaspberryPi5,Tumbleweed.ARM64EFI">
+        <package name="openSUSE-release"/>  <!-- /etc/os-release etc -->
+    </packages>
+    <packages type="bootstrap" profiles="Leap16.0.x86_64,Leap16.0.RaspberryPi4,Leap16.0.ARM64EFI">
+        <package name="Leap-release"/>  <!-- /etc/os-release etc -->
     </packages>
 </image>
