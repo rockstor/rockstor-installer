@@ -97,10 +97,10 @@ fi
 #=====================================
 # Edit the base distro openSUSE license files in accordance with the following:
 # https://en.opensuse.org/Archive:Making_an_openSUSE_based_distribution
-# Files to edit /usr/share/licenses/openSUSE-release/*.txt
+# Files to edit /usr/share/licenses/product/base/*.txt
 #-------------------------------------
 shopt -s nullglob
-for license_file in /usr/share/licenses/openSUSE-release/*.txt
+for license_file in /usr/share/licenses/product/base/*.txt
 do
     sed -i 's/openSUSE®/Rockstor "Built on openSUSE"/g' "${license_file}"
     sed -i 's/The openSUSE Project/The Rockstor Project/g' "${license_file}"
