@@ -17,7 +17,7 @@ The Rockstor installer configuration, this repo, is developed under the followin
 Making the repository license, overall, as per the **Fedora Project Wiki**:
 [Packaging:LicensingGuidelines](https://fedoraproject.org/wiki/Packaging:LicensingGuidelines#Mixed_Source_Licensing_Scenario):
 
-* **"GPL-3.0-or-later AND (MIT AND CC BY-SA 3.0)"**
+* **"GPL-3.0-or-later AND (MIT AND CC-BY-SA-3.0)"**
 
 *Note: All additional software mentioned below that needs to be installed to make this installer configuration operational,
 as well as software installed as part of the installer build, and its use, is subject to the individual projects' licensing terms.*
