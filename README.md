@@ -12,7 +12,7 @@ Please test your modifications on all affected profiles prior to submission and 
 The Rockstor installer configuration, this repo, is developed under the following licensing:
 
 * [GPL-3.0-or-later](https://www.gnu.org/licenses/gpl-3.0-standalone.html)
-* Additional licenses for the included Rockstor custom grub theme: [MIT](https://opensource.org/license/mit-0) AND [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* Additional licenses for the included Rockstor custom grub theme: [MIT](https://opensource.org/license/mit-0) AND [CC-BY-SA-3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
 Making the repository license, overall, as per the **Fedora Project Wiki**:
 [Packaging:LicensingGuidelines](https://fedoraproject.org/wiki/Packaging:LicensingGuidelines#Mixed_Source_Licensing_Scenario):
