@@ -32,7 +32,7 @@
         <profile name="Tumbleweed.ARM64EFI" description="Rockstor built on openSUSE Tumbleweed ARM64 EFI/VM/Ten64" arch="aarch64"/>
     </profiles>
     <preferences profiles="Leap16.0.x86_64,Slowroll.x86_64,Tumbleweed.x86_64">
-        <version>5.5.3-0</version>
+        <version>5.5.5-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
         <keytable>gb</keytable>
@@ -77,7 +77,7 @@
         </type>
     </preferences>
     <preferences profiles="Leap16.0.RaspberryPi4,Tumbleweed.RaspberryPi4,Tumbleweed.RaspberryPi5">
-        <version>5.5.3-0</version>
+        <version>5.5.5-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
         <keytable>gb</keytable>
@@ -109,7 +109,7 @@
         </type>
     </preferences>
     <preferences profiles="Leap16.0.ARM64EFI,Tumbleweed.ARM64EFI">
-        <version>5.5.3-0</version>
+        <version>5.5.5-0</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_GB</locale>
         <keytable>gb</keytable>
@@ -201,23 +201,6 @@
     </repository>
     <repository type="rpm-md" alias="Rockstor-Testing" profiles="Slowroll.x86_64,Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.RaspberryPi5,Tumbleweed.ARM64EFI">
         <source path="http://updates.rockstor.com:8999/rockstor-testing/tumbleweed/"/>
-    </repository>
-    <!-- For shellinabox package -->
-    <!-- https://build.opensuse.org/package/show/shells/shellinabox -->
-    <!-- Lower priority (higher number) than default 99 to avoid other dev shell packages supplanting -->
-    <!-- those in default repositories. Shellinabox is not currently offered as part of the base system -->
-    <!-- Rockstor home repo on OBS for Leap 15.3 + now hosts dual arch shellinabox -->
-    <!-- Maintain lower priority to upstream in case shellinabox is added there -->
-    <!-- https://build.opensuse.org/project/show/home:rockstor -->
-    <!-- As of 05/20/2026 shellinabox package is not available for Leap 16.0, so continue to use 15.6 for now. -->
-    <repository type="rpm-md" alias="home_rockstor" priority="105" imageinclude="true" profiles="Leap16.0.x86_64,Leap16.0.RaspberryPi4,Leap16.0.ARM64EFI">
-        <source path="https://download.opensuse.org/repositories/home:/rockstor/15.6/"/>
-    </repository>
-    <repository type="rpm-md" alias="home_rockstor" priority="105" imageinclude="true" profiles="Slowroll.x86_64">
-        <source path="https://download.opensuse.org/repositories/home:/rockstor/openSUSE_Slowroll/"/>
-    </repository>
-    <repository type="rpm-md" alias="home_rockstor" priority="105" imageinclude="true" profiles="Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.RaspberryPi5,Tumbleweed.ARM64EFI">
-        <source path="https://download.opensuse.org/repositories/home:/rockstor/openSUSE_Tumbleweed/"/>
     </repository>
     <!-- This repo currently provides: systemd-presets-branding-rockstor -->
     <!-- As per https://en.opensuse.org/Archive:Making_an_openSUSE_based_distribution -->
@@ -326,7 +309,7 @@
         <package name="which"/>
         <package name="ntfs-3g"/>
         <!-- ROCKSTOR PACKAGE: CHANGE VERSION AS REQUIRED -->
-        <package name="rockstor-5.5.3-0"/>
+        <package name="rockstor-5.5.5-0"/>
     </packages>
     <!-- SELinux packages -->
     <!-- See config.sh for kernel & grub configuration -->
