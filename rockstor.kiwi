@@ -146,8 +146,13 @@
     </users>
     <!-- https://en.opensuse.org/Package_repositories -->
     <!-- Alias repo-oss Name="Main Repository" in JeOS -->
-    <repository type="rpm-md" alias="repo-oss" imageinclude="true" profiles="Leap16.0.x86_64,Leap16.0.RaspberryPi4,Leap16.0.ARM64EFI">
-        <source path="https://cdn.opensuse.org/distribution/leap/16.0/repo/oss/"/>
+    <!-- Leap 16 has returned to arch specific repo-oss, i.e. url ending in /x86_64/ or /aarch64/-->
+    <!-- https://en.opensuse.org/SDB:System_upgrade#Distribution_repositories -->
+    <repository type="rpm-md" alias="repo-oss" imageinclude="true" profiles="Leap16.0.x86_64">
+        <source path="https://cdn.opensuse.org/distribution/leap/16.0/repo/oss/x86_64/"/>
+    </repository>
+    <repository type="rpm-md" alias="repo-oss" imageinclude="true" profiles="Leap16.0.RaspberryPi4,Leap16.0.ARM64EFI">
+        <source path="https://cdn.opensuse.org/distribution/leap/16.0/repo/oss/aarch64/"/>
     </repository>
     <repository type="rpm-md" alias="repo-oss" imageinclude="true" profiles="Slowroll.x86_64">
         <source path="https://cdn.opensuse.org/slowroll/repo/oss"/>
@@ -159,9 +164,7 @@
         <source path="https://cdn.opensuse.org/ports/aarch64/tumbleweed/repo/oss/"/>
     </repository>
     <!-- Alias repo-update Name="Main Update Repository" or "openSUSE-Tumbleweed-Update" in JeOS -->
-    <repository type="rpm-md" alias="repo-update" imageinclude="true" profiles="Leap16.0.x86_64,Leap16.0.RaspberryPi4,Leap16.0.ARM64EFI">
-        <source path="https://cdn.opensuse.org/distribution/leap/16.0/repo/oss/"/>
-    </repository>
+    <!-- In Leap 16 profiles this repository is no longer required -->
     <repository type="rpm-md" alias="openSUSE-Slowroll-Update" imageinclude="true" profiles="Slowroll.x86_64">
         <source path="https://download.opensuse.org/update/slowroll/repo/oss/"/>
     </repository>
