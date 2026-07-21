@@ -74,12 +74,15 @@ and the [howto subsection](#howto) below to test proposed changes.
 Please see the [kiwi-ng docs overview](https://osinside.github.io/kiwi/overview.html) for the canonical
 [System Requirements](https://osinside.github.io/kiwi/overview.html#system-requirements) for building the installer:
 e.g. 15 GB free space, Python version, etc.
-It is recommended to use at least kiwi-ng v10.3.0 to build our [Core Profiles](#core-profiles).
+The rockstor.kiwi schema version (8.3) dictates the minimum kiwi-ng & Dracut helpers required at v10.2.13.
+The recommended kiwi-ng version is that provided by the default repositories for the OS of the given [Profile](#core-profiles).
 
 Given our profiles' target OSs are exclusively 'Built on openSUSE',
-a vanilla openSUSE Leap 15.6 instance is recommended if not using the kiwi-ng boxbuild method.
-But if the newer kiwi-ng boxbuild method in "Building on any linux host... " is used,
+a vanilla openSUSE Leap 16.0 instance, minimum, is recommended if not using the kiwi-ng boxbuild method.
+But if the kiwi-ng boxbuild method in "Building on any linux host... " is used,
 any relatively modern linux system can be used to build the installer.
+Note that the boxbuild method has limitations excluding its use on the ARM profiles;
+due to a lack of supporting images in this architecture.
 
 ### rockstor-installer local copy
 
@@ -153,7 +156,7 @@ Or go with the explicit version 3.x of pip:
 ```
 The rest remains the same (make sure to consider the memory and CPU defaults mentioned above)
 ```shell
-./kiwi-env/bin/kiwi-ng --profile=Leap15.6.x86_64 --type oem \
+./kiwi-env/bin/kiwi-ng --profile=Leap16.0.x86_64 --type oem \
   system boxbuild --box leap -- --description ./ --target-dir ./images
 ```
 
@@ -161,45 +164,18 @@ The rest remains the same (make sure to consider the memory and CPU defaults men
 This was the preferred method before the above kiwi-ng boxbuild capability existed.
 
 #### kiwi-ng install
-For an openSUSE Leap 15.6 OS from kiwi-ng's doc [Installation](https://osinside.github.io/kiwi/installation.html#installation) section we have:
+From kiwi-ng's doc [Installation](https://osinside.github.io/kiwi/installation.html#installation) section we have:
 
 #### x86_64 host for x86_64 profiles
 Any x86_64 machine, keeping in mind that building an installer is computationally expensive,
 so systems with a decent-sized CPU/RAM combination released in the last 5-7 years is recommended.
 
 ##### Host with Leap 16.x or Tumbleweed
-As the newer distributions already have the required python3 versions,
-just add the the required repository as per distribution (for Slowroll use `openSUSE_Tumbleweed` as well):
-
-e.g. for 16.0:
-```shell
-sudo zypper addrepo https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_LEAP_16.0/ appliance-builder
-```
-
-and install kiwi and the additional requirements as shown below:
+Newer distributions already have the required python3 versions as default.
 
 ```shell
 sudo zypper install python3-kiwi btrfsprogs qemu-tools gptfdisk e2fsprogs squashfs xorriso dosfstools binutils
 ```
-
-##### Host with Leap < 16.0
-The openSUSE host version should ideally be at least the version of the target profile.
-Since older Leap versions (EOL) can ship with a default python version that is less than the minimum requirement of `python 3.9`,
-it is necessary to install a higher python version (e.g., `3.13`):
-
-```shell
-sudo zypper in python313
-```
-
-then add the required repository, e.g.
-
-for 15.6
-
-```shell
-sudo zypper addrepo https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_15.6/ appliance-builder
-```
-
-Then proceed to install kiwi and the additional requirements as above.
 
 #### AArch64 host (e.g. a Pi4) for AArch64 profiles
 See [HCL:Raspberry Pi4](https://en.opensuse.org/HCL:Raspberry_Pi4).
@@ -212,7 +188,7 @@ No edit is required if you wish to use the generic installer filename and defaul
 To change these defaults edit all lines directly preceded by **<!--Change to ...** as per the **...** details given.
 Our release infrastructure performs these same edits to set official installer filenames and rockstor package versions.
 
-#### Stable Kernel Backport & matching btrfs-progs (only applicable for OpenSUSE LEAP < 16.0)
+#### Stable Kernel Backport & matching btrfs-progs
 To enable the use of 'Stable Kernel Backport' and 'filesystems' repositories within our `rockstor.kiwi` config,
 uncomment the corresponding repositories.
 For more information about using the most recent kernels see
@@ -250,12 +226,12 @@ Since the rpi5 comes with a changed architecture and a new chip (BCM2712), it to
 Finally, at the end of 2025 openSUSE has started offering the first (Tumbleweed only) rpi5 images that can be written directly to the SD card using `rip imager` and boot them up.
 The (wiki page)[https://en.opensuse.org/HCL:Raspberry_Pi5] is periodically updated with remaining issues and other news related to this porting effort.
 In order to create a Rockstor Pi5 installer, it requires `kiwi-ng` to be run on actual pi5 hardware.
-(So far, qemu/KVM based builds have been unsuccessful due to the boot section being markedly different from typical aarch64 builds).
+So far, qemu/KVM based builds have been unsuccessful due to the boot section being markedly different from typical aarch64 builds.
 After installing the OpenSUSE base image, and the above mentioned preparations (install packages on build host), a Rockstor `raw` image can be successfully built.
 That image can then be written to the SD card using the graphical `rpi-imager` software (windows or linux).
 
-Note: As of May 2026 there is no option to use Rockstor on the jeOS base image using the rpm installation method via zypper. The installation is successful,
-but because the base images uses `ext4` as its file system and not btrfs, Rockstor will not allow for the setup to proceed.
+Note: As of May 2026 there is no option to use Rockstor on the jeOS base image using the rpm installation method via zypper for the Pi5.
+The installation is successful, but because the base images uses `ext4` as its file system and not btrfs, Rockstor will not allow for the setup to proceed.
 
 ## Resulting Rockstor installers
 With the above suggested `kiwi-ng` commands the resulting installers will be found in **/home/kiwi-images/** on the kiwi-ng host systems.

@@ -183,15 +183,6 @@
     <repository type="rpm-md" alias="repo-openh264" imageinclude="true" profiles="Slowroll.x86_64,Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.RaspberryPi5,Tumbleweed.ARM64EFI">
         <source path="http://codecs.opensuse.org/openh264/openSUSE_Tumbleweed"/>
     </repository>
-    <!-- Virtualization_Appliances_Builder repos: -->
-    <!-- Latest Kiwi-ng & Dracut helpers:  -->
-    <!-- https://build.opensuse.org/project/show/Virtualization:Appliances:Builder -->
-    <repository type="rpm-md" alias="Virtualization_Appliances_Builder" imageinclude="true" profiles="Leap16.0.x86_64,Leap16.0.RaspberryPi4,Leap16.0.ARM64EFI">
-        <source path="https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Leap_16.0/"/>
-    </repository>
-    <repository type="rpm-md" alias="Virtualization_Appliances_Builder" imageinclude="true" profiles="Slowroll.x86_64,Tumbleweed.x86_64,Tumbleweed.RaspberryPi4,Tumbleweed.RaspberryPi5,Tumbleweed.ARM64EFI">
-        <source path="https://download.opensuse.org/repositories/Virtualization:/Appliances:/Builder/openSUSE_Tumbleweed/"/>
-    </repository>
     <!-- https://osinside.github.io/kiwi/concept_and_workflow/repository_setup.html -->
     <!-- Local-Repository on build host: for pre-installed rockstor package -->
     <!--    <repository alias="Local-Repository"> -->
